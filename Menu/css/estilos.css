@@ -1,0 +1,145 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+main{
+    width: 100%;
+    height: auto;
+    background: #34495E;
+    position: absolute;
+}
+
+.content-all{
+    position: absolute;
+    width: 100%;
+    max-width: 1000px;
+    background: #17A086;
+    margin: auto;
+    margin-top: 80px;
+    border: 2px solid white;
+}
+
+header{
+    width: 100%;
+    height: 60px;
+    position: fixed;
+    overflow: hidden;
+    left: 0;
+    top: 0;
+    background: #00A89E;
+}
+img{
+    width: 100%;
+}
+#check{
+    display: none;
+}
+
+#check:checked ~ .menu{
+    width: 200px;
+}
+.menu:hover{
+    width: 200px;
+}
+.menu{
+    position: fixed;
+    top: 60px;
+    width: 70px;
+    height: 100vh;
+    background: #2D3E50;
+    transition: all 500ms cubic-bezier(1,0,0,1);
+    transition-timing-function: cubic-bezier(1,0,0,1);
+    overflow: hidden;
+    box-shadow: rgb(0, 0, 0);
+    
+}
+.menu div{
+    display: block;
+    list-style: none;
+    padding: 16px;
+    color: white;
+    cursor: pointer;
+    transition: all 300ms;
+    width: 400px;
+}
+.menu li{
+    list-style: none;
+    padding: 16px;
+    color: white;
+    cursor: pointer;
+    transition: all 300ms;
+    display:inline;
+}
+
+.menu div:hover{
+    background: rgba(0,0,0,0.2);
+
+}
+.otros{
+    padding-left: 60px;
+    color: aliceblue;
+}
+article{
+    padding: 40px;
+}
+
+.container-fluid label{
+    position: fixed;
+    width: 100%;
+    max-width: 1000px;
+    top: 14px;
+    font-size: 26px;
+    color: white;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.container-fluid h2{
+    position: fixed;
+    width: 100%;
+    max-width: 1000px;
+    top: 14px;
+    font-size: 26px;
+    text-align: right;
+    color: white;
+}
+
+article h1{
+    font-size: 30px;
+    color: white;
+    font-weight: 100;
+    margin-top: 20px;
+    
+}
+
+article .parrafo1{
+    font-size: 20px;
+    color: white;
+    margin-top: 40px;
+    letter-spacing: 2px;
+}
+
+article img{
+    width: 100%;
+    border: 4px solid white;
+    margin-top: 40px;
+}
+
+article .parrafo2{
+    font-size: 20px;
+    color: white;
+    margin-top: 40px;
+    letter-spacing: 1px;
+}
+
+
+
+
+
+
+
+
+
