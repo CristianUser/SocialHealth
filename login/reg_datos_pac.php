@@ -1,8 +1,18 @@
 <?php
+session_start();
 require "funcs/conexion.php";
+	
+	if(!isset($_SESSION["id_usuario"])){ //Si no ha iniciado sesión redirecciona a index.php
+		header("Location: index.php");
+	}
+  $idUsuario = $_SESSION['id_usuario'];
+  $id_tipo = $_SESSION['tipo_usuario'];
+
 
 $query = "SELECT `ID_Region`, `Nombre` FROM `region` ORDER BY Nombre";
-$Sregion=$mysqli->query($query);
+$S_region=$mysqli->query($query);
+$query= "SELECT `ID_Seguro`, `Nombre`, `Page_Link` FROM `seguro`";
+$S_seguro=$mysqli->query($query);
 
 //conexion
 //cargar datos desde la base y guardar.
@@ -52,54 +62,55 @@ $Sregion=$mysqli->query($query);
                       <br>
                   </div>
                   <div class="form-control cuadro" style="" >
-                        <form>
+                        <form role="form" method="POST" action="../DBConnect/GuardarPac.php">
+                          <input type="hidden" name="id" value="<?php echo $idUsuario ?>">
+                          <input type="hidden" name="id_tipo" value="<?php echo $id_tipo ?>">
                                 <h3 style="text-align: center;color: #2C3E50;">Recopilacion de datos</h3>
                                 <div class="form-row">
                                   <div class="form-group col-md-6">
-                                    <label for="inputEmail4">Seguro</label>
-                                    <select name="" id="" class="form-control" style="height: 51px;">
+                                    <label for="seguro">Seguro</label>
+                                    <select name="seguro" id="seguro" class="form-control" style="height: 51px;">
                                         <option value="0">Selecciona...</option>
-                                        <option value="">Senasa</option>
-                                        <option value="">Hola Mama!!</option>
-                                        <option value="">Ella no te ama!!!</option>
-                                        <option value="">Entiendelo</option>
+                                        <?php while($row = $S_seguro->fetch_assoc()) { ?>
+                                          <option value="<?php echo $row['ID_Seguro']; ?>"><?php echo $row['Nombre']; ?></option>
+                                        <?php } ?>
                                     </select>
                                   </div>
                                   <div class="form-group col-md-6">
                                     <label for="nss">NSS</label>
-                                    <input type="number" class="form-control" id="nss" placeholder="NSS">
+                                    <input type="text" class="form-control" id="nss" name="nss" placeholder="NSS">
                                   </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-8">
-                                        <label for="inputAddress">Nacimiento</label>
-                                        <input type="date" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                                        <label for="nacimiento">Nacimiento</label>
+                                        <input type="date" class="form-control" id="nacimiento" name="nacimiento" placeholder="" required>
                                     </div>
 
                                     <div class="form-group col-md-4">
                                         <label for="sexo">Sexo</label>
                                         <select name="sexo" id="sexo" class="form-control" style="height: 51px;">
                                             <option value="0">Selecciona...</option>
-                                            <option value="">Masculino</option>
-                                            <option value="">Femenino</option>
-                                            <option value="">Prefiero no decirlo</option>
-                                            <option value="">Otro</option>
+                                            <option value="Masculino">Masculino</option>
+                                            <option value="Femenino">Femenino</option>
+                                            <option value="Indefinido">Prefiero no decirlo</option>
+                                            <option value="Otro">Otro</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-6">
-                                        <label for="">Contacto</label>
-                                        <input type="tel" name="" id="" placeholder="Telefono" class="form-control" required>
+                                        <label for="telefono">Contacto</label>
+                                        <input type="tel" name="telefono" id="telefono" placeholder="Telefono" class="form-control" required>
                                     </div>
                                     <div class="form-group col-6">
                                         <label for="cedula">Cedula</label>
-                                        <input type="text" name="cedula" id="cedula" placeholder="Cedula" class="form-control" required>
+                                        <input type="text" name="cedula" id="cedula" placeholder="Cedula" class="form-control">
                                     </div>
                                 </div>
                                     <div class="form-group">
-                                  <label for="inputAddress2">Direccion</label>
-                                  <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor" required>
+                                  <label for="direccion">Direccion</label>
+                                  <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Casa, Apartameto" required>
                                 </div>
                                 <div class="form-row">
                                   <div class="form-group col-md-5">
@@ -107,7 +118,7 @@ $Sregion=$mysqli->query($query);
                                         <label for="region">Region</label>
                                           <select name="region" id="region" class="form-control" style="height: 51px;">
                                           <option value="0">Selecciona...</option>
-                                          <?php while($row = $Sregion->fetch_assoc()) { ?>
+                                          <?php while($row = $S_region->fetch_assoc()) { ?>
                                             <option value="<?php echo $row['ID_Region']; ?>"><?php echo $row['Nombre']; ?></option>
                                           <?php } ?>
                                           </select>
@@ -121,14 +132,6 @@ $Sregion=$mysqli->query($query);
                                   <div class="form-group col-md-3">
                                     <label for="inputZip">Zip</label>
                                     <input type="text" class="form-control" id="inputZip" required>
-                                  </div>
-                                </div>
-                                <div class="form-group">
-                                  <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                                    <label class="form-check-label" for="gridCheck">
-                                      Check me out
-                                    </label>
                                   </div>
                                 </div>
                                 <button type="submit" class="action-button btn btn-info">Guardar</button>

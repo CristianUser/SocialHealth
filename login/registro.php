@@ -102,13 +102,35 @@
 					$url = 'http://'.$_SERVER["SERVER_NAME"].'/SocialHealth/login/activar.php?id='.$registro.'&val='.$token;
 					
 					$asunto = 'Activar Cuenta - Sistema de Usuarios';
-					$cuerpo = "Estimado $nombre: <br /><br />Para continuar con el proceso de registro, es indispensable de click en la siguiente liga <a href='$url'>Activar Cuenta</a>";
+					$cuerpo = "Estimado $nombre $apellido: <br /><br />Para continuar con el proceso de registro, es indispensable de click en <a href='$url'>Activar Cuenta</a>";
 					
 					if(enviarEmail($email, $nombre, $asunto, $cuerpo)){
+                    echo"
+                    <!DOCTYPE html>
+                        <html lang='en'>
+                        <head>
+                            <meta charset='UTF-8'>
+                            <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                            <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+                            <title>Document</title>
+                            <link rel='stylesheet' href='css/bootstrap.min.css' >
+                            <link rel='stylesheet' href='css/bootstrap-theme.min.css' >
+                            <link rel='stylesheet' href='css/style.css'>
+                            <script src='js/bootstrap.min.js' ></script>
+                        </head>
+                        <body>
+                        <div class='cuadro' style='background-color: #fff;'>
+                    ";
+                    echo "<h3>Para terminar el proceso de registro siga las instrucciones que le hemos enviado la direccion de correo electronico: $email</h3>";
+                    echo "<br><a href='index.php' >Iniciar Sesion</a>";
+                    echo"  
+                    <div> 
+                        </body>
+                        </html>
+                                            
+                    
+                    ";
 					
-					echo "Para terminar el proceso de registro siga las instrucciones que le hemos enviado la direccion de correo electronico: $email";
-					
-					echo "<br><a href='index.php' >Iniciar Sesion</a>";
 					exit;
 					
 					} else {
@@ -162,8 +184,8 @@
             <fieldset>
                 <h2 class="fs-title">Tipo de cuenta</h2>
                 <h3 class="fs-subtitle">Elije uno</h3>
-                <input type="radio" name="tipo" id="tipo"value="1" style="display: inline;" ><h3 class="fs-subtitle"style="display: inline;">Odontologo</h3>
-                <input type="radio" name="tipo" id="tipo"value="2"  ><h3 class="fs-subtitle"style="display: inline;">Paciente</h3>
+                <input type="radio" name="tipo" id="tipo"value="1" style="display: inline;" ><h3 class="fs-subtitle"style="display: inline;">Paciente</h3>
+                <input type="radio" name="tipo" id="tipo"value="2"  ><h3 class="fs-subtitle"style="display: inline;">Odontologo</h3>
                 <input type="button" name="previous" class="previous action-button" value="Atras" />
                 <input type="button" name="next" class="next action-button" value="Siguiente" />
             </fieldset>

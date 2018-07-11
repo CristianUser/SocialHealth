@@ -9,7 +9,10 @@
 	
 	$idUsuario = $_SESSION['id_usuario'];
   $ruta = "../login/files/$idUsuario/perfil.png";
-	$sql = "SELECT id_usuario, nombre FROM usuario WHERE id_usuario = '$idUsuario'";
+  if(!file_exists($ruta)){
+    $ruta = "icons/User-Profile.png";
+  }
+	$sql = "SELECT id_usuario, nombre, apellido FROM usuario WHERE id_usuario = '$idUsuario'";
 	$result = $mysqli->query($sql);
 	
 	$row = $result->fetch_assoc();
@@ -60,12 +63,11 @@
                         <!--button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                           <span class="navbar-toggler-icon"></span>
                         </button-->
-                        <div>
-                          
-                          <ul class="navbar-nav dropdown-menu-right" style="">
+                        <div class="col">
+                          <ul class="navbar-nav dropdown-menu-right" style="float:right;">
                             <li class="nav-item dropdown" >
                               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <h6 style="display:inline;"><?php echo utf8_decode($row['nombre']); ?>       </h6><img src="<?php echo $ruta ?>" class="profile-pic" alt=""> 
+                                <h6 style="display:inline;"><?php echo utf8_decode($row['nombre'])," ",utf8_decode($row['apellido']); ?>       </h6><img src="<?php echo $ruta ?>" class="profile-pic"  alt=""> 
                               </a>
                               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="#">Mi Cuenta</a>
@@ -117,7 +119,12 @@
                     <div class="tab-pane fade show active" id="v-pills-inicio" role="tabpanel" aria-labelledby="v-pills-inicio-tab">Estas en inicio</div>
                     <div class="tab-pane fade" id="v-pills-citas" role="tabpanel" aria-labelledby="v-pills-citas-tab"><h1></h1> </div>
                     <div class="tab-pane fade" id="v-pills-pacientes" role="tabpanel" aria-labelledby="v-pills-pacientes-tab">
-                      <?php inclu?>
+                      <div class="card">
+                        <div class="card-header">Pacientes</div>
+                        <div class="card-body">
+                          y klk mmg
+                        </div>
+                      </div>
                       Estas en pacientes</div>
                     <div class="tab-pane fade" id="v-pills-historial" role="tabpanel" aria-labelledby="v-pills-historial-tab">Estas en Historial</div>
                     <div class="tab-pane fade" id="v-pills-seguros" role="tabpanel" aria-labelledby="v-pills-seguros-tab">Estas en Seguros</div>

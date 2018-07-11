@@ -1,5 +1,7 @@
 <?php
 require '../login/funcs/conexion.php';
+
+
 function isEmail($email)
 {
     if (filter_var($email, FILTER_VALIDATE_EMAIL)){
@@ -13,7 +15,7 @@ function saveData($id, $tipo){
 
 }
 
-function registraDatos1($id, $seguro, $nss, $nacimiento, $sexo, $telefono, $cedula, $provincia, $direccion){
+function registraDatosPac($id, $seguro, $nss, $nacimiento, $sexo, $telefono, $cedula, $provincia, $direccion){
 		
     global $mysqli;
     
@@ -21,9 +23,40 @@ function registraDatos1($id, $seguro, $nss, $nacimiento, $sexo, $telefono, $cedu
     $stmt->bind_param('sssssssss',$id, $provincia, $nacimiento, $nss, $cedula,  $direccion, $sexo, $telefono, $seguro);
     
     if ($stmt->execute()){
-        return 1;
+        return true;
         } else {
-        return 0;	
+        return false;	
+    }		
+}
+function registraDatosPro($id, $especialidades, $nacimiento, $sexo, $telefono, $cedula, $provincia, $direccion){
+
+    //$arrayEspecialidades = null;
+
+    
+    global $mysqli;
+    
+    $stmt = $mysqli->prepare("INSERT INTO `datos_profesional`(`ID_Usuario`, `ID_Provincia`, `Nacimiento`, `Direccion`, `Sexo`, `Telefono`, `Cedula`) VALUES (?,?,?,?,?,?,?)");
+    $stmt->bind_param('iisssss',$id, $provincia, $nacimiento, $direccion , $sexo,  $telefono, $cedula);
+    
+    if ($stmt->execute()){
+        $num_array= count($especialidades);
+        $contador=0;
+        if($num_array>0){
+            foreach ($especialidades as $key => $value) {
+                if ($contador != $num_array-1){
+                    //$arrayEspecialidades .= $value.' ';
+                    $sql="INSERT INTO `r_especialidades`(`ID_Especialidad`, `id_usuario`) VALUES ($value,$id)";
+                    $mysqli ->query($sql);
+                $contador++;
+                } else {
+                //$arrayEspecialidades .= $value;
+                $sql="INSERT INTO `r_especialidades`(`ID_Especialidad`, `id_usuario`) VALUES ($value,$id)";$mysqli ->query($sql);
+                }
+            }
+        }
+        return true;
+        } else {
+        return false;	
     }		
 }
 

@@ -239,7 +239,11 @@
 					
 					if(isFirstTime($id)){
 						lastSession($id);
-						header("location: ../Login/reg_datos.html");
+						if($id_tipo==1){
+							header("location: ../Login/reg_datos_pac.php");
+						} elseif($id_tipo==2){
+							header("location: ../Login/reg_datos_pro.php");
+						}
 					}else
 					{
 						lastSession($id);

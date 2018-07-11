@@ -11,7 +11,7 @@
 	
 	while($rowM = $resultadoM->fetch_assoc())
 	{
-		$html.= "<option value='".$rowM['ID_Provincia']."'>".$rowM['Nombre']."</option>";
+		$html.= "<option value='".$rowM['ID_Provincia']."'>".utf8_encode($rowM['Nombre'])."</option>";
 	}
 	
 	echo $html;
