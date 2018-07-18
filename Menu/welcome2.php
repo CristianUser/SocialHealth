@@ -119,7 +119,12 @@
                     <div class="tab-pane fade show active" id="v-pills-inicio" role="tabpanel" aria-labelledby="v-pills-inicio-tab">Estas en inicio</div>
                     <div class="tab-pane fade" id="v-pills-citas" role="tabpanel" aria-labelledby="v-pills-citas-tab"><h1></h1> </div>
                     <div class="tab-pane fade" id="v-pills-pacientes" role="tabpanel" aria-labelledby="v-pills-pacientes-tab">
-                      <!--?php require_once '../Tablas/pacientes.php';?-->
+                      <div class="card">
+                        <div class="card-header">Pacientes</div>
+                        <div class="card-body">
+                          y klk mmg
+                        </div>
+                      </div>
                       Estas en pacientes</div>
                     <div class="tab-pane fade" id="v-pills-historial" role="tabpanel" aria-labelledby="v-pills-historial-tab">Estas en Historial</div>
                     <div class="tab-pane fade" id="v-pills-seguros" role="tabpanel" aria-labelledby="v-pills-seguros-tab">Estas en Seguros</div>

@@ -1,0 +1,24 @@
+.dt-buttons .dt-button{
+    background: #00A89E;
+    color: white;
+}
+button.dt-button:hover:not(.disabled), div.dt-button:hover:not(.disabled), a.dt-button:hover:not(.disabled){
+    background: rgb(0, 114, 107);
+}
+button.dt-button:active:not(.disabled), button.dt-button.active:not(.disabled), div.dt-button:active:not(.disabled), div.dt-button.active:not(.disabled), a.dt-button:active:not(.disabled), a.dt-button.active:not(.disabled){
+    background: rgb(0, 114, 107);
+}
+.dt-buttons .dt-button:hover{
+    background: #00A89E;
+    color: white;
+}
+.tabla{
+    
+}
+.buttons-html5{
+    background-color: #00A89E;
+}
+.tabla thead{
+    background-color:white;
+    color: #00A89E;
+}
