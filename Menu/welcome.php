@@ -82,7 +82,9 @@
                       </nav>
         </header>
 
-
+        <a href="../Tablas/index.php">
+        <button class='btn btn-danger'> Ir a la pagina</button>
+        </a>
 
         <div class="row">
                 <div class="menu" id="cont1">
@@ -95,7 +97,7 @@
                         <img src="icons/Calendar1-WF.png" class="icon">
                         <div class="nav-title">Citas</div>
                     </a>
-                    <a class="nav-link2 nav-link" id="v-pills-pacientes-tab" data-toggle="pill" href="#v-pills-pacientes" role="tab" aria-controls="v-pills-pacientes" aria-selected="false">
+                    <a class="nav-link2 nav-link" id="v-pills-pacientes-tab" data-toggle="pill" href="../Tablas/pacientes.php" role="tab" aria-controls="v-pills-pacientes" aria-selected="false">
                         <img src="icons/User Save -01-WF.png" class="icon">
                         <div class="nav-title">Pacientes</div>
                     </a>

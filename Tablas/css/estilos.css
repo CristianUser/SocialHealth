@@ -1,0 +1,144 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+a:link 
+{ 
+text-decoration:none; 
+} 
+a:hover 
+{ 
+text-decoration:none; 
+} 
+
+main{
+    width: 100%;
+    height: auto;
+    background: #34495E;
+    position: absolute;
+}
+
+.content-all{
+    width: 100%;
+    max-width: 1000px;
+    background: #17A086;
+    margin: auto;
+    margin-top: 80px;
+    border: 2px solid white;
+}
+
+header{
+    z-index: 3;
+    width: 100%;
+    height: 60px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: #00A89E;
+}
+body {
+    background: url('3.jpg');
+    background-attachment: fixed;
+    }
+img{
+    width: 100%;
+}
+#check{
+    display: none;
+}
+
+#check:checked ~ .menu{
+    width: 200px;
+}
+.container-fluid{
+    /*padding-left: 70px;*/
+}
+.username{
+    display: inline;
+    color: #fff;
+}
+.profile-pic{
+    width: 40px;
+    height: 40px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    /*border:3px solid #4e4d4d;*/
+}
+.menu:hover{
+    width: 200px;
+}
+
+.menu{
+    z-index: 3;
+    position: fixed;
+    top: 70px;
+    width: 70px;
+    /*display: block;*/
+    height: 100vh;
+    background: #2D3E50;
+    transition: all 500ms cubic-bezier(1,0,0,1);
+    transition-timing-function: cubic-bezier(1,0,0,1);
+    overflow: hidden;
+    box-shadow: rgb(0, 0, 0);
+    
+}
+.menu div{
+    display: block;
+    list-style: none;
+    padding: 16px;
+    color: white;
+    cursor: pointer;
+    transition: all 300ms;
+    width: 400px;
+}
+.menu li{
+    list-style: none;
+    padding: 16px;
+    color: white;
+    cursor: pointer;
+    transition: all 300ms;
+    display:inline;
+}
+
+.menu div:hover{
+    background: rgba(0,0,0,0.2);
+
+}
+/*
+article{
+    padding: 40px;
+}
+
+.container-fluid label{
+    position: fixed;
+    width: 100%;
+    max-width: 1000px;
+    top: 14px;
+    font-size: 26px;
+    color: white;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.container-fluid h2{
+    position: fixed;
+    width: 100%;
+    max-width: 1000px;
+    top: 14px;
+    font-size: 26px;
+    text-align: right;
+    color: white;
+}*/
+
+
+
+
+
+
+
+
+
+

@@ -1,3 +1,9 @@
+.container{
+    text-align: center;
+    background-color: white;
+    border-radius: 5px;
+    border:1px solid #4e4d4d;
+}
 .dt-buttons .dt-button{
     background: #00A89E;
     color: white;
@@ -12,7 +18,8 @@ button.dt-button:active:not(.disabled), button.dt-button.active:not(.disabled), 
     background: #00A89E;
     color: white;
 }
-.tabla{
+#mitabla_wrapper{
+    position: inherit;
     
 }
 .buttons-html5{

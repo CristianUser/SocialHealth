@@ -1,45 +1,29 @@
 <?php
 require '../login/funcs/conexion.php';
-include '../Menu/welcome.php';
-
-
-//$sql = "SELECT USR.nombre, USR.apellido FROM usuario USR WHERE USR.id_usuario in (SELECT ID_Cliente FROM r_paciente WHERE ID_Profesional = 4)";
-$where="WHERE ID_Profesional = 0)";
-if(!empty($_POST))
-	{
-		$valor = $_POST['campo'];
-		if(!empty($valor)){
-			$where = "WHERE ID_Profesional = $valor)";
-		}
-	}
-$sql = "SELECT id_usuario, nombre, apellido, usuario FROM usuario WHERE id_usuario in (SELECT ID_Cliente FROM r_paciente $where";
-//$sql = "SELECT * FROM usuario";
+include 'Sesion_Pro.php';
+$where="WHERE ID_Profesional = $idUsuario";
+$sql = "SELECT * FROM usuario usr INNER JOIN datos_cliente dp 
+ON usr.id_usuario = dp.ID_Usuario and usr.id_usuario in 
+(SELECT ID_Cliente FROM r_paciente $where)";
 $resultado = $mysqli->query($sql);
 
+function seguro($id){
+    global $mysqli;
+    $s = "SELECT * FROM seguro WHERE ID_Seguro = $id";
+    $r = $mysqli->query($s);
+    $rr=$r->fetch_assoc();
+    echo $rr['Nombre'];
+}
 ?>
-
+<?php include  'header.php'; ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
     <link rel="stylesheet" type="text/css" href="css/Bootstrap.css">
-    <link rel="stylesheet" href="css/jquery.dataTables.min.css">
-    <!--script src="js/jquery-3.3.1.slim.min.js"></script-->
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/jquery-3.3.1.js"></script>
-    <script src="js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
-
     <script type="text/Javascript">
            $(document).ready(function(){
 		$('#mitabla').DataTable({
@@ -68,7 +52,10 @@ $resultado = $mysqli->query($sql);
     </script>
 
 </head>
-<body>
+<body><br>
+<br>
+<br><div class="row">
+    <div class=""></div>
     <div class="container">
 
         <div class="row">
@@ -81,40 +68,48 @@ $resultado = $mysqli->query($sql);
                <!--a href="nuevo.php" class="btn btn-success">Nuevo Registro</a-->
            </div>
            <div class="col">
-           <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
+           <!--form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST">
 					<b>ID_Pro </b><input type="text" id="campo" name="campo" />
 					<input type="submit" id="enviar" name="enviar" value="Buscar" class="btn " />
-				</form>
+				</form-->
         </div>
         </div>
         <br>
-       
-       <div class="row table-responsive">
-           <table class="tabla table table-striped table-bordered dt-responsive nowrap" id="mitabla" style="width: 100%;">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Correo</th>
-                    <th>Usuario</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php while($row = $resultado->fetch_assoc()) { ?>
-                    <tr>
-                        <td><?php echo $row['id_usuario']; ?></td>
-                        <td><?php echo $row['nombre']; ?></td>
-                        <td><?php echo $row['apellido']; ?></td>
-                        <td><?php echo $row['usuario']; ?></td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-           </table>
-
-       </div>
+       <div class="row">
+           <div class="col">
+               <div class="row table-responsive">
+                   <table class="tabla table table-striped table-bordered dt-responsive nowrap" id="mitabla" style="width: 100%;">
+                       <thead>
+                           <tr>
+                               <th>ID</th>
+                               <th>Nombre</th>
+                               <th>Telefono</th>
+                               <th>Seguro</th>
+                               <th>NSS</th>
+                               <th>Cedula</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php while($row = $resultado->fetch_assoc()) { ?>
+                                <tr>
+                                    <td><?php echo $row['id_usuario']; ?></td>
+                                    <td><?php echo $row['nombre']," ",$row['apellido']; ?></td>
+                                    <td><?php echo $row['Telefono']; ?></td>                                  
+                                    <td><?php seguro($row['ID_Seguro']); ?></td>
+                                    <td><?php echo $row['NSS']; ?></td>
+                                    <td><?php echo $row['Cedula']; ?></td>
+                                </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                        
+                    </div>
+                </div>
+            </div>
 
     </div>
     <!-- Modal -->
+    </div>
 		<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -143,8 +138,9 @@ $resultado = $mysqli->query($sql);
 				$('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href') + '</strong>');
 			});
         </script>
-    <!--script src="js/jquery-3.3.1.slim.min.js"></script-->
+    <!--script src="js/jquery-3.3.1.slim.min.js"></script->
     <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script-->
 </body>
 </html>
+<?php include 'footer.php'; ?>
