@@ -1,19 +1,21 @@
 <?php
 require '../login/funcs/conexion.php';
-include 'Sesion_Pro.php';
-$where="WHERE ID_Profesional = $idUsuario";
-$sql = "SELECT * FROM usuario usr INNER JOIN datos_cliente dp 
-ON usr.id_usuario = dp.ID_Usuario and usr.id_usuario in 
-(SELECT ID_Cliente FROM r_paciente $where)";
+include 'Sesion_Pac.php';
+$where="WHERE rp.ID_Cliente = $idUsuario";
+$sql = "SELECT ci.Fecha, ci.Estado, ci.Hora, ci.Descripcion, usr.id_usuario, usr.nombre, usr.apellido 
+FROM citas ci , r_paciente rp ,usuario usr where ci.ID_Pac = rp.ID_Pac 
+and usr.id_usuario =  rp.ID_Profesional and rp.ID_Cliente = $idUsuario and ci.Estado = 'Pendiente'";
 $resultado = $mysqli->query($sql);
-$contador=0;
+$sql1="SELECT ID_Pac FROM r_paciente  $where";
+
+$contador=0;/*
 function seguro($id){
     global $mysqli;
     $s = "SELECT * FROM seguro WHERE ID_Seguro = $id";
     $r = $mysqli->query($s);
     $rr=$r->fetch_assoc();
     echo $rr['Nombre'];
-}
+}*/
 ?>
 <?php include  'header.php'; ?>
 <!DOCTYPE html>
@@ -28,7 +30,7 @@ function seguro($id){
            $(document).ready(function(){
 		$('#mitabla').DataTable({
             "dom": 'Bfrtip',
-            "buttons": ['copy', 'csv', 'excel', 'pdf', 'print' ],
+            "buttons": ['excel','pdf','copy','print'],
 			"order": [[1, "asc"]],
 			"language":{
 				"lengthMenu": "Mostrar _MENU_ por pagina",
@@ -52,58 +54,45 @@ function seguro($id){
     </script>
 
 </head>
-<body><div class="row">
+<body>
+    ><div class="row">
     <div class=""></div>
     <div class="container">
 
         <div class="row">
             <div class="col">
-                <h2 style="text-align: center;">Pacientes</h2>
+                <h2 style="text-align: center;">Citas</h2>
             </div>
         </div>
-       <div class="row">
-           <div class="col">
-               <!--a href="nuevo.php" class="btn btn-success">Nuevo Registro</a-->
-           </div>
-           <div class="col">
-           <!--form action="<?php //$_SERVER['PHP_SELF']; ?>" method="POST">
-					<b>ID_Pro </b><input type="text" id="campo" name="campo" />
-					<input type="submit" id="enviar" name="enviar" value="Buscar" class="btn " />
-				</form-->
-        </div>
-        </div>
-        <br>
        <div class="row">
            <div class="col">
                <div class="row table-responsive">
                    <table class="tabla table table-striped dt-responsive nowrsap display" id="mitabla" style="width: 100%;">
                        <thead>
                            <tr>
-                               <th>ID</th>
-                               <th>Nombre</th>
-                               <th>Telefono</th>
-                               <th>Seguro</th>
-                               <th>NSS</th>
-                               <th>Cedula</th>
+                               <th>Doctor</th>
+                               <th>Fecha</th>
+                               <th>Hora</th>
+                               <th>Descripcion</th>
+                               <th>Estado</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php while($row = $resultado->fetch_assoc()) { $contador+=1; ?>
                                 <tr>
-                                    <td><?php echo $row['id_usuario']; ?></td>
                                     <td>
-                                        <a href="http://<?php echo $_SERVER['SERVER_NAME'] ?>/SocialHealth/Tablas/infoPaciente.php?id=<?php echo $row['id_usuario']; ?>">
-                                        <?php echo $row['nombre']," ",$row['apellido']; ?>
-                                    </a>
+                                        <a href="http://localhost/SocialHealth/Tablas/infoOdontologo.php?id=<?php echo $row['id_usuario']; ?>">
+                                            <?php echo $row['nombre']," ",$row['apellido']; ?>
+                                        </a>
                                     </td>
-                                    <td><?php echo $row['Telefono']; ?></td>                                  
-                                    <td><?php seguro($row['ID_Seguro']); ?></td>
-                                    <td><?php echo $row['NSS']; ?></td>
-                                    <td><?php echo $row['Cedula']; ?></td>
+                                    <td><?php echo $row['Fecha']; ?></td>
+                                    <td><?php echo $row['Hora']; ?></td>                                  
+                                    <td><?php echo $row['Descripcion']; ?></td>
+                                    <td><?php echo $row['Estado']; ?></td>
                                 </tr>
                                 <?php } if($contador <10){for($x=1;$x<=(10-$contador);$x++){ ?>
                                     <tr>
-                                        <td>0</td>
+                                        <td>NULL</td>
                                         <td></td>
                                         <td></td>
                                         <td></td>

@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
     <script src="js/jquery-3.3.1.js"></script>
     <script src="js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
@@ -24,9 +26,25 @@
     <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
     <title>Social Health</title>
 
+    <style>
+      .loader {
+      position: fixed;
+      left: 0px;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      background: url('../loading1.gif') 50% 50% no-repeat rgb(249,249,249);
+      opacity: .8;}
+    </style>
+    <script type="text/javascript">
+      $(window).ready(function() {
+        $(".loader").fadeOut("slow");});
+    </script>
+
   </head>
   <body>
-    
+  <div class="loader"></div>
     <div class="container-fluid">
         <header>
           <nav class="navbar navbar-expand navbar-light" style="background-color: #00A89E;">
@@ -67,3 +85,4 @@
           ?>
           
           <div class="col-11 col-xs-9">
+          <br><br><br>

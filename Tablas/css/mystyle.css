@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+a{
+  color: #00A89E;
+  text-decoration:none; 
+}
 a:link 
 { 
 text-decoration:none; 
@@ -12,9 +16,6 @@ a:hover
 { 
 text-decoration:none; 
 } 
-a{
-  color: #00A89E;
-}
 .derecha{
         text-align: right;
       }

@@ -112,7 +112,7 @@
                             <meta charset='UTF-8'>
                             <meta name='viewport' content='width=device-width, initial-scale=1.0'>
                             <meta http-equiv='X-UA-Compatible' content='ie=edge'>
-                            <title>Document</title>
+                            <title>SocialHealth</title>
                             <link rel='stylesheet' href='css/bootstrap.min.css' >
                             <link rel='stylesheet' href='css/bootstrap-theme.min.css' >
                             <link rel='stylesheet' href='css/style.css'>
@@ -156,7 +156,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>SocialHealth</title>
     <link rel="stylesheet" type="text/css" href="../Menu/css/bootstrap.css">
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <link rel="stylesheet" href="css/style.css">
@@ -184,15 +184,27 @@
             <fieldset>
                 <h2 class="fs-title">Tipo de cuenta</h2>
                 <h3 class="fs-subtitle">Elije uno</h3>
-                <input type="radio" name="tipo" id="tipo"value="1" style="display: inline;" ><h3 class="fs-subtitle"style="display: inline;">Paciente</h3>
-                <input type="radio" name="tipo" id="tipo"value="2"  ><h3 class="fs-subtitle"style="display: inline;">Odontologo</h3>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col opt1">
+                            <label class="opt1"><img class="opcion" src="../Tablas/images/paciente.png" alt="">
+                                <input style="display:none;" type="radio" name="tipo" id="tipo"value="1"  ><h3 class="fs-subtitle"style="display: inline;">Paciente</h3>
+                            </label>
+                        </div>
+                        <div class="col opt2">
+                            <label class="opt2"><img class="opcion" src="../Tablas/images/doctor.png" alt="">
+                                <input style="display:none;" type="radio" name="tipo" id="tipo"value="2"  ><h3 class="fs-subtitle"style="display: inline;">Odontologo</h3>
+                            </label>
+                        </div>
+                    </div>
+                </div>
                 <input type="button" name="previous" class="previous action-button" value="Atras" />
                 <input type="button" name="next" class="next action-button" value="Siguiente" />
             </fieldset>
 
             <fieldset>
                 <h2 class="fs-title">Datos personales</h2>
-                <h3 class="fs-subtitle">Wiiiiiiiii</h3>
+                <h3 class="fs-subtitle">Sube una foto</h3>
                 <label for="upload"><img id="image" class="profile" src="../Menu/icons/User-Profile.png" alt="Selecciona una foto"></label>
                 <input class="upload" id="upload" type="file" name="upload" >
                 <input type="text" name="nombre" placeholder="Nombre" required />

@@ -109,6 +109,22 @@ height: 51px;
 	font-size: 10px;
 	color: #00A89E;
 }
+
+/*.opt1*/ input[type="radio"]:checked ~ h3{
+	box-shadow: 0 0 5px 1px rgba(0, 168, 157, 0.666);
+}
+/*.opt2*/ input[type="radio"]:checked ~ h3{
+	box-shadow: 0 0 5px 1px rgba(0, 168, 157, 0.666);
+}
+
+.opcion{
+	width: 115px;
+	height: 100px;
+	border-radius: 3px;
+	box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.234);
+	border: 1px solid rgb(22, 22, 22);
+}
+
 /*Hide all except first fieldset*/
 #msform fieldset:not(:first-of-type) {
 	display: none;

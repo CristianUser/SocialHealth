@@ -255,13 +255,13 @@
 					} 
 					else {
 					
-					$errors = "La contrase&ntilde;a es incorrecta";
+					$errors[] = "La contrase&ntilde;a es incorrecta";
 				}
 				} else {
-				$errors = 'El usuario no esta activo';
+				$errors[] = 'El usuario no esta activo';
 			}
 			} else {
-			$errors = "El nombre de usuario o correo electr&oacute;nico no existe";
+			$errors[] = "El nombre de usuario o correo electr&oacute;nico no existe";
 		}
 		return $errors;
 	}
