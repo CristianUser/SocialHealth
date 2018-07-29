@@ -15,7 +15,8 @@
 	$sql = "SELECT id_usuario, nombre, apellido FROM usuario WHERE id_usuario = '$idUsuario'";
 	$result = $mysqli->query($sql);
 	
-	$row = $result->fetch_assoc();
+  $row = $result->fetch_assoc();
+  header("Location: ../Tablas");
 ?>
 <!DOCTYPE html>
 <html lang="en"> 

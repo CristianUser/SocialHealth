@@ -29,7 +29,7 @@ function seguro($id){
 		$('#mitabla').DataTable({
             "dom": 'Bfrtip',
             "buttons": ['copy', 'csv', 'excel', 'pdf', 'print' ],
-			"order": [[1, "asc"]],
+			"order": [[0, "dsc"]],
 			"language":{
 				"lengthMenu": "Mostrar _MENU_ por pagina",
 				"info": "Mostrando pagina _PAGE_ de _PAGES_",

@@ -14,6 +14,7 @@
 	$result = $mysqli->query($sql);
 	
 	$row = $result->fetch_assoc();
+	header("Location: ../Tablas");
 ?>
 <html>
 	<head>

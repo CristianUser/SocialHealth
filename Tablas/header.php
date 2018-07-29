@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -47,42 +47,59 @@
   <div class="loader"></div>
     <div class="container-fluid">
         <header>
-          <nav class="navbar navbar-expand navbar-light" style="background-color: #00A89E;">
+          <nav class="navbar navbar-expand-xl navbar-expand-lg navbar-expand-md navbar-light" style="background-color: #00A89E;">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                <span class="navbar-toggler-icon"></span>
+              </button>
             <a class="navbar-brand" href="#"><img style="width: 100px;" src="../Menu/images/logo.png" alt=""></a>
-            <!--button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button-->
             <div class="col">
               <ul class="navbar-nav dropdown-menu-right" style="float:right;">
                 <li class="nav-item dropdown" >
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <h6 style="display:inline;"><?php echo utf8_decode($row['nombre'])," ",utf8_decode($row['apellido']); ?>       </h6><img src="<?php echo $ruta ?>" class="profile-pic"  alt=""> 
+                    <h6 class="d-none d-md-inline d-lg-inline  d-xl-inline" style="display:inline;"><?php echo utf8_decode($row['nombre'])," ",utf8_decode($row['apellido']); ?></h6>    <img src="<?php echo $ruta ?>" class="profile-pic"  alt=""> 
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Mi Cuenta</a><!-- Aqui pon -->
+                    <a class="dropdown-item" href="#">Mi Cuenta</a>
                     <a class="dropdown-item" href="#">Ajustes</a>
                     <a class="dropdown-item" href="../login/logout.php">Cerrar Sesion</a>
                   </div>
                 </li>
               </ul>
             </div>
-            <!--div class="collapse navbar-collapse" id="navbarNavDropdown">
-            </div-->
+            <div class="collapse c-menu" id="collapseExample">
+                <div class="card card-body">
+                    <nav class="">
+
+                        <?php
+                        if($tipo==1){
+                          include 'menupac.html';
+                        }elseif($tipo==2){
+                          include 'menupro.html';
+                        }
+                        ?>
+                    </nav>
+                </div>
+              </div>
           </nav>
         </header>
-        <input type="checkbox" id="check">
-        <label for="check" class=""></label> 
+        <!--input type="checkbox" id="check">
+        <label for="check" class=""></label--> 
         <div class="row">
-          <div class="col-1 col-xs-3">
+          <div class="col-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs d-none d-md-block d-lg-block  d-xl-block">
+          </div>
+          <div class="general d-none d-md-block d-lg-block  d-xl-block">
+            <nav class="menu">
+              <?php
+              if($tipo==1){
+                include 'menupac.html';
+              }elseif($tipo==2){
+                include 'menupro.html';
+              }
+              ?>
+            </nav>
           </div>
 
-          <?php
-          if($tipo==1){
-            include 'menupac.html';
-          }elseif($tipo==2){
-            include 'menupro.html';
-          }
-          ?>
           
-          <div class="col-11 col-xs-9">
+          <div class="col-11 col-xl-11 col-lg-11 col-md-11 col-sm-12 col-xs-12" style="  margin-left: auto;
+          margin-right: auto;">
           <br><br><br>

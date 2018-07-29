@@ -31,7 +31,7 @@ function seguro($id){
 		$('#mitabla').DataTable({
             "dom": 'Bfrtip',
             "buttons": ['excel','pdf','copy','print'],
-			"order": [[1, "asc"]],
+			"order": [[0, "dsc"]],
 			"language":{
 				"lengthMenu": "Mostrar _MENU_ por pagina",
 				"info": "Mostrando pagina _PAGE_ de _PAGES_",
@@ -92,7 +92,7 @@ function seguro($id){
                                 </tr>
                                 <?php } if($contador <10){for($x=1;$x<=(10-$contador);$x++){ ?>
                                     <tr>
-                                        <td>NULL</td>
+                                        <td>0</td>
                                         <td></td>
                                         <td></td>
                                         <td></td>

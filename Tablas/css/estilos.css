@@ -85,7 +85,31 @@ img{
     box-shadow: rgb(0, 0, 0);
     
 }
-.menu div{
+.c-menu .card{
+    background-color: #2D3E50;
+    list-style: none;
+}
+.c-menu a{
+    color: white;
+    text-decoration:none; 
+}
+.c-menu a:hover{
+    color: white;
+    text-decoration:none; 
+}
+.c-menu li{
+    list-style: none;
+    padding: 16px;
+    color: white;
+    cursor: pointer;
+    transition: all 300ms;
+    display:inline;
+}
+.general{
+    position: fixed;
+    z-index: 20;
+}
+.menu .elemento{
     display: block;
     list-style: none;
     padding: 16px;

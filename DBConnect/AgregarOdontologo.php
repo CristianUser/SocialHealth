@@ -9,7 +9,6 @@ if(!empty($_POST))
     if(usuarioExiste($username)){
 
        $sql = "SELECT * FROM usuario usr WHERE usr.id_tipo=2  AND usr.usuario= '$username' LIMIT 1";
-       echo $sql;
         $resultado = $mysqli->query($sql);
         $s=$resultado->fetch_assoc();
         $idpro=$s['id_usuario'];

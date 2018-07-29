@@ -101,7 +101,7 @@
 					
 					$url = 'http://'.$_SERVER["SERVER_NAME"].'/SocialHealth/login/activar.php?id='.$registro.'&val='.$token;
 					
-					$asunto = 'Activar Cuenta - Sistema de Usuarios';
+					$asunto = 'Activar Cuenta - SocialHealth';
 					$cuerpo = "Estimado $nombre $apellido: <br /><br />Para continuar con el proceso de registro, es indispensable de click en <a href='$url'>Activar Cuenta</a>";
 					
 					if(enviarEmail($email, $nombre, $asunto, $cuerpo)){
@@ -120,10 +120,9 @@
                         </head>
                         <body>
                         <div class='cuadro' style='background-color: #fff;'>
-                    ";
-                    echo "<h3>Para terminar el proceso de registro siga las instrucciones que le hemos enviado la direccion de correo electronico: $email</h3>";
-                    echo "<br><a href='index.php' >Iniciar Sesion</a>";
-                    echo"  
+                    
+                    <h3>Para terminar el proceso de registro siga las instrucciones que le hemos enviado la direccion de correo electronico: $email</h3>
+                    <br><a href='index.php' >Iniciar Sesion</a>  
                     <div> 
                         </body>
                         </html>
@@ -250,7 +249,6 @@
                           // Insertamos la imagen
                         
                         document.getElementById("image").src = e.target.result;
-                         //document.getElementById("list").innerHTML = ['<img class="profile" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
                         };
                     })(f);
              

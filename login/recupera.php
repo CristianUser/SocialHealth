@@ -21,19 +21,42 @@
 		
 		if(emailExiste($email))
 		{			
-			$user_id = getValor('id', 'correo', $email); 
+			$user_id = getValor('id_usuario', 'correo', $email); 
 			$nombre = getValor('nombre', 'correo', $email);
+			$apellido = getValor('apellido', 'correo', $email);
 			
 			$token = generaTokenPass($user_id);
 			
 			$url = 'http://'.$_SERVER["SERVER_NAME"].'/SocialHealth/login/cambia_pass.php?user_id='.$user_id.'&token='.$token;
 			
 			$asunto = 'Recuperar Contraseña - SocialHealth';
-			$cuerpo = "Hola $nombre: <br /><br />Se ha solicitado un reinicio de contrase&ntilde;a. <br/><br/>Para restaurar la contrase&ntilde;a, visita la siguiente direcci&oacute;n: <a href='$url'>$url</a>";
+			$cuerpo = "Hola $nombre $apellido: <br /><br />Se ha solicitado un reinicio de contraseña. <br/><br/>Para restaurar la contraseña, Pulsa el siguiente enlace: <a href='$url'>Recuperar Contraseña</a>";
 			
 			if(enviarEmail($email, $nombre, $asunto, $cuerpo)){
-				echo "Hemos enviado un correo electronico a las direcion $email para restablecer tu password.<br />";
-				echo "<a href='index.php' >Iniciar Sesion</a>";
+				echo"
+				<!DOCTYPE html>
+					<html lang='en'>
+					<head>
+						<meta charset='UTF-8'>
+						<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+						<meta http-equiv='X-UA-Compatible' content='ie=edge'>
+						<title>SocialHealth</title>
+						<link rel='stylesheet' href='css/bootstrap.min.css' >
+						<link rel='stylesheet' href='css/bootstrap-theme.min.css' >
+						<link rel='stylesheet' href='css/style.css'>
+						<script src='js/bootstrap.min.js' ></script>
+					</head>
+					<body>
+					<div class='cuadro' style='background-color: #fff;'>
+				
+				<h3>Para terminar el proceso de recuperar tu contraseña siga las instrucciones que le hemos enviado la direccion de correo electronico: $email</h3>
+				<br><a href='index.php' >Iniciar Sesion</a>  
+				<div> 
+					</body>
+					</html>
+										
+				
+				";
 				exit;
 			}
 			} else {

@@ -32,7 +32,7 @@ function seguro($id){
 		$('#mitabla').DataTable({
             "dom": 'Bfrtip',
             "buttons": ['excel','pdf','copy','print'],
-			"order": [[1, "asc"]],
+			"order": [[0, "dsc"]],
 			"language":{
 				"lengthMenu": "Mostrar _MENU_ por pagina",
 				"info": "Mostrando pagina _PAGE_ de _PAGES_",
@@ -92,12 +92,37 @@ function seguro($id){
                                     <td><?php echo $row['Descripcion']; ?></td>
                                     <td><?php echo $row['Estado']; ?></td>
                                     <td>
-                                        <img onclick="<?php $idsel = $row['ID_Cita'];?>" style="width: 25px;" src="icons/Submit-01.png" alt="" data-toggle="modal" data-target="#exampleModal">
-                                    </td>
+                                        <img style="width: 25px;" src="icons/Submit-01.png" alt="" data-toggle="modal" data-target="#exampleModal">
+                                       <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Completar cita</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Ya terminaste?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <form role="form" method="POST" action="../DBConnect/CitaEstado.php">
+                                                            <input type="hidden" name="ID_Cita" id="ID_Cita" value="<?php echo $row['ID_Cita'];?>">
+                                                            <input type="hidden" name="estado" id="estado" value="Completado">
+                                                            <input type="hidden" name="go" value="citas_pro.php">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Atras</button>
+                                                            <button type="submit" class="btn btn-primary">Confirmar</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                   </td>
                                 </tr>
                                 <?php } if($contador <10){for($x=1;$x<=(10-$contador);$x++){ ?>
                                     <tr>
-                                        <td>NULL</td>
+                                        <td>0</td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
@@ -111,31 +136,6 @@ function seguro($id){
                 </div>
             </div>
 
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Completar cita</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Ya terminaste?</p>
-                </div>
-                <div class="modal-footer">
-                    <form role="form" method="POST" action="../DBConnect/CitaEstado.php">
-                        <input type="hidden" name="ID_Cita" id="ID_Cita" value="<?php echo $idsel;?>">
-                        <input type="hidden" name="estado" id="estado" value="Completado">
-                        <input type="hidden" name="go" value="citas_pro.php">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Atras</button>
-                        <button type="submit" class="btn btn-primary">Confirmar</button>
-                    </form>
-                </div>
-            </div>
-        </div>
     </div>
     <!--script src="js/jquery-3.3.1.slim.min.js"></script->
     <script src="js/popper.min.js"></script>

@@ -12,13 +12,15 @@ function isEmail($email)
 }*/
 function agregarRPaciente($idpac,$idpro){
     global $mysqli;
-    /*
+    
     $sql = "SELECT MAX(ID_Pac) FROM `r_paciente`";
     $resultado = $mysqli->query($sql);
-    $idr=$resultado->fetch_assoc();*/
-    $idr=9;
-    $stmt = $mysqli->prepare("INSERT INTO `r_paciente`( `ID_Cliente`, `ID_Profesional`) VALUES (?,?)");
-    $stmt->bind_param('ss', $idpac, $idpro);
+    $r=$resultado->fetch_assoc();
+    $idr=$r['MAX(ID_Pac)'];
+    $idr+=1;
+
+    $stmt = $mysqli->prepare("INSERT INTO `r_paciente`(`ID_Pac`, `ID_Cliente`, `ID_Profesional`) VALUES (?,?,?)");
+    $stmt->bind_param('sss', $idr, $idpac, $idpro);
     
     if ($stmt->execute()){
         return true;

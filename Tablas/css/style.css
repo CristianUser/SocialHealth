@@ -1,9 +1,16 @@
 .container{
     text-align: center;
     background-color: white;
-    border-radius: 5px;
-    border:1px solid #5e5e5e;
-    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+    /*border-radius: 5px;*/
+    /*border:1px solid #5e5e5e;*/
+    padding-bottom: 10px;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.508);
+    margin-left: auto;
+    margin-right: auto;
+}
+.container .table-responsive{
+    margin-left: auto;
+    margin-right: auto;
 }
 h4{
     display: flex;
@@ -13,8 +20,10 @@ h4{
 }
 
 .btn-cmj {
-	background: #00A89E;
-	color: white;/*
+	background: #00a89e;
+    color: white;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.233);
+    /*
 	font-weight: bold;
 	border: 0 none;
 	border-radius: 1px;*/
@@ -90,6 +99,7 @@ button.dt-button:active:not(.disabled), button.dt-button.active:not(.disabled), 
 }
 .buttons-html5{
     background-color: #00A89E;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.233);
 }
 .tabla thead{
     background-color:white;

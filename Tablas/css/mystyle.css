@@ -3,6 +3,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+.general{
+  position: fixed;
+  z-index: 20;
+}
 
 a{
   color: #00A89E;
