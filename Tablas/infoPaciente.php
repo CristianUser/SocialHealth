@@ -16,6 +16,13 @@ if(!file_exists($img_file2)){
 }
 $imgData2 = base64_encode(file_get_contents($img_file2));
 $perfil = 'data: '.mime_content_type($img_file2).';base64,'.$imgData2;
+function provincia($id){
+  global $mysqli;
+  $s = "SELECT * FROM provincias WHERE ID_Provincia = $id";
+  $r = $mysqli->query($s);
+  $rr=$r->fetch_assoc();
+  echo $rr['Nombre'];
+}
 
 include 'header.php' ?>
 <!DOCTYPE html>
@@ -50,8 +57,8 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
         </div>
         <div class="w3-container">
           <hr>
-          <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>Odontologo<p>
-          <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>La Vega, Rep Dom</p>
+          <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>No se que ponerle<p>
+          <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i><?php echo $rows['Direccion'].", "; provincia($rows['ID_Provincia']);?></p>
           <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i><?php echo $rows['correo'];?></p>
           <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i><?php echo $rows['Telefono'];?></p>
           <hr>
@@ -73,18 +80,14 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
     <!-- Right Column -->
     <div class="w3-twothird">
     
-      <div class="w3-container w3-card w3-white w3-margin-bottom">
-        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Historial Medico</h2>
-        <hr>
-        <p>Esos errores son planeados.......         Soy un Pro</p>
-        <?php while($row = $esp->fetch_assoc()) {?>
+    <div class="w3-container w3-card w3-white w3-margin-bottom">
+        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Historia Clinica</h2>
         <div class="w3-container">
-          <h5 class="w3-opacity"><b><?php echo utf8_encode($row['Nombre_Esp']); ?></b></h5>
+          <h5 class="w3-opacity">Titulo</b></h5>
           <!--h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jan 2015 - <span class="w3-tag w3-teal w3-round">Current</span></h6-->
-          <p><?php echo utf8_encode($row['Descripcion']); ?></p>
+          <p>Contenido</p>
           <hr>
         </div>
-        <?php };?>
       </div>
 
     <!-- End Right Column -->

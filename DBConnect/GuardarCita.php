@@ -6,7 +6,8 @@ if(!empty($_POST))
     $fecha = $mysqli->real_escape_string($_POST['fecha']);	
     $hora = $mysqli->real_escape_string($_POST['hora']);
     $descripcion = $mysqli->real_escape_string($_POST['descripcion']);	
-    $id = $mysqli->real_escape_string($_POST['ID_Pac']);	
+	$id = $mysqli->real_escape_string($_POST['ID_Pac']);
+	$url = $mysqli->real_escape_string($_POST['url']);	
     
     if(registraCita($id,$fecha,$descripcion,$hora)){
        $mensaje="Guardado con exito";
@@ -33,9 +34,10 @@ if(!empty($_POST))
 			<br>
 			<div class="cuadro" style="background-color: #fff;">
 				<h3><?php echo $mensaje; ?></h3>
-                <h2>Ya esta todo listo!!</h2>
+                <h2>Cita creada con exito</h2>
+				<p><?php echo "Para el $fecha a las $hora.";?></p>
 				<br />
-				<p><a class="btn btn-info action-button" href="../Tablas/index.php" role="button">Continuar</a></p>
+				<p><a class="btn btn-info action-button" href="<?php echo $url;?>" role="button">Continuar</a></p>
 			</div>
 		</div>
 	</body>

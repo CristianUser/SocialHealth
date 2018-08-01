@@ -30,7 +30,7 @@ function seguro($id){
            $(document).ready(function(){
 		$('#mitabla').DataTable({
             "dom": 'Bfrtip',
-            "buttons": ['excel','pdf','copy','print'],
+            "buttons": ['excel','pdf','copy','print','colvis'],
 			"order": [[0, "dsc"]],
 			"language":{
 				"lengthMenu": "Mostrar _MENU_ por pagina",

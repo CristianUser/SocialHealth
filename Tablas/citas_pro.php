@@ -31,7 +31,7 @@ function seguro($id){
            $(document).ready(function(){
 		$('#mitabla').DataTable({
             "dom": 'Bfrtip',
-            "buttons": ['excel','pdf','copy','print'],
+            "buttons": ['excel','pdf','copy','print','colvis'],
 			"order": [[0, "dsc"]],
 			"language":{
 				"lengthMenu": "Mostrar _MENU_ por pagina",
@@ -80,7 +80,7 @@ function seguro($id){
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $idsel; while($row = $resultado->fetch_assoc()) { $contador+=1; ?>
+                            <?php while($row = $resultado->fetch_assoc()) { $contador+=1; ?>
                                 <tr>
                                     <td>
                                         <a href="http://localhost/SocialHealth/Tablas/infoPaciente.php?id=<?php echo $row['id_usuario']; ?>">
@@ -92,13 +92,13 @@ function seguro($id){
                                     <td><?php echo $row['Descripcion']; ?></td>
                                     <td><?php echo $row['Estado']; ?></td>
                                     <td>
-                                        <img style="width: 25px;" src="icons/Submit-01.png" alt="" data-toggle="modal" data-target="#exampleModal">
+                                        <img style="width: 25px;" src="icons/Submit-01.png" alt="" data-toggle="modal" data-target="#deletecitamodal<?php echo $row['ID_Cita'];?>">
                                        <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="deletecitamodal<?php echo $row['ID_Cita'];?>" tabindex="-1" role="dialog" aria-labelledby="deletecitamodal<?php echo $row['ID_Cita'];?>Label" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Completar cita</h5>
+                                                        <h5 class="modal-title" id="deletecitamodal<?php echo $row['ID_Cita'];?>Label">Completar cita</h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                         </button>

@@ -99,11 +99,19 @@ img{
 }
 .c-menu li{
     list-style: none;
-    padding: 16px;
+    /*padding: 16px;*/
+    width: 100%;
     color: white;
     cursor: pointer;
     transition: all 300ms;
     display:inline;
+}
+.c-menu div:hover{
+    background: rgba(0,0,0,0.2);
+
+}
+.c-menu .elemento{
+    padding: 5px;
 }
 .general{
     position: fixed;

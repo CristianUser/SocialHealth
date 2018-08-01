@@ -30,7 +30,7 @@ function seguro($id){
            $(document).ready(function(){
 		$('#mitabla').DataTable({
             "dom": 'Bfrtip',
-            "buttons": ['excel','pdf','copy','print'],
+            "buttons": ['excel','pdf','copy','print','colvis'],
             "pageLength": 7,
 			"order": [[0, "dsc"]],
 			"language":{
@@ -88,6 +88,7 @@ function seguro($id){
                             <form method="post" action="../DBConnect/AgregarOdontologo.php">
                                 <div class="form-group">
                                     <input type="hidden" name="id" id="id" value="<?php echo $idUsuario; ?>">
+                                    <input type="hidden" name="url" id="url" value="<?php $h= $_SERVER["HTTP_HOST"]; $u= $_SERVER["REQUEST_URI"]; echo "http://" . $h . $u;?>">
                                     <label for="username">Nombre de usuario</label><br>
                                     <input type="text" name="username" id="username">
                                 </div>
@@ -153,6 +154,7 @@ function seguro($id){
                                                             <p class="statusMsg"></p>
                                                             <form role="form" method="POST" action="../DBConnect/GuardarCita.php">
                                                                 <input type="hidden" name="ID_Pac" id="ID_Pac" value="<?php echo $row['ID_Pac']; ?>">
+                                                                <input type="hidden" name="url" id="url" value="<?php $h= $_SERVER["HTTP_HOST"]; $u= $_SERVER["REQUEST_URI"]; echo "http://" . $h . $u;?>">
                                                                 <div class="form-group">
                                                                     <label for="fecha">Fecha</label>
                                                                     <input type="date" class="form-control" name="fecha" id="fecha" required/>

@@ -113,3 +113,19 @@ button.dt-button:active:not(.disabled), button.dt-button.active:not(.disabled), 
     text-decoration: none;
     color:white;
 }
+.page-item.active .page-link {
+    z-index: 1;
+    color: #fff;
+    background-color: #00A89E;
+    border-color: #00A89E;
+}
+.page-link{
+    color: #00A89E;
+}
+.page-link:hover {
+    z-index: 2;
+    color: rgb(0, 89, 83);
+    text-decoration: none;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}

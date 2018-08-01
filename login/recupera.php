@@ -67,48 +67,54 @@
 <html>
 	<head>
 		<title>SocialHealth-Recuperar Contraseña</title>
-		
-		<!--link rel="stylesheet" href="css/bootstrap.min.css" >
-		<link rel="stylesheet" href="css/bootstrap-theme.min.css" -->
-		<link rel="stylesheet" href="../Menu/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 		<link rel="stylesheet" href="css/style.css">
-		<script src="js/bootstrap.min.js" ></script>
+		<style>
+			.cuadro2{
+			text-align: center;
+			background-color: white;
+			/*border-radius: 5px;*/
+			/*border:1px solid #5e5e5e;*/
+			padding-bottom: 10px;
+			box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.508);
+			margin-left: auto;
+			margin-right: auto;
+}
+.btn-cmj {
+	background: #00a89e;
+	color: white;
+	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.233);
+}
+		</style>
 		
 	</head>
 	
 	<body>
 	<div class="container-fluid">
-
-<div class="row">
-	<div class="col-3"></div>
-
-	<div class="col">
-		<div>
-			<br>
-			<br>
-		</div>
-		<div class="form-control cuadro" style="" >
-			  <form id="loginform" class="form-control" role="form" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" autocomplete="off">
-					  <h3 style="text-align: center;color: #2C3E50;">Recuperar Contraseña</h3>
-					  <div style="float:right; font-size: 80%; position: relative; top:-10px"><a class="a" href="index.php">Iniciar Sesi&oacute;n</a></div>
-					  <br>
-					 <div class="form-group">
-						 <label for="email">Email</label>
-						 <input type="email" name="email" id="email" placeholder="Email" required>
-					 </div>
-					 	<a class="a" href="registro.php">Registrate aquí</a>
-					  <button type="submit" class="action-button btn btn-info">Enviar</button>
+		<div class="row">
+			<div class="col-xl-3 col-lg-3 col-md-2 col-sm-1 cols-xs"></div>
+			<div style="margin-top:50px;" class="col-xl-6 col-lg-6 col-md-8 col-sm-10 cols-xs-12 cuadro2">
+				<form id="loginform" class="" role="form" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" autocomplete="off">
+							<h3 style="text-align: center;color: #2C3E50;">Recuperar Contraseña</h3>
+							<div style="float:right; font-size: 80%; position: relative;"><a class="a" href="index.php">Iniciar Sesi&oacute;n</a></div>
+							<br>
+							<div class="form-group">
+								<label for="email">Email</label>
+								<input type="email" name="email" id="email" placeholder="Email" required>
+							</div>
+							<div>
+								<a class="a" href="registro.php">Registrate aquí</a>
+								<button type="submit" class="btn btn-cmj">Enviar</button>
+							</div>
 				</form>
 				<?php echo resultBlock($errors); ?>
-		  </div>
-		  
-	  </div>
-	  <div class="col-3"></div>
-  </div>
+			</div>
+			<div class="col-xl-3 col-lg-3 col-md-2 col-sm-1 cols-xs"></div>
+		</div>
 </div>
 
-		<script src="js/jquery-3.1.1.min.js"></script>
-        <script src="../Menu/js/popper.min.js"></script>
-    	<script src="../Menu/js/bootstrap.js"></script>
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 	</body>
 </html>							

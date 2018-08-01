@@ -54,14 +54,14 @@ $S_especialidad=$mysqli->query($query);
       <div class="container-fluid">
 
           <div class="row">
-              <div class="col-3"></div>
+              <div class="col-xl-3 col-lg-3 col-md-2 col-sm-1 col-xs-1"></div>
 
-              <div class="col">
+              <div class="col-xl-6 col-lg-6 col-md-8 col-sm-10 col-xs-10">
                   <div>
                       <br>
                       <br>
                   </div>
-                  <div class="form-control cuadro" style="" >
+                  <div class="form-control cuadro" style="margin-left:auto; margin-right:auto;" >
                         <form role="form" method="POST" action="../DBConnect/GuardarPro.php">
                                 <input type="hidden" name="id" value="<?php echo $idUsuario ?>">
                                 <input type="hidden" name="id_tipo" value="<?php echo $id_tipo ?>">
@@ -147,8 +147,8 @@ $S_especialidad=$mysqli->query($query);
                               </form>
                     </div>
                     
-                </div>
-                <div class="col-3"></div>
+              </div>
+            <div class="col-xl-3 col-lg-3 col-md-2 col-sm-1 col-xs-1"></div>
             </div>
         </div>
             

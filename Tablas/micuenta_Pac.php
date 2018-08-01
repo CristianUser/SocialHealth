@@ -1,12 +1,14 @@
 <?php 
-include 'Sesion_Pro.php';
-$id=$_SESSION['id_usuario'];
-$sql2 = "SELECT * FROM usuario usr INNER JOIN datos_profesional dc ON usr.id_usuario = dc.ID_Usuario and dc.ID_Usuario=$id";
+include 'Sesion_Pac.php';
+$where="WHERE ID_Profesional = $idUsuario";
+$sql = "SELECT * FROM usuario usr INNER JOIN datos_cliente dp 
+ON usr.id_usuario = dp.ID_Usuario and usr.id_usuario in 
+(SELECT ID_Cliente FROM r_paciente $where)";
+$resultado = $mysqli->query($sql);
+$id=$idUsuario;
+$sql2 = "SELECT * FROM usuario usr INNER JOIN datos_cliente dc ON usr.id_usuario = dc.ID_Usuario and dc.ID_Usuario=$id";
 $out = $mysqli->query($sql2);
 $rows = $out->fetch_assoc();
-
-$sql3 = "SELECT * FROM especialidades esp, r_especialidades resp WHERE esp.ID_Especialidad = resp.ID_Especialidad and resp.id_usuario=$id";
-$esp = $mysqli->query($sql3);
 
 $img_file2 = "../login/files/$id/perfil.png";
 if(!file_exists($img_file2)){
@@ -14,6 +16,15 @@ if(!file_exists($img_file2)){
 }
 $imgData2 = base64_encode(file_get_contents($img_file2));
 $perfil = 'data: '.mime_content_type($img_file2).';base64,'.$imgData2;
+
+
+function provincia($id){
+  global $mysqli;
+  $s = "SELECT * FROM provincias WHERE ID_Provincia = $id";
+  $r = $mysqli->query($s);
+  $rr=$r->fetch_assoc();
+  echo $rr['Nombre'];
+}
 
 include 'header.php' ?>
 <!DOCTYPE html>
@@ -53,7 +64,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
             <!--img class="btn-cmxj" style="width:40px; display:inline;" src="../Tablas/icons/Menu Interface-06-WF.png" alt=""-->Cambiar Foto
           </button>
           <hr>
-          <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>Odontologo<p>
+          <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>Paciente<p>
           <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>La Vega, Rep Dom</p>
           <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i><?php echo $rows['correo'];?></p>
           <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i><?php echo $rows['Telefono'];?></p>
@@ -77,15 +88,13 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
     <div class="w3-twothird">
     
       <div class="w3-container w3-card w3-white w3-margin-bottom">
-        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Especialidades</h2>
-        <?php while($row = $esp->fetch_assoc()) {?>
+        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Historia Clinica</h2>
         <div class="w3-container">
-          <h5 class="w3-opacity"><b><?php echo utf8_encode($row['Nombre_Esp']); ?></b></h5>
+          <h5 class="w3-opacity">Titulo</b></h5>
           <!--h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jan 2015 - <span class="w3-tag w3-teal w3-round">Current</span></h6-->
-          <p><?php echo utf8_encode($row['Descripcion']); ?></p>
+          <p>Contenido</p>
           <hr>
         </div>
-        <?php };?>
       </div>
 
     <!-- End Right Column -->

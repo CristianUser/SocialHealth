@@ -1,10 +1,12 @@
 <?php
 $id=$_POST['id'];
-$archivo=$_FILES['upload'];
+//$archivo=$_FILES['upload'];
 $url=$_POST['url'];
 $id_insert=$id;
+$errors = array();
+include '../DBConnect/Notificacion.php';
 if($_FILES["upload"]["error"]>0){
-    echo "error al cargar archivo";
+    $errors[]= "error al cargar archivo";
 }else{
     $permitidos = array("image/gif","image/png","image/jpeg","image/jpg","application/pdf");
     $limite_kb = 20000;
@@ -18,13 +20,14 @@ if($_FILES["upload"]["error"]>0){
         }
             $resultado = @move_uploaded_file($_FILES["upload"]["tmp_name"],$archivo);
             if($resultado){
-                echo "Archivo guardado";
+                $Msj = "Archivo guardado";
             }else{
-                echo "Error al guardar";
+                $errors[]= "Error al guardar";
             }     
     }else{
-        echo "Archivo no permitido";
+        $errors[]= "Archivo no permitido";
     }
 }
-//header("Location: $url");
+
+header("Location: $url");
 ?>

@@ -5,7 +5,8 @@ require 'DB_Usuario.php';
 if(!empty($_POST))
 {
     $id = $mysqli->real_escape_string($_POST['id']);	
-    $username = $mysqli->real_escape_string($_POST['username']);
+	$username = $mysqli->real_escape_string($_POST['username']);
+	$url = $mysqli->real_escape_string($_POST['url']);
     if(usuarioExiste($username)){
 
        $sql = "SELECT * FROM usuario usr WHERE usr.id_tipo=2  AND usr.usuario= '$username' LIMIT 1";
@@ -41,7 +42,7 @@ if(!empty($_POST))
 				<h3><?php echo $mensaje; ?></h3>
                 <h2>Ya esta todo listo!!</h2>
 				<br />
-				<p><a class="btn btn-info action-button" href="../Tablas/odontologos.php" role="button">Continuar</a></p>
+				<p><a class="btn btn-info action-button" href="<?php echo $url;?>" role="button">Continuar</a></p>
 			</div>
 		</div>
 	</body>
