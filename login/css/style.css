@@ -189,14 +189,20 @@ height: 51px;
 	margin-bottom: 20px;
 }
 /*progressbar*/
+.progressbar{
+	z-index: -2;
+	background: rgb(255, 255, 255);
+}
 #progressbar {
+
 	margin-bottom: 30px;
 	overflow: hidden;
 	/*CSS counters to number the steps*/
     counter-reset: step;
-    background-color:rgba(255, 255, 255, 0.652);
+    background-color:rgba(255, 255, 255, 0.029);
 }
 #progressbar li {
+
 	list-style-type: none;
 	color: #2D3E50;
 	text-transform: uppercase;
@@ -206,6 +212,7 @@ height: 51px;
 	position: relative;
 }
 #progressbar li:before {
+
 	content: counter(step);
 	counter-increment: step;
 	width: 20px;
@@ -219,6 +226,7 @@ height: 51px;
 }
 /*progressbar connectors*/
 #progressbar li:after {
+	
 	content: '';
 	width: 100%;
 	height: 2px;

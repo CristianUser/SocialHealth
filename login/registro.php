@@ -71,7 +71,7 @@
                     $limite_kb = 2000;
                
                     if(in_array($_FILES["upload"]["type"], $permitidos) && $_FILES["upload"]["size"] <= ($limite_kb * 1024)){
-                       $ruta = 'files/'.$id_insert.'/';
+                       $ruta = '../private/files/'.$id_insert.'/';
                        $archivo = $ruta.'perfil.png';
                
                        if(!file_exists($ruta)){
@@ -165,11 +165,13 @@
     <div>
     <form id="msform" class="" role="form" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" enctype="multipart/form-data" autocomplete="off">
             <!-- progressbar -->
-            <ul id="progressbar">
-                <li class="active">Cuenta</li>
-                <li>Tipo de cuenta</li>
-                <li>Datos personales</li>
-            </ul>
+            <div class="progressbars">
+                <ul id="progressbar">
+                    <li class="active">Cuenta</li>
+                    <li>Tipo de cuenta</li>
+                    <li>Datos personales</li>
+                </ul>
+            </div>
             <!-- fieldsets -->
             <fieldset>
                 <h2 class="fs-title">Crea tu cuenta</h2>

@@ -9,9 +9,9 @@
 	
     $idUsuario = $_SESSION['id_usuario'];
     $tipo = $_SESSION['tipo_usuario'];
-    $img_file = "../login/files/$idUsuario/perfil.png";
+    $img_file = "../private/files/$idUsuario/perfil.png";
   if(!file_exists($img_file)){
-    $img_file = "icons/User-Profile-Inv.png";
+    $img_file = "../assets/icons/User-Profile-Inv.png";
   }
 
   // A few settings

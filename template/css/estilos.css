@@ -39,7 +39,7 @@ header{
     background: #00A89E;
 }
 body {
-    background: url('3.jpg');
+    background: url('../../assets/images/3.jpg');
     background-attachment: fixed;
     }
 img{
@@ -106,7 +106,7 @@ img{
     transition: all 300ms;
     display:inline;
 }
-.c-menu div:hover{
+.c-menu div:hover:not(.card){
     background: rgba(0,0,0,0.2);
 
 }
@@ -139,31 +139,11 @@ img{
     background: rgba(0,0,0,0.2);
 
 }
-/*
-article{
-    padding: 40px;
+.dropdown-item.active, .dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: #00A89E;
 }
-
-.container-fluid label{
-    position: fixed;
-    width: 100%;
-    max-width: 1000px;
-    top: 14px;
-    font-size: 26px;
-    color: white;
-    cursor: pointer;
-    z-index: 10;
-}
-
-.container-fluid h2{
-    position: fixed;
-    width: 100%;
-    max-width: 1000px;
-    top: 14px;
-    font-size: 26px;
-    text-align: right;
-    color: white;
-}*/
 
 
 

@@ -7,12 +7,11 @@
 
     <!-- Bootstrap CSS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/Bootstrap.css">
-    <link rel="stylesheet" href="css/estilos.css">
-    <link rel="stylesheet" href="icon/css/fontello.css">
-    <link rel="stylesheet" type="text/css" href="css/mystyle.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="/SocialHealth/template/css/Bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/SocialHealth/template/css/mystyle.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.18/af-2.3.0/b-1.5.2/b-colvis-1.5.2/b-flash-1.5.2/b-html5-1.5.2/b-print-1.5.2/cr-1.5.0/fc-3.2.5/fh-3.1.4/kt-2.4.0/r-2.2.2/rg-1.0.3/rr-1.2.4/sc-1.5.0/sl-1.2.6/datatables.css"/>
+    <link rel="stylesheet" href="/SocialHealth/template/css/estilos.css">
+    <link rel="stylesheet" href="/SocialHealth/template/css/style.css">
  
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
@@ -52,7 +51,13 @@
                     <h6 class="d-none d-md-inline d-lg-inline  d-xl-inline" style="display:inline;"><?php echo utf8_decode($row['nombre'])," ",utf8_decode($row['apellido']); ?></h6>    <img src="<?php echo $ruta ?>" class="profile-pic"  alt=""> 
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Mi Cuenta</a>
+                    <a class="dropdown-item" href="                        <?php
+                        if($tipo==1){
+                          echo "micuenta_Pac.php";
+                        }elseif($tipo==2){
+                          echo "micuenta_Pro.php";
+                        }
+                        ?>">Mi Cuenta</a>
                     <a class="dropdown-item" href="#">Ajustes</a>
                     <a class="dropdown-item" href="../login/logout.php">Cerrar Sesion</a>
                   </div>
