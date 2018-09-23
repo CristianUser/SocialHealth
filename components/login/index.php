@@ -1,6 +1,6 @@
 <?php
-	require 'funcs/conexion.php';
-	include 'funcs/funcs.php';
+	require '../../functions/connection.php';
+	include '../../functions/funcs.php';
 	
 	session_start(); //Iniciar una nueva sesión o reanudar la existente
 	
@@ -30,8 +30,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SocialHealth</title>
-    <link rel="stylesheet" type="text/css" href="css/Bootstrap.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="/Socialhealth/public/css/Bootstrap.css">
+    <link rel="stylesheet" href="/Socialhealth/components/login/style.css">
 </head>
 <body>
 
@@ -55,13 +55,7 @@
             </fieldset>
         </form>
     </div>
-
-
-
-    <!--script src="js/jquery-3.3.1.slim.min.js"></script-->
-    <!--script src="js/popper.min.js"></script-->
-    <!--script src="js/bootstrap.min.js"></script-->
-    <script src="js/jquery-3.3.1.js"></script>
+    <script src="/SocialHealth/public/js/jquery-3.3.1.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 </body>

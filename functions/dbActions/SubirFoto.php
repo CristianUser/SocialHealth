@@ -4,7 +4,6 @@ $id=$_POST['id'];
 $url=$_POST['url'];
 $id_insert=$id;
 $errors = array();
-include '../DBConnect/Notificacion.php';
 if($_FILES["upload"]["error"]>0){
     $errors[]= "error al cargar archivo";
 }else{

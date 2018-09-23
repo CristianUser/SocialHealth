@@ -26,9 +26,9 @@ var formatDate = (date,fType)=>{
 
 if (h >= 12){
   h -= 12;
-  ampa="PM";
+  ampm="PM";
 }else{
-  ampm="AM";
+    ampm="AM";
 }
 if(h == 0){
     h =12;
@@ -39,7 +39,7 @@ if (min<10){min = "0"+min;}
 var minutos = min;
 
 if(fType== 1){
-  fDate=hora+':'+minutos+' '+ampm+"  |  "+meses[m];
+  fDate=h+':'+min+' '+ampm+"  |  "+meses[m];
 }else if(fType==2){
   fDate=meses[m].substring(0,3)+' '+d;
   if(now.getMonth() == date.getMonth() && now.getFullYear()==date.getFullYear()){
@@ -81,7 +81,6 @@ var setMsjDB = (idChat)=>{
   msjDB = firebase.database().ref('chat/'+idChat+'/Message');
 }
 
-
 var getMsjDB = (idChat)=>{
   msjDB.limitToLast(20).on('value',function(snapshot){  
   $(".msg_history").html(""); // Limpiar todo el contenido del chat
@@ -101,6 +100,7 @@ var getMsjDB = (idChat)=>{
     $('.msg_history #template'+type+' .Date').html(fDate);
     $('.msg_history #template'+type+' .Foto').attr("src",document.getElementById(idChat).children[0].children[0].children[0].src);
     $('.msg_history #template'+type).attr("id",e.key);
+    // document.getElementById(e.key).focus;
     // var id="";
     // id=e.key;
     // document.getElementById(id).addEventListener('click',()=>{
@@ -111,7 +111,12 @@ var getMsjDB = (idChat)=>{
         
        
    });
-});
+  });
+  var goToLast = ()=>{
+    var objDiv = document.getElementById("msg_history");
+    objDiv.scrollTop = objDiv.scrollHeight;
+  };
+  setTimeout(goToLast,50);
 };
 // funcion para agregar chats a la lista
 var agregarChat = (userAv)=>{
@@ -205,18 +210,19 @@ snapshot.forEach(function(e){
     }
   });
 });
-$(window).ready(function() {
+
 //click en add
 var state=false;
 var stateC = ()=>{
 if(state){
+  setTimeout(quitarUsers,1000);
   state=false;
-  setTimeout(quitarUsers,1000);
 }else{
-  state=true;
-  setTimeout(parsear,300);
   quitarUsers();
+  setTimeout(parsear,300);
+  setTimeout(quitarUsers,500);
   setTimeout(quitarUsers,1000);
+  state=true;
 }
 }
 //Parsear lista de usuarios disponibles
@@ -232,42 +238,45 @@ for(let i=0;i<userList.children.length;i++){
   //console.log(i);
 }
 };
-//popover 
-$("[data-toggle=popover]").popover({
-html: true, 
-content: function() {
-return $('#popover-content').html();
-}  
-});
-//boton enviar mensaje
-
-var input = document.getElementById("msj-body");
-input.addEventListener("keydown", function(event) {
-     if (event.keyCode == 13) {
-        document.getElementById("enviarbtn").click();
-        event.preventDefault();
-     }
-    //return false;
-});
-var boton = document.getElementById("enviarbtn");
-boton.addEventListener('click',(e)=>{
-  if(formulario.body.value!="" && chatS){
-  enviarMsj(formulario.body.value);
-  }
-  formulario.body.value="";
-  e.preventDefault();
-});
 //funcion para vaciar lista de chats agregados
 var quitarUsers = ()=>{
-   lista = document.getElementById("user-list");
-   lista2 = document.getElementById("inbox_chat");
-   for (var x = 0; x < lista2.children.length+1; x++){
-  for (var i = 0; i < lista.children.length; i++) {
-    for (var e = 0; e < lista2.children.length; e++){
-      if(lista.children[i].value==lista2.children[e].children[0].id){
-        lista.children[i].parentNode.removeChild(lista.children[i]);
+  lista = document.getElementById("user-list");
+  lista2 = document.getElementById("inbox_chat");
+  for (var x = 0; x < lista2.children.length+4; x++){
+    for (var i = 0; i < lista.children.length; i++) {
+      for (var e = 0; e < lista2.children.length; e++){
+        if(lista.children[i].value==lista2.children[e].children[0].id){
+          lista.children[i].parentNode.removeChild(lista.children[i]);
+        }
       }
+    }}
+  };
+$(window).ready(function() {
+    //popover
+      $("[data-toggle=popover]").popover({
+      html: true, 
+      content: function() {
+        return $('#popover-content').html();
+      }  
+      });
+    
+//boton enviar mensaje
+
+  var input = document.getElementById("msj-body");
+  input.addEventListener("keydown", function(event) {
+      if (event.keyCode == 13) {
+          document.getElementById("enviarbtn").click();
+          event.preventDefault();
+      }
+      //return false;
+  });
+  var boton = document.getElementById("enviarbtn");
+  boton.addEventListener('click',(e)=>{
+    if(formulario.body.value!="" && chatS){
+    enviarMsj(formulario.body.value);
     }
-  }}
-};
+    formulario.body.value="";
+    e.preventDefault();
+  });
 });
+

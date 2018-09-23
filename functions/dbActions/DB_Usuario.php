@@ -1,5 +1,5 @@
 <?php
-require_once '../login/funcs/conexion.php';
+require_once '../connection.php';
 
 /*
 function isEmail($email)

@@ -1,6 +1,6 @@
 <?php
-require '../login/funcs/conexion.php';
-require '../login/funcs/funcs.php';
+require '../connection.php';
+require '../funcs.php';
 require 'DB_Usuario.php';
 if(!empty($_POST))
 {

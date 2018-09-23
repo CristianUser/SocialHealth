@@ -1,7 +1,7 @@
 <?php
 	session_start();
-	require '../login/funcs/conexion.php';
-	include '../login/funcs/funcs.php';
+	require_once '../connection.php';
+	include_once '../funcs.php';
 	
 	if(!isset($_SESSION["id_usuario"])){ //Si no ha iniciado sesión redirecciona a index.php
 		header("Location: ../index.php");
@@ -9,9 +9,9 @@
 	
     $idUsuario = $_SESSION['id_usuario'];
     $tipo = $_SESSION['tipo_usuario'];
-    $img_file = "../private/files/$idUsuario/perfil.png";
+    $img_file = "../../private/files/$idUsuario/perfil.png";
   if(!file_exists($img_file)){
-    $img_file = "../assets/icons/User-Profile-Inv.png";
+    $img_file = "../../assets/icons/User-Profile-Inv.png";
   }
 
   // A few settings

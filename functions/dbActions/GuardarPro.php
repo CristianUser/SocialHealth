@@ -1,5 +1,5 @@
 <?php
-require '../login/funcs/conexion.php';
+require_once '../connection.php';
 require 'DB_Usuario.php';
 if(!empty($_POST))
 {

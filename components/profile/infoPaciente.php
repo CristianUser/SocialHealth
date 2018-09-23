@@ -1,5 +1,5 @@
 <?php 
-include 'Sesion_Pro.php';
+include '/Socialhealth/functions/sessions/sesionPro.php';
 $where="WHERE ID_Profesional = $idUsuario";
 $sql = "SELECT * FROM usuario usr INNER JOIN datos_cliente dp 
 ON usr.id_usuario = dp.ID_Usuario and usr.id_usuario in 
@@ -10,9 +10,9 @@ $sql2 = "SELECT * FROM usuario usr INNER JOIN datos_cliente dc ON usr.id_usuario
 $out = $mysqli->query($sql2);
 $rows = $out->fetch_assoc();
 
-$img_file2 = "../login/files/$id/perfil.png";
+$img_file2 = "/Socialhealth/private/files/$id/perfil.png";
 if(!file_exists($img_file2)){
-  $img_file2 = "images/perfil.jpg";
+  $img_file2 = "/Socialhealth/assets/images/perfil.jpg";
 }
 $imgData2 = base64_encode(file_get_contents($img_file2));
 $perfil = 'data: '.mime_content_type($img_file2).';base64,'.$imgData2;
@@ -30,8 +30,8 @@ include 'header.php' ?>
 <title>SocialHealth</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/perfil-pro-w3.css">
-<link rel='stylesheet' href="css/perfil-pro-css-font.css">
+<link rel="stylesheet" href="/Socialhealth/components/profile/css/perfil-pro-w3.css">
+<link rel='stylesheet' href="/Socialhealth/components/profile/css/perfil-pro-css-font.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 

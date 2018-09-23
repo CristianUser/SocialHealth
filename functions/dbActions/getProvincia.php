@@ -1,6 +1,6 @@
 <?php
 	
-	require ("../login/funcs/conexion.php");
+	require_once '../connection.php';
 	
 	$id_region = $_POST['id_region'];
 	

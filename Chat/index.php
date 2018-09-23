@@ -1,5 +1,5 @@
 <?php
-include '../Tablas/sesion.php';
+include '../functions/sessions/sesion.php';
 include '../template/header.php';
 ?>
 <!DOCTYPE html>
@@ -30,8 +30,8 @@ include '../template/header.php';
             </div>
         </ul>
     </div> 
-    <div class="chat-container">
-    <h4 class=" text-center">Chat</h4>
+    <div class="container">
+    <h3 class=" text-center">Mensajes</h3>
     <div class="messaging">
           <div class="inbox_msg">
             <div class="inbox_people">
@@ -44,8 +44,8 @@ include '../template/header.php';
                     <!-- <input type="text" class="search-bar"  placeholder="Search" > -->
                     <span class="input-group-addon">
                     <button data-placement="bottom" data-toggle="popover" data-title="Agregar Chat" data-container="body"
-                    type="button" data-html="true" id="login" onclick="stateC()"> <i class="fa fa-plus"></i> </button>
-                    </span> </div>
+                    type="button" data-html="true" id="login" onmouseout="stateC()" onclick="stateC()"> <i class="fa fa-plus"></i> </button>
+                    </span></div>
                 </div>
               </div>
               <div class="inbox_chat" id="inbox_chat">
@@ -98,8 +98,8 @@ include '../template/header.php';
       <!-- <script src="./js/jquery-3.3.1.js"></script> -->
       <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
       <script>
-        var user=<?php echo $idUsuario;?>;
-        var userType=<?php echo $tipo;?>;
+        var user=5;
+        var userType=2;
       </script>
       <script src="./js/chat.js"></script>
       <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> -->
