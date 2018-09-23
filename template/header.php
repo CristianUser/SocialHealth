@@ -26,7 +26,7 @@
       width: 100%;
       height: 100%;
       z-index: 10;
-      background: url('../loading1.gif') 50% 50% no-repeat rgb(255, 255, 255);
+      background: url('/SocialHealth/loading1.gif') 50% 50% no-repeat rgb(255, 255, 255);
       opacity: .8;}
     </style>
     <script type="text/javascript">
@@ -43,7 +43,7 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                 <span class="navbar-toggler-icon"></span>
               </button>
-            <a class="navbar-brand" href="#"><img style="width: 100px;" src="../Menu/images/logo.png" alt=""></a>
+            <a class="navbar-brand" href="#"><img style="width: 100px;" src="/SocialHealth/assets/images/logo.png" alt=""></a>
             <div class="col">
               <ul class="navbar-nav dropdown-menu-right" style="float:right;">
                 <li class="nav-item dropdown" >
