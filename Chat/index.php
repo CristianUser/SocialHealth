@@ -1,5 +1,5 @@
 <?php
-include '../functions/sessions/sesion.php';
+include '../functions/sesion.php';
 include '../template/header.php';
 ?>
 <!DOCTYPE html>

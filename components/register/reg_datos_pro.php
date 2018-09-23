@@ -1,9 +1,9 @@
 <?php
 session_start();
-require "funcs/conexion.php";
+require "../../functions/connection.php";
 	
 	if(!isset($_SESSION["id_usuario"])){ //Si no ha iniciado sesión redirecciona a index.php
-		header("Location: index.php");
+		header("Location: ../login/");
 	}
   $idUsuario = $_SESSION['id_usuario'];
   $id_tipo = $_SESSION['tipo_usuario'];
@@ -31,9 +31,9 @@ $S_especialidad=$mysqli->query($query);
 
     <title>Bienvenido </title>
 
-    <script language="javascript" src="js/jquery-3.1.1.min.js"></script>
+    <script src="/SocialHealth/public/js/jquery-3.3.1.js"></script>
 		
-		<script language="javascript">
+		<script>
 			$(document).ready(function(){
 				$("#region").change(function () {
 

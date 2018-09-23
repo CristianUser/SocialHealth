@@ -1,7 +1,7 @@
 <?php
 	
-	require 'funcs/conexion.php';
-	require 'funcs/funcs.php';
+	require '../../functions/connection.php';
+	require '../../functions/funcs.php';
 	
 	$errors = array();
 	
@@ -71,7 +71,7 @@
                     $limite_kb = 2000;
                
                     if(in_array($_FILES["upload"]["type"], $permitidos) && $_FILES["upload"]["size"] <= ($limite_kb * 1024)){
-                       $ruta = '../private/files/'.$id_insert.'/';
+                       $ruta = '../../private/files/'.$id_insert.'/';
                        $archivo = $ruta.'perfil.png';
                
                        if(!file_exists($ruta)){
@@ -156,9 +156,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SocialHealth</title>
-    <link rel="stylesheet" type="text/css" href="../Menu/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/SocialHealth/public/css/bootstrap.css">
     <script src='https://www.google.com/recaptcha/api.js'></script>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/SocialHealth/components/register/css/style.css">
 </head>
 <body>
 
@@ -179,7 +179,7 @@
                 <input type="text" name="email"  placeholder="Email" required />
                 <input type="password" name="password"  placeholder="Contraseña" required />
                 <input type="password" name="con_password"  placeholder="Confirmar Contraseña" required />
-                <a href="index.php"class="a">Iniciar Sesion</a>
+                <a href="/SocialHealth/components/login/"class="a">Iniciar Sesion</a>
                 <input type="button" name="next"  class="next action-button" value="Siguiente" required />
             </fieldset>
             <fieldset>
@@ -188,13 +188,13 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col opt1">
-                            <label class="opt1"><img class="opcion" src="../Tablas/images/paciente.png" alt="">
-                                <input style="display:none;" type="radio" name="tipo" id="tipo"value="1"  ><h3 class="fs-subtitle"style="display: inline;">Paciente</h3>
+                            <label class="opt1"><img class="opcion" src="/SocialHealth/assets/images/paciente.png" alt="">
+                                <input style="display:none;" type="radio" name="tipo" id="tipo1"value="1"  ><h3 class="fs-subtitle"style="display: inline;">Paciente</h3>
                             </label>
                         </div>
                         <div class="col opt2">
-                            <label class="opt2"><img class="opcion" src="../Tablas/images/doctor.png" alt="">
-                                <input style="display:none;" type="radio" name="tipo" id="tipo"value="2"  ><h3 class="fs-subtitle"style="display: inline;">Odontologo</h3>
+                            <label class="opt2"><img class="opcion" src="/SocialHealth/assets/images/doctor.png" alt="">
+                                <input style="display:none;" type="radio" name="tipo" id="tipo2"value="2"  ><h3 class="fs-subtitle"style="display: inline;">Odontologo</h3>
                             </label>
                         </div>
                     </div>
@@ -206,12 +206,12 @@
             <fieldset>
                 <h2 class="fs-title">Datos personales</h2>
                 <h3 class="fs-subtitle">Sube una foto</h3>
-                <label for="upload"><img id="image" class="profile" src="../Menu/icons/User-Profile.png" alt="Selecciona una foto"></label>
+                <label for="upload"><img id="image" class="profile" src="/SocialHealth/assets/images/perfil.jpg" alt="Selecciona una foto"></label>
                 <input class="upload" id="upload" type="file" name="upload" >
                 <input type="text" name="nombre" placeholder="Nombre" required />
                 <input type="text" name="apellido" placeholder="Apellido" required />
                 <input type="text" name="usuario" placeholder="Username"/>
-                <div class="g-recaptcha col-md-9" data-sitekey="6Lcdn2EUAAAAAN_-AvR4IYjwioCEYMTwqevoQOjO"></div>
+                <div style="overflow:hidden;" class="g-recaptcha col-md-9" data-sitekey="6Lcdn2EUAAAAAN_-AvR4IYjwioCEYMTwqevoQOjO"></div>
                 <input type="button" name="previous" class="previous action-button" value="Atras" />
                 <button id="btn-signup" type="submit" class="action-button btn btn-info">Registrar</button> 
             </fieldset>
@@ -230,7 +230,7 @@
     <!--script src="js/jquery-3.3.1.slim.min.js"></script-->
     <!--script src="js/popper.min.js"></script-->
     <!--script src="js/bootstrap.min.js"></script-->
-    <script src="js/jquery-3.3.1.js"></script>
+    <script src="/SocialHealth/public/js/jquery-3.3.1.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script>

@@ -31,10 +31,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SocialHealth</title>
     <link rel="stylesheet" type="text/css" href="/Socialhealth/public/css/Bootstrap.css">
-    <link rel="stylesheet" href="/Socialhealth/components/login/style.css">
+    <link rel="stylesheet" href="/Socialhealth/components/register/css/style.css">
 </head>
 <body>
-
     <div>
         <div class="row">
             <div class="col"></div>
@@ -49,8 +48,8 @@
                 <h3 class="fs-subtitle">Iniciar Sesion</h3>
                 <input type="text" name="usuario" id="usuario" placeholder="Email" required />
                 <input type="password" name="password" id="password" placeholder="Contraseña" required />
-                <div  style=" font-size: 80%; position: relative; top:-10px"><a class="a" href="recupera.php">¿Se te olvid&oacute; tu contraseña?</a></div>
-                <a class="a" href="registro.php">Crear Cuenta</a>
+                <div  style=" font-size: 80%; position: relative; top:-10px"><a class="a" href="/SocialHealth/components/register/recupera.php">¿Se te olvid&oacute; tu contraseña?</a></div>
+                <a class="a" href="/SocialHealth/components/register/">Crear Cuenta</a>
                 <input type="submit" class="action-button" value="Iniciar Sesion">
             </fieldset>
         </form>

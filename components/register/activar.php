@@ -1,8 +1,7 @@
 <?php
 	
-	require 'funcs/conexion.php';
-	require 'funcs/funcs.php';
-	
+	require '../../functions/connection.php';
+	require '../../functions/funcs.php';
 	if(isset($_GET["id"]) AND isset($_GET['val']))
 	{
 		
@@ -16,10 +15,7 @@
 <html>
 	<head>
 		<title>Registro</title>
-		<link rel="stylesheet" href="css/bootstrap.min.css" >
-		<link rel="stylesheet" href="css/bootstrap-theme.min.css" >
-		<link rel="stylesheet" href="css/style.css">
-		<script src="js/bootstrap.min.js" ></script>
+		<link rel="stylesheet" href="/SocialHealth/public/css/bootstrap.css" >
 		
 	</head>
 	
@@ -33,8 +29,9 @@
 				<h1><?php echo $mensaje; ?></h1>
 				
 				<br />
-				<p><a class="btn btn-info action-button" href="index.php" role="button">Iniciar Sesi&oacute;n</a></p>
+				<p><a class="btn btn-info action-button" href="/SocialHealth/components/login/" role="button">Iniciar Sesi&oacute;n</a></p>
 			</div>
 		</div>
+		<script src="/SocialHealth/public/js/bootstrap.js" ></script>
 	</body>
 </html>														

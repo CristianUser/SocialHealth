@@ -1,7 +1,7 @@
 <?php
 	/*
-	require 'funcs/conexion.php';
-	require 'funcs/funcs.php';
+	require '../../functions/connection.php';
+	include '../../functions/funcs.php';
 	
 	if(empty($_GET['user_id'])){
 		header('Location: index.php');
