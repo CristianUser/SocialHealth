@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="es">
   <head>
@@ -19,7 +20,7 @@
                   <h2>Coming Soon</h2>
                   <p>Esta parte todavia no ha sido creada</p>
                   <hr>
-                  <a href="index.php"><button class="btn btn-cmj" >Volver</button></a>
+                  <a href="/SocialHealth/"><button class="btn btn-cmj" >Volver</button></a>
               </div>
               <div class="col"></div>
           </div>

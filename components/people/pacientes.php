@@ -1,6 +1,5 @@
 <?php
-require '../login/funcs/conexion.php';
-include 'Sesion_Pro.php';
+include '../../functions/sesionPro.php';
 $where="WHERE ID_Profesional = $idUsuario";
 $sql = "SELECT * FROM usuario usr INNER JOIN datos_cliente dp 
 ON usr.id_usuario = dp.ID_Usuario and usr.id_usuario in 
@@ -15,7 +14,7 @@ function seguro($id){
     echo $rr['Nombre'];
 }
 ?>
-<?php include  'header.php'; ?>
+<?php include  '../../template/header.php'; ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -154,4 +153,4 @@ function seguro($id){
     <script src="js/bootstrap.min.js"></script-->
 </body>
 </html>
-<?php include 'footer.php'; ?>
+<?php include '../../template/footer.php'; ?>
