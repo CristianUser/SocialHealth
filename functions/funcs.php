@@ -240,14 +240,14 @@
 					if(isFirstTime($id)){
 						lastSession($id);
 						if($id_tipo==1){
-							header("location: ../login/reg_datos_pac.php");
+							header("location: ../register/reg_datos_pac.php");
 						} elseif($id_tipo==2){
-							header("location: ../login/reg_datos_pro.php");
+							header("location: ../register/reg_datos_pro.php");
 						}
 					}else
 					{
 						lastSession($id);
-						header("location: ../Menu/welcome.php");
+						header("location: ../dashboard/");
 					}
 					$_SESSION['id_usuario'] = $id;
 					$_SESSION['tipo_usuario'] = $id_tipo;

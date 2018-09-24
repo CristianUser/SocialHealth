@@ -53,13 +53,13 @@
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="                        <?php
                         if($tipo==1){
-                          echo "micuenta_Pac.php";
+                          echo "/SocialHealth/components/profile/micuenta_Pac.php";
                         }elseif($tipo==2){
-                          echo "micuenta_Pro.php";
+                          echo "/SocialHealth/components/profile/micuenta_Pro.php";
                         }
                         ?>">Mi Cuenta</a>
                     <a class="dropdown-item" href="#">Ajustes</a>
-                    <a class="dropdown-item" href="../login/logout.php">Cerrar Sesion</a>
+                    <a class="dropdown-item" href="/SocialHealth/components/login/logout.php">Cerrar Sesion</a>
                   </div>
                 </li>
               </ul>

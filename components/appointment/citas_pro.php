@@ -1,11 +1,10 @@
 <?php
-require '../login/funcs/conexion.php';
-include 'Sesion_Pro.php';
-include '../DBConnect/DB_Usuario.php';
+include '../../functions/sesionPro.php';
+include '../../functions/dbActions/DB_Usuario.php';
 $where="WHERE rp.ID_Profesional = $idUsuario";
 $sql = "SELECT ci.ID_Cita, ci.Fecha, ci.Estado, ci.Hora, ci.Descripcion, usr.id_usuario, usr.nombre, usr.apellido 
 FROM citas ci , r_paciente rp ,usuario usr where ci.ID_Pac = rp.ID_Pac 
-and usr.id_usuario =  rp.ID_Cliente and rp.ID_Profesional = $idUsuario and ci.Estado='Completado'";
+and usr.id_usuario =  rp.ID_Cliente and rp.ID_Profesional = $idUsuario and ci.Estado='Pendiente'";
 $resultado = $mysqli->query($sql);
 $sql1="SELECT ID_Pac FROM r_paciente  $where";
 
@@ -18,7 +17,7 @@ function seguro($id){
     echo $rr['Nombre'];
 }*/
 ?>
-<?php include  'header.php'; ?>
+<?php include '../../template/header.php'; ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -31,7 +30,7 @@ function seguro($id){
            $(document).ready(function(){
 		$('#mitabla').DataTable({
             "dom": 'Bfrtip',
-            "buttons": ['excel','pdf','copy','print'],
+            "buttons": ['excel','pdf','copy','print','colvis'],
 			"order": [[0, "dsc"]],
 			"language":{
 				"lengthMenu": "Mostrar _MENU_ por pagina",
@@ -62,7 +61,7 @@ function seguro($id){
 
         <div class="row">
             <div class="col">
-                <h2 style="text-align: center;">Historial</h2>
+                <h2 style="text-align: center;">Citas</h2>
             </div>
         </div>
        <div class="row">
@@ -80,7 +79,7 @@ function seguro($id){
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $idsel; while($row = $resultado->fetch_assoc()) { $contador+=1; ?>
+                            <?php while($row = $resultado->fetch_assoc()) { $contador+=1; ?>
                                 <tr>
                                     <td>
                                         <a href="http://localhost/SocialHealth/Tablas/infoPaciente.php?id=<?php echo $row['id_usuario']; ?>">
@@ -92,8 +91,33 @@ function seguro($id){
                                     <td><?php echo $row['Descripcion']; ?></td>
                                     <td><?php echo $row['Estado']; ?></td>
                                     <td>
-                                        <img onclick="<?php $idsel = $row['ID_Cita'];?>" style="width: 25px;" src="icons/Close.png" alt="" data-toggle="modal" data-target="#exampleModal">
-                                    </td>
+                                        <img style="width: 25px;" src="icons/Submit-01.png" alt="" data-toggle="modal" data-target="#deletecitamodal<?php echo $row['ID_Cita'];?>">
+                                       <!-- Modal -->
+                                        <div class="modal fade" id="deletecitamodal<?php echo $row['ID_Cita'];?>" tabindex="-1" role="dialog" aria-labelledby="deletecitamodal<?php echo $row['ID_Cita'];?>Label" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="deletecitamodal<?php echo $row['ID_Cita'];?>Label">Completar cita</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Ya terminaste?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <form role="form" method="POST" action="../DBConnect/CitaEstado.php">
+                                                            <input type="hidden" name="ID_Cita" id="ID_Cita" value="<?php echo $row['ID_Cita'];?>">
+                                                            <input type="hidden" name="estado" id="estado" value="Completado">
+                                                            <input type="hidden" name="go" value="citas_pro.php">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Atras</button>
+                                                            <button type="submit" class="btn btn-primary">Confirmar</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                   </td>
                                 </tr>
                                 <?php } if($contador <10){for($x=1;$x<=(10-$contador);$x++){ ?>
                                     <tr>
@@ -112,34 +136,9 @@ function seguro($id){
             </div>
 
     </div>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Completar cita</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Ya terminaste?</p>
-                </div>
-                <div class="modal-footer">
-                    <form role="form" method="POST" action="../DBConnect/CitaEstado.php">
-                        <input type="hidden" name="ID_Cita" id="ID_Cita" value="<?php echo $idsel;?>">
-                        <input type="hidden" name="estado" id="estado" value="H-Eliminado">
-                        <input type="hidden" name="go" value="historial_pro.php">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Atras</button>
-                        <button type="submit" class="btn btn-primary">Confirmar</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
     <!--script src="js/jquery-3.3.1.slim.min.js"></script->
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script-->
 </body>
 </html>
-<?php include 'footer.php'; ?>
+<?php include '../../template/footer.php'; ?>

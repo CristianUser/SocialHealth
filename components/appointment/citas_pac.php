@@ -1,6 +1,5 @@
 <?php
-require '../login/funcs/conexion.php';
-include 'Sesion_Pac.php';
+include '../../functions/sesionPac.php';
 $where="WHERE rp.ID_Cliente = $idUsuario";
 $sql = "SELECT ci.Fecha, ci.Estado, ci.Hora, ci.Descripcion, usr.id_usuario, usr.nombre, usr.apellido 
 FROM citas ci , r_paciente rp ,usuario usr where ci.ID_Pac = rp.ID_Pac 
@@ -17,7 +16,7 @@ function seguro($id){
     echo $rr['Nombre'];
 }*/
 ?>
-<?php include  'header.php'; ?>
+<?php include  '../../template/header.php'; ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -143,4 +142,4 @@ function seguro($id){
     <script src="js/bootstrap.min.js"></script-->
 </body>
 </html>
-<?php include 'footer.php'; ?>
+<?php include '../../template/footer.php'; ?>
