@@ -12,6 +12,7 @@ img{
   width: 40%; border-right:1px solid #c4c4c4;
 }
 .inbox_msg {
+  text-align: left;
   background-color: #f8f8f8;
   border: 1px solid #c4c4c4;
   clear: both;

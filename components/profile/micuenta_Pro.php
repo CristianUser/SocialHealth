@@ -1,5 +1,5 @@
 <?php 
-include 'Sesion_Pro.php';
+include '../../functions/sesionPro.php';
 $id=$_SESSION['id_usuario'];
 $sql2 = "SELECT * FROM usuario usr INNER JOIN datos_profesional dc ON usr.id_usuario = dc.ID_Usuario and dc.ID_Usuario=$id";
 $out = $mysqli->query($sql2);
@@ -8,14 +8,14 @@ $rows = $out->fetch_assoc();
 $sql3 = "SELECT * FROM especialidades esp, r_especialidades resp WHERE esp.ID_Especialidad = resp.ID_Especialidad and resp.id_usuario=$id";
 $esp = $mysqli->query($sql3);
 
-$img_file2 = "../login/files/$id/perfil.png";
+$img_file2 = "../../private/files/$id/perfil.png";
 if(!file_exists($img_file2)){
-  $img_file2 = "images/perfil.jpg";
+  $img_file2 = "../../assets/images/perfil.jpg";
 }
 $imgData2 = base64_encode(file_get_contents($img_file2));
 $perfil = 'data: '.mime_content_type($img_file2).';base64,'.$imgData2;
 
-include 'header.php' ?>
+include '../../template/header.php' ?>
 <!DOCTYPE html>
 <html>
 <title>SocialHealth</title>
@@ -107,12 +107,12 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
         </button>
       </div>
       <div class="modal-body">
-        <form action="../DBConnect/SubirFoto.php" role="form" method="post" enctype="multipart/form-data">
+        <form action="/SocialHealth/functions/dbActions/SubirFoto.php" role="form" method="post" enctype="multipart/form-data">
           <div class="form-group">
             <input type="hidden" name="url" id="url" value="<?php $h= $_SERVER["HTTP_HOST"]; $u= $_SERVER["REQUEST_URI"]; echo "http://" . $h . $u;?>">
             <input type="hidden" name="id" id="id" value="<?php echo $id;?>">
             <label for="upload">
-                <img id="image" style="max-width:100%;" src="../Tablas/images/perfil.jpg" alt="Selecciona una foto">
+                <img id="image" style="max-width:100%; " src="/SocialHealth/assets/images/perfil.jpg" alt="Selecciona una foto">
             </label>
             <input hidden class="upload" id="upload" type="file" name="upload" required>
           </div>
@@ -154,4 +154,4 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
   </script>
 </body>
 </html>
-<?php include 'footer.php' ?>
+<?php include '../../template/footer.php' ?>

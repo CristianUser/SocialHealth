@@ -7,9 +7,9 @@
     $myJSON = json_encode($result);
 
 
-    $img_file="../../private/files/$id/perfil.png";
+    $img_file="../../../private/files/$id/perfil.png";
 if(!file_exists($img_file)){
-  $img_file = "../../assets/images/perfil.jpg";
+  $img_file = "../../../assets/images/perfil.jpg";
 }
 
     $imgData = base64_encode(file_get_contents($img_file));
