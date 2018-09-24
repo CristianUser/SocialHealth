@@ -99,13 +99,13 @@
 				if($registro > 0 )
 				{
 					
-					$url = 'http://'.$_SERVER["SERVER_NAME"].'/SocialHealth/login/activar.php?id='.$registro.'&val='.$token;
+					$url = 'http://'.$_SERVER["SERVER_NAME"].'/SocialHealth/components/register/activar.php?id='.$registro.'&val='.$token;
 					
 					$asunto = 'Activar Cuenta - SocialHealth';
 					$cuerpo = "Estimado $nombre $apellido: <br /><br />Para continuar con el proceso de registro, es indispensable de click en <a href='$url'>Activar Cuenta</a>";
 					
 					if(enviarEmail($email, $nombre, $asunto, $cuerpo)){
-                    echo"
+                    echo`
                     <!DOCTYPE html>
                         <html lang='en'>
                         <head>
@@ -113,23 +113,21 @@
                             <meta name='viewport' content='width=device-width, initial-scale=1.0'>
                             <meta http-equiv='X-UA-Compatible' content='ie=edge'>
                             <title>SocialHealth</title>
-                            <link rel='stylesheet' href='css/bootstrap.min.css' >
-                            <link rel='stylesheet' href='css/bootstrap-theme.min.css' >
-                            <link rel='stylesheet' href='css/style.css'>
-                            <script src='js/bootstrap.min.js' ></script>
+                            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
                         </head>
                         <body>
-                        <div class='cuadro' style='background-color: #fff;'>
-                    
-                    <h3>Para terminar el proceso de registro siga las instrucciones que le hemos enviado la direccion de correo electronico: $email</h3>
-                    <br><a href='index.php' >Iniciar Sesion</a>  
-                    <div> 
+                            <div class='cuadro' style='background-color: #fff;'>
+                                <h3>Para terminar el proceso de registro siga las instrucciones que le hemos enviado la direccion de correo electronico: $email</h3>
+                                <br><a href='index.php' >Iniciar Sesion</a>  
+                            <div> 
+                            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+                            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
                         </body>
                         </html>
                                             
                     
-                    ";
-					
+                    `;					
 					exit;
 					
 					} else {
@@ -159,6 +157,11 @@
     <link rel="stylesheet" type="text/css" href="/SocialHealth/public/css/bootstrap.css">
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <link rel="stylesheet" href="/SocialHealth/components/register/css/style.css">
+    <style>
+        .opcion-active {
+            box-shadow: 0 0 5px 1px rgb(68, 224, 185);
+        }
+    </style>
 </head>
 <body>
 
@@ -187,12 +190,12 @@
                 <h3 class="fs-subtitle">Elije uno</h3>
                 <div class="form-group">
                     <div class="row">
-                        <div class="col opt1">
+                        <div id="opt1" class="col">
                             <label class="opt1"><img class="opcion" src="/SocialHealth/assets/images/paciente.png" alt="">
                                 <input style="display:none;" type="radio" name="tipo" id="tipo1"value="1"  ><h3 class="fs-subtitle"style="display: inline;">Paciente</h3>
                             </label>
                         </div>
-                        <div class="col opt2">
+                        <div id="opt2" class="col">
                             <label class="opt2"><img class="opcion" src="/SocialHealth/assets/images/doctor.png" alt="">
                                 <input style="display:none;" type="radio" name="tipo" id="tipo2"value="2"  ><h3 class="fs-subtitle"style="display: inline;">Odontologo</h3>
                             </label>
@@ -234,6 +237,16 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script>
+        var opt1 = document.getElementById('opt1');
+        var opt2 = document.getElementById('opt2');
+        opt1.addEventListener('click',()=>{
+            opt1.children[0].children[0].className="opcion opcion-active";
+            opt2.children[0].children[0].className="opcion";
+        });
+        opt2.addEventListener('click',()=>{
+            opt2.children[0].children[0].className="opcion opcion-active";
+            opt1.children[0].children[0].className="opcion";
+        });
               function archivo(evt) {
                   var files = evt.target.files; // FileList object
              

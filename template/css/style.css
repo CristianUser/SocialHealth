@@ -98,7 +98,7 @@ button.dt-button:active:not(.disabled), button.dt-button.active:not(.disabled), 
     
 }
 .buttons-html5{
-    background-color: #00A89E;
+    /* background-color: #00A89E; */
     box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.233);
 }
 .tabla thead{

@@ -80,7 +80,7 @@ function seguro($id){
                             <?php while($row = $resultado->fetch_assoc()) { $contador+=1; ?>
                                 <tr>
                                     <td>
-                                        <a href="http://localhost/SocialHealth/Tablas/infoOdontologo.php?id=<?php echo $row['id_usuario']; ?>">
+                                        <a href="/SocialHealth/components/profile/infoOdontologo.php?id=<?php echo $row['id_usuario']; ?>">
                                             <?php echo $row['nombre']," ",$row['apellido']; ?>
                                         </a>
                                     </td>

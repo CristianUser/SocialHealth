@@ -23,8 +23,8 @@ function seguro($id){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="css/Bootstrap.css">
-    <link rel="stylesheet" href="css/style.css">
+    <!-- <link rel="stylesheet" type="text/css" href="/SocialHealth/public/css/bootstrap.css"> -->
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
     <script type="text/Javascript">
            $(document).ready(function(){
 		$('#mitabla').DataTable({
@@ -80,7 +80,7 @@ function seguro($id){
                             <?php while($row = $resultado->fetch_assoc()) { $contador+=1; ?>
                                 <tr>
                                     <td>
-                                        <a href="http://localhost/SocialHealth/Tablas/infoOdontologo.php?id=<?php echo $row['id_usuario']; ?>">
+                                        <a href="/SocialHealth/components/profile/infoOdontologo.php?id=<?php echo $row['id_usuario']; ?>">
                                             <?php echo $row['nombre']," ",$row['apellido']; ?>
                                         </a>
                                     </td>

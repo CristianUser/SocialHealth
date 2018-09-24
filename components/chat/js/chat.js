@@ -230,11 +230,11 @@ var popover = document.getElementsByClassName('popover-body');
 var parsear=()=>{
 var userList = popover[0].children[1];
 for(let i=0;i<userList.children.length;i++){
-  userList.children[i].addEventListener('click',()=>{
+  userList.children[i].addEventListener('click',setTimeout(1000,()=>{
     //console.log("click "+userList.children[i].value);
     agregarChat(userList.children[i].value);
     userList.children[i].parentNode.removeChild(userList.children[i]);
-  });
+  }));
   //console.log(i);
 }
 };

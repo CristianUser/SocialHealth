@@ -82,7 +82,7 @@ function seguro($id){
                             <?php while($row = $resultado->fetch_assoc()) { $contador+=1; ?>
                                 <tr>
                                     <td>
-                                        <a href="http://localhost/SocialHealth/Tablas/infoPaciente.php?id=<?php echo $row['id_usuario']; ?>">
+                                        <a href="/SocialHealth/components/profile/infoPaciente.php?id=<?php echo $row['id_usuario']; ?>">
                                             <?php echo $row['nombre']," ",$row['apellido']; ?>
                                         </a>
                                     </td>
@@ -91,7 +91,7 @@ function seguro($id){
                                     <td><?php echo $row['Descripcion']; ?></td>
                                     <td><?php echo $row['Estado']; ?></td>
                                     <td>
-                                        <img style="width: 25px;" src="icons/Submit-01.png" alt="" data-toggle="modal" data-target="#deletecitamodal<?php echo $row['ID_Cita'];?>">
+                                        <img style="width: 25px;" src="/SocialHealth/assets/icons/Submit-01.png" alt="" data-toggle="modal" data-target="#deletecitamodal<?php echo $row['ID_Cita'];?>">
                                        <!-- Modal -->
                                         <div class="modal fade" id="deletecitamodal<?php echo $row['ID_Cita'];?>" tabindex="-1" role="dialog" aria-labelledby="deletecitamodal<?php echo $row['ID_Cita'];?>Label" aria-hidden="true">
                                             <div class="modal-dialog" role="document">

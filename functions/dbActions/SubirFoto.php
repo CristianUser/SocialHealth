@@ -11,7 +11,7 @@ if($_FILES["upload"]["error"]>0){
     $limite_kb = 20000;
 
     if(in_array($_FILES["upload"]["type"], $permitidos) && $_FILES["upload"]["size"] <= ($limite_kb * 1024)){
-        $ruta = '../private/files/'.$id_insert.'/';
+        $ruta = '../../private/files/'.$id_insert.'/';
         $archivo = $ruta.'perfil.png';
 
         if(!file_exists($ruta)){

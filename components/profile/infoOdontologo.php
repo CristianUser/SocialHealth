@@ -1,5 +1,5 @@
 <?php 
-include 'Sesion_Pac.php';
+include '../../functions/sesionPac.php';
 $id=$_GET['id'];
 $sql2 = "SELECT * FROM usuario usr INNER JOIN datos_profesional dc ON usr.id_usuario = dc.ID_Usuario and dc.ID_Usuario=$id";
 $out = $mysqli->query($sql2);
@@ -8,9 +8,9 @@ $rows = $out->fetch_assoc();
 $sql3 = "SELECT * FROM especialidades esp, r_especialidades resp WHERE esp.ID_Especialidad = resp.ID_Especialidad and resp.id_usuario=$id";
 $esp = $mysqli->query($sql3);
 
-$img_file2 = "../login/files/$id/perfil.png";
+$img_file2 = "../../private/files/$id/perfil.png";
 if(!file_exists($img_file2)){
-  $img_file2 = "images/perfil.jpg";
+  $img_file2 = "../../assets/images/perfil.jpg";
 }
 
 // A few settings
@@ -22,7 +22,7 @@ $imgData2 = base64_encode(file_get_contents($img_file2));
 // Format the image SRC:  data:{mime};base64,{data};
 $perfil = 'data: '.mime_content_type($img_file2).';base64,'.$imgData2;
 
-include 'header.php' ?>
+include '../../template/header.php' ?>
 <!DOCTYPE html>
 <html>
 <title>SocialHealth</title>
@@ -135,4 +135,4 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
 
 </body>
 </html>
-<?php include 'footer.php' ?>
+<?php include '../../template/footer.php' ?>

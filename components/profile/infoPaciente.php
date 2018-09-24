@@ -1,5 +1,5 @@
 <?php 
-include '/Socialhealth/functions/sessions/sesionPro.php';
+include '../../functions/sesionPro.php';
 $where="WHERE ID_Profesional = $idUsuario";
 $sql = "SELECT * FROM usuario usr INNER JOIN datos_cliente dp 
 ON usr.id_usuario = dp.ID_Usuario and usr.id_usuario in 
@@ -10,9 +10,9 @@ $sql2 = "SELECT * FROM usuario usr INNER JOIN datos_cliente dc ON usr.id_usuario
 $out = $mysqli->query($sql2);
 $rows = $out->fetch_assoc();
 
-$img_file2 = "/Socialhealth/private/files/$id/perfil.png";
+$img_file2 = "../../private/files/$id/perfil.png";
 if(!file_exists($img_file2)){
-  $img_file2 = "/Socialhealth/assets/images/perfil.jpg";
+  $img_file2 = "../../assets/images/perfil.jpg";
 }
 $imgData2 = base64_encode(file_get_contents($img_file2));
 $perfil = 'data: '.mime_content_type($img_file2).';base64,'.$imgData2;
@@ -24,7 +24,7 @@ function provincia($id){
   echo $rr['Nombre'];
 }
 
-include 'header.php' ?>
+include '../../template/header.php' ?>
 <!DOCTYPE html>
 <html>
 <title>SocialHealth</title>
@@ -112,4 +112,4 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
 
 </body>
 </html>
-<?php include 'footer.php' ?>
+<?php include '../../template/footer.php' ?>

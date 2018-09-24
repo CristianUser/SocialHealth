@@ -3,10 +3,10 @@
     $id=$_GET["id"];
     ///consultamos a la base
     $id=$_GET["id"];
-	$where="WHERE rp.ID_Cliente = $id";
-    $sql = "SELECT * FROM usuario usr INNER JOIN datos_profesional dp 
-    ON usr.id_usuario = dp.ID_Usuario and usr.id_usuario INNER JOIN 
-    r_paciente rp on rp.ID_Profesional = dp.ID_Usuario $where";
+	$where="WHERE ID_Profesional = $id";
+    $sql = "SELECT * FROM usuario usr INNER JOIN datos_cliente dp 
+    ON usr.id_usuario = dp.ID_Usuario and usr.id_usuario in 
+    (SELECT ID_Cliente FROM r_paciente $where)";
     $ejecutar = $mysqli->query($sql);
     
     while($fila = $ejecutar->fetch_array()) : 
