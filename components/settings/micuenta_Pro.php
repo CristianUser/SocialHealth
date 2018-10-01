@@ -21,8 +21,8 @@ include '../../template/header.php' ?>
 <title>SocialHealth</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/perfil-pro-w3.css">
-<link rel='stylesheet' href="css/perfil-pro-css-font.css">
+<link rel="stylesheet" href="/SocialHealth/components/profile/css/perfil-pro-w3.css">
+<link rel='stylesheet' href="/SocialHealth/components/profile/css/perfil-pro-css-font.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 
@@ -64,9 +64,10 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
           <div class="w3-container w3-card w3-white">
         <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Opciones</h2>
         <div class="w3-container">
-          <h5 class="w3-opacity"><b>Configurar</b></h5>
+          <h5 class="w3-opacity"><b>Ajustes</b></h5>
           <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Horarios</h6>
-          
+          <button id="buttonConfig" class="btn btn-sm btn-cmj" >Configurar</button>
+          <br>  
           <br>
         </div>
       </div>
@@ -151,6 +152,30 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
     }
     
     document.getElementById('upload').addEventListener('change', archivo, false);
+    document.getElementById('buttonConfig').addEventListener('click',()=>{
+      window.location.href="/SocialHealth/components/config-horario/";
+    });
+    cargarAjustes = ()=>{
+      var parametros = {
+      };
+      $.ajax({
+          url : '../config-horario/index.php',
+          data : parametros,
+          type : 'GET',
+          success : function(res) {
+              if (res!=''){
+                document.getElementById("contenedor").innerHTML=res;
+              }
+          },
+          error : function(xhr, status) {
+              alert('Disculpe, existió un problema');
+          },
+          complete : function(xhr, status) {
+              //console.log('Petición realizada');
+          }
+      });
+    };
+    
   </script>
 </body>
 </html>

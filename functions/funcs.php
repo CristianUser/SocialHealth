@@ -249,6 +249,10 @@
 						lastSession($id);
 						header("location: ../dashboard/");
 					}
+					$hora = date('H:i');
+					$session_id = session_id();
+					$token = hash('sha256', $hora.$session_id);
+					$_SESSION['token'] = $token;
 					$_SESSION['id_usuario'] = $id;
 					$_SESSION['tipo_usuario'] = $id_tipo;
 					$_SESSION['notificacion'];

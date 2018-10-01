@@ -54,7 +54,7 @@ function seguro($id){
 
 </head>
 <body>
-    ><div class="row">
+    <div class="row">
     <div class=""></div>
     <div class="container">
 

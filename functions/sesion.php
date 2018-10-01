@@ -1,5 +1,6 @@
 <?php
-	session_start();
+  session_start();
+  
 	require_once 'connection.php';
   include_once 'funcs.php';
 	
@@ -9,6 +10,7 @@
 	
     $idUsuario = $_SESSION['id_usuario'];
     $tipo = $_SESSION['tipo_usuario'];
+    $token = $_SESSION['token'];
     $img_file = "../../private/files/$idUsuario/perfil.png";
   if(!file_exists($img_file)){
     $img_file = '../../assets/images/perfil.jpg';

@@ -12,6 +12,10 @@ var config = {
 firebase.initializeApp(config);
 var chatDB= firebase.database().ref('chat');
 var msjDB;
+var goToLast = ()=>{
+  var objDiv = document.getElementById("msg_history");
+  objDiv.scrollTop = objDiv.scrollHeight;
+};
 
 //formatear fechas
 var formatDate = (date,fType)=>{
@@ -44,11 +48,12 @@ if(fType== 1){
   fDate=meses[m].substring(0,3)+' '+d;
   if(now.getMonth() == date.getMonth() && now.getFullYear()==date.getFullYear()){
     if(now.getUTCDate()==date.getUTCDate()){
-     fDate="Hoy";
+      fDate="Hoy";
     }else if (now.getUTCDate()==date.getUTCDate()+1) {
-     fDate="Ayer";
+      fDate="Ayer";
     }else{
-      fDate="";
+      //fDate="";
+      fDate=h+':'+min+' '+ampm+"  |  "+meses[m];
     }
   }
 }
@@ -59,6 +64,7 @@ return fDate;
 var getUserList = (id,uType)=>{
   var parametros = {
     "id":id,
+    "token":token
   };
   $.ajax({
     url : 'request/getUserList'+uType+'.php',
@@ -112,10 +118,6 @@ var getMsjDB = (idChat)=>{
        
    });
   });
-  var goToLast = ()=>{
-    var objDiv = document.getElementById("msg_history");
-    objDiv.scrollTop = objDiv.scrollHeight;
-  };
   setTimeout(goToLast,50);
 };
 // funcion para agregar chats a la lista
@@ -143,6 +145,7 @@ let userAvData;
 var getUserName = (id)=>{
   var parametros = {
     "id":id,
+    "token":token
   };
   $.ajax({
     url : 'request/getPersona.php',
@@ -276,7 +279,7 @@ $(window).ready(function() {
     enviarMsj(formulario.body.value);
     }
     formulario.body.value="";
+    goToLast();
     e.preventDefault();
   });
 });
-
