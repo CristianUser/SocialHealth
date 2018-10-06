@@ -43,7 +43,13 @@ body {
 	display: none ;
 	
 }
+.is-invalid{
+border-color: #dc3545;
+box-shadow: 0 0 0 0.2rem rgba(239, 25, 46, 0.25);
+}
+.is-valid{
 
+}
 /*********************************************************************************************************************************************/
 .cuadro .action-button {
 	width: 100px;
@@ -84,7 +90,7 @@ height: 51px;
 	padding: 15px;
 	border: 1px solid #ccc;
 	border-radius: 3px;
-	margin-bottom: 10px;
+	margin-top: 10px;
 	width: 100%;
 	box-sizing: border-box;
 	font-family: montserrat;
@@ -149,7 +155,7 @@ height: 51px;
 	padding: 15px;
 	border: 1px solid #ccc;
 	border-radius: 3px;
-	margin-bottom: 10px;
+	margin-top: 10px;
 	width: 100%;
 	box-sizing: border-box;
 	font-family: montserrat;
@@ -186,7 +192,7 @@ height: 51px;
 	font-weight: normal;
 	font-size: 13px;
 	color: #666;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 /*progressbar*/
 .progressbar{

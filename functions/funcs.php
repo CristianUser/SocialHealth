@@ -93,15 +93,15 @@
 	function resultBlock($errors){
 		if(count($errors) > 0)
 		{
-			echo "<div id='error' style='color: #a94442; background-color: #f2dede; border-color: #ebccd1;' class='alert alert-danger' role='alert'>
-			<a href='#' onclick=\"showHide('error');\">[X]</a>
-			<ul>";
-			foreach($errors as $error)
-			{
-				echo "<li>".$error."</li>";
-			}
-			echo "</ul>";
-			echo "</div>";
+			echo '<div class="alert alert-danger" role="alert">';
+			echo '<h4 class="alert-heading">Errores!</h4><ul>';
+				
+				foreach($errors as $error)
+				{
+					echo "<li>".$error."</li>";
+				}
+			echo'</ul></div>';
+
 		}
 	}
 	
