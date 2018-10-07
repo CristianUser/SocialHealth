@@ -1,3 +1,3 @@
 <?php
-header("location: dashboard/");
+header("location: login/index.php");
 ?>

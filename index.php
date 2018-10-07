@@ -1,3 +1,3 @@
 <?php
-    header("location: components/dashboard/");
+    header("location: components/login/index.php");
 ?>

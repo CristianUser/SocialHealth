@@ -110,8 +110,8 @@
 		global $mysqli;
 		$time="0000-00-00 00:00:00";
 		
-		$stmt = $mysqli->prepare("INSERT INTO usuario (usuario, password, nombre, apellido, correo, activacion, token, id_tipo,last_session) VALUES(?,?,?,?,?,?,?,?,?)");
-		$stmt->bind_param('sssssisis', $usuario, $pass_hash, $nombre, $apellido, $email, $activo, $token, $tipo_usuario,$time);
+		$stmt = $mysqli->prepare("INSERT INTO usuario (usuario, password, nombre, apellido, correo, activacion, token, id_tipo) VALUES(?,?,?,?,?,?,?,?)");
+		$stmt->bind_param('sssssisi', $usuario, $pass_hash, $nombre, $apellido, $email, $activo, $token, $tipo_usuario);
 		
 		if ($stmt->execute()){
 			return $mysqli->insert_id;
@@ -141,10 +141,11 @@
 		$mail->Body    = $cuerpo;
 		$mail->IsHTML(true);
 		
-		if($mail->send())
+		if($mail->send()){
 		return true;
-		else
-		return false;
+		}
+		else{
+		return false;}
 	}
 	
 	function validaIdToken($id, $token){

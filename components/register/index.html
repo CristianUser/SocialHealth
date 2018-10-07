@@ -17,7 +17,14 @@
 </head>
 <body>
 
-    <div>
+    <div id="container">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <div id="divError"></div>
+            </div>
+            <div class="col-3"></div>
+        </div>
     <form name="formRegistro" id="msform" class=""enctype="multipart/form-data" autocomplete="off">
             <!-- progressbar -->
             <div class="progressbars">
@@ -31,7 +38,7 @@
             <fieldset>
                 <h2 class="fs-title">Crea tu cuenta</h2>
                 <h3 class="fs-subtitle">Paso 1</h3>
-                <input class="form-control" type="text" name="email"  placeholder="Email" required />
+                <input class="form-control" type="email" name="email"  placeholder="Email" required />
                 <div style="display:none;" id="alertEmail" class="invalid-feedback">
                         Ya existe una cuenta con este correo!
                 </div>
@@ -77,16 +84,11 @@
                 <button id="btn-signup" type="submit" class="action-button btn btn-info">Registrar</button> 
             </fieldset>
         </form>
-        <div class="row">
-            <div class="col"></div>
-            <div class="col">
-            </div>
-            <div class="col"></div>
-        </div>
     </div>
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script>
@@ -173,8 +175,7 @@
               }
               document.getElementById('upload').addEventListener('change', archivo, false);
       </script>
-        <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+       
     <script>
         var current_fs, next_fs, previous_fs; //fieldsets
         var left, opacity, scale; //fieldset properties which we will animate
@@ -255,7 +256,7 @@
                 easing: 'easeInOutBack'
             });
         });
-        
+        let response;
         document.getElementById("btn-signup").addEventListener("click",(e)=>{
             e.preventDefault();
             var parametros = {
@@ -273,16 +274,14 @@
                 data : parametros,
                 type : 'POST',
                 success : function(res) {
-                console.log(res);
-                if(res=="Disponible"){
-                    Form.email.className="form-control is-valid";
-                    document.getElementById("alertEmail").style="display:none";
-                    errors=false;
-                }else{
-                    Form.email.className="form-control is-invalid";
-                    document.getElementById("alertEmail").style="display:block";
-                    errors=true;
-                }
+                    console.log(res);
+                    response=res;
+                    if (res[4]=='E'){
+                        document.getElementById("divError").innerHTML=res;  
+                    }
+                    if (res[4]=='S'){
+                        document.getElementById('container').innerHTML=res;
+                    }
                 },
                 error : function(xhr, status) {
                     alert('Disculpe, existió un problema');
