@@ -6,7 +6,7 @@
     font-family: sans-serif;
 }
 body {
-    /* background: url('../../assets/images/3-min.jpg'); */
+    background: url('../../../assets/images/3-min.jpg');
     /* color: #00a89e; */
     background-attachment: fixed;
     background-repeat: repeat;
@@ -115,16 +115,17 @@ main{
     border: 2px solid white;
 }
 
-header{
-    z-index: 20;
-    width: 100%;
-    height: 60px;
-    position: fixed;
-    left: 0;
-    top: 0;
-    background: #00A89E;
+.nv-color {
+    background-color: #00A89E!important;
+    color: #2C3E50;
 }
-
+.profile-span{
+    -webkit-user-select: none;
+    color: #2D3E50;
+}
+.profile-span h6{
+    display: inline-block;
+}
 img{
     width: 100%;
 }
