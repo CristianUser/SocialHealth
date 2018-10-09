@@ -1,5 +1,5 @@
 <?php
-	/*
+	
 	require '../../functions/connection.php';
 	include '../../functions/funcs.php';
 	
@@ -16,10 +16,10 @@
 	
 	if(!verificaTokenPass($user_id, $token))
 	{
-echo 'No se pudo verificar los Datos';
-exit;
+		echo 'No se pudo verificar los Datos';
+		exit;
 	}
-	*/
+	
 	
 ?>
 

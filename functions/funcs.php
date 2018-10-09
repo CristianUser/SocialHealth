@@ -141,11 +141,10 @@
 		$mail->Body    = $cuerpo;
 		$mail->IsHTML(true);
 		
-		if($mail->send()){
+		if($mail->send())
 		return true;
-		}
-		else{
-		return false;}
+		else
+		return false;
 	}
 	
 	function validaIdToken($id, $token){

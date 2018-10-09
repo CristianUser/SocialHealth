@@ -13,6 +13,12 @@
         .opcion-active {
             box-shadow: 0 0 5px 1px rgb(68, 224, 185);
         }
+        .loading{
+            display: inline;
+            position: fixed;
+            width: 26px;
+            top:205px;
+        }
     </style>
 </head>
 <body>
@@ -38,7 +44,7 @@
             <fieldset>
                 <h2 class="fs-title">Crea tu cuenta</h2>
                 <h3 class="fs-subtitle">Paso 1</h3>
-                <input class="form-control" type="email" name="email"  placeholder="Email" required />
+                <div><input style="display:  inline-block;"class="form-control" type="email" name="email"  placeholder="Email" required /><img id="loading" style="display:none;" class="loading" src="../../assets/loading-32.gif" alt=""></div>
                 <div style="display:none;" id="alertEmail" class="invalid-feedback">
                         Ya existe una cuenta con este correo!
                 </div>
@@ -68,7 +74,7 @@
                     </div>
                 </div>
                 <input type="button" name="previous" class="previous action-button" value="Atras" />
-                <input type="button" name="next" class="next action-button" value="Siguiente" />
+                <input id="sh" type="button" name="next" class="next action-button" value="Siguiente" />
             </fieldset>
 
             <fieldset>
@@ -79,9 +85,10 @@
                 <input class="form-control" type="text" name="nombre" placeholder="Nombre" required />
                 <input class="form-control" type="text" name="apellido" placeholder="Apellido" required />
                 <input class="form-control" type="text" name="usuario" placeholder="Username"/>
-                <div style="margin-top: 10px;overflow: hidden;padding-left: 0px;" class="g-recaptcha col-md-9" data-sitekey="6Lcdn2EUAAAAAN_-AvR4IYjwioCEYMTwqevoQOjO"></div>
+                <div id="captcha" style="margin-top: 10px;padding-left: 0px; overflow: hidden;border: 1px solid #ced4da;
+                border-radius: .25rem;" class="g-recaptcha col" data-sitekey="6Lcdn2EUAAAAAN_-AvR4IYjwioCEYMTwqevoQOjO"></div>
                 <input type="button" name="previous" class="previous btn btn-sm action-button" value="Atras" />
-                <button id="btn-signup" type="submit" class="action-button btn btn-info">Registrar</button> 
+                <button id="btn-signup" type="submit" class="action-button btn btn-info">Registrar</button><img id="loadingreg" class="loading" style="position: initial; display: none;" src="../../assets/loading-32.gif" alt="">
             </fieldset>
         </form>
     </div>
@@ -95,11 +102,19 @@
         let errors=true;
         let Form = formRegistro;
         let email='';
+        // style
+        // setTimeout(()=>{
+        //     document.getElementsByClassName('rc-anchor rc-anchor-normal rc-anchor-light')[0].style="border: 1px solid #d3d3d3;width: 256px;";
+        // },10000);
         //validacion formulario
+        $("#msform").submit(()=>{
+            return false;
+        });
         Form.email.addEventListener('change',()=>{
             var parametros = {
                 email : Form.email.value
             };
+            $("#loading").show();
             $.ajax({
                 url : './request/checkEmail.php',
                 data : parametros,
@@ -120,6 +135,7 @@
                     alert('Disculpe, existió un problema');
                 },
                 complete : function(xhr, status) {
+                    $("#loading").hide();
                     //console.log('Petición realizada');
                 }
             });
@@ -182,6 +198,7 @@
         var animating; //flag to prevent quick multi-click glitches
 
         $(".next").click(function(){
+            //document.getElementsByClassName('rc-anchor rc-anchor-normal rc-anchor-light')[0].style="border: 1px solid #d3d3d3;width: 256px;";
             if(!errors){
                 if(animating) return false;
                 animating = true;
@@ -259,6 +276,9 @@
         let response;
         document.getElementById("btn-signup").addEventListener("click",(e)=>{
             e.preventDefault();
+            $("#btn-signup").html(' . . . ');
+            document.getElementById("btn-signup").setAttribute("disabled","");
+            $("#loadingreg").show();
             var parametros = {
                 nombre : Form.nombre.value,
                 apellido : Form.apellido.value,
@@ -269,27 +289,32 @@
                 captcha : grecaptcha.getResponse(),
                 tipo : Form.tipo.value
             };
-            $.ajax({
-                url : './request/postRegister.php',
-                data : parametros,
-                type : 'POST',
-                success : function(res) {
-                    console.log(res);
-                    response=res;
-                    if (res[4]=='E'){
-                        document.getElementById("divError").innerHTML=res;  
+            if(!errors){
+                $.ajax({
+                    url : './request/postRegister.php',
+                    data : parametros,
+                    type : 'POST',
+                    success : function(res) {
+                        console.log(res);
+                        response=res;
+                        if (res[4]=='E'){
+                            document.getElementById("divError").innerHTML=res; 
+                            document.getElementById("btn-signup").removeAttribute("disabled");
+                            $("#btn-signup").html('Registrar');
+                        }
+                        if (res[4]=='S'){
+                            document.getElementById('container').innerHTML=res;
+                        }
+                    },
+                    error : function(xhr, status) {
+                        alert('Disculpe, existió un problema');
+                    },
+                    complete : function(xhr, status) {
+                        $("#loadingreg").hide();
+                        //console.log('Petición realizada');
                     }
-                    if (res[4]=='S'){
-                        document.getElementById('container').innerHTML=res;
-                    }
-                },
-                error : function(xhr, status) {
-                    alert('Disculpe, existió un problema');
-                },
-                complete : function(xhr, status) {
-                    //console.log('Petición realizada');
-                }
-            });
+                });
+            }
         });
         
 

@@ -1,37 +1,16 @@
 <!doctype html>
 <html lang="es">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#00A89E" />
     <link rel="manifest" href="/SocialHealth/manifest.json" />
-
-    <!-- Bootstrap CSS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <!-- <link rel="stylesheet" type="text/css" href="/SocialHealth/template/css/mystyle.css"> -->
-    <!-- <link rel="stylesheet" href="/SocialHealth/template/css/estilos.css"> -->
-    <link rel="stylesheet" href="/SocialHealth/template/css/style.css">
-    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.18/af-2.3.0/b-1.5.2/b-colvis-1.5.2/b-flash-1.5.2/b-html5-1.5.2/b-print-1.5.2/cr-1.5.0/fc-3.2.5/fh-3.1.4/kt-2.4.0/r-2.2.2/rg-1.0.3/rr-1.2.4/sc-1.5.0/sl-1.2.6/datatables.css"/> -->
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.js"></script> -->
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script> -->
-    <!-- <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.18/af-2.3.0/b-1.5.2/b-colvis-1.5.2/b-flash-1.5.2/b-html5-1.5.2/b-print-1.5.2/cr-1.5.0/fc-3.2.5/fh-3.1.4/kt-2.4.0/r-2.2.2/rg-1.0.3/rr-1.2.4/sc-1.5.0/sl-1.2.6/datatables.js"></script> -->
     <title>Social Health</title>
-
-    <style>
-      .loader {
-      position: fixed;
-      left: 0px;
-      top: 0px;
-      width: 100%;
-      height: 100%;
-      z-index: 10;
-      background: url('/SocialHealth/loading1.gif') 50% 50% no-repeat rgb(255, 255, 255);
-      opacity: .8;}
-    </style>
+    <!-- <link rel="manifest" href="/SocialHealth/manifest.json" /> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/SocialHealth/template/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <script type="text/javascript">
       $(window).ready(function() {
         $(".loader").fadeOut("slow");});
@@ -40,54 +19,96 @@
   </head>
   <body>
   <div class="loader"></div>
-    <div class="container-fluid">
-        <header>
-          <nav class="navbar navbar-expand-xl navbar-expand-lg navbar-expand-md navbar-light" style="background-color: #00A89E;">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-            <a class="navbar-brand" href="#"><img style="width: 100px;" src="/SocialHealth/assets/images/logo-100px.png" alt=""></a>
-            <div class="col">
-              <ul class="navbar-nav dropdown-menu-right" style="float:right;">
-                <li class="nav-item dropdown" >
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <h6 class="d-none d-md-inline d-lg-inline  d-xl-inline" style="display:inline;"><?php echo utf8_decode($row['nombre'])," ",utf8_decode($row['apellido']); ?></h6>    <img src="<?php echo $ruta ?>" class="profile-pic"  alt=""> 
+    
+      <div class="header">
+        <nav class="navbar fixed-top navbar-expand-md navbar-light bg-dark nv-color">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="navbar-toggler dropdown" style="border: 0px;" data-toggle="collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <a class="nav-link dropdown-toggle profile-span" href="#" id="nvdd" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 <h6><?php echo utf8_decode($row['nombre'])," ",utf8_decode($row['apellido']); ?></h6>    <img src="<?php echo $ruta; ?>" class="profile-pic"  alt=""> 
+                </a>
+                <div class="dropdown-menu" aria-labelledby="nvdd">
+                  <a class="dropdown-item" href="/SocialHealth/components/settings/">Mi Perfil</a>
+                  <a class="dropdown-item" href="/SocialHealth/components/settings/">Ajustes</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="/SocialHealth/components/login/logout.php">Cerrar Sesion</a>
+                </div>
+          </div>
+          <a class="navbar-brand d-none d-block-xl d-block-lg d-block-md" href="#">Navbar</a>
+        
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#"><img style="width: 100px;" src="/SocialHealth/assets/images/logo-100px.png" alt=""><span class="sr-only">(current)</span></a>
+              </li>
+              <div class="lista-menu d-block d-xl-none d-lg-none d-md-none">
+                <li class="nav-item">
+                  <a class="nav-link"  href="/SocialHealth/components/dashboard/"> 
+                    <button class="iconbtn"><i class="fa fa-home"></i></button>
+                    <p>Inicio</p>
                   </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="                        <?php
-                        if($tipo==1){
-                          echo "/SocialHealth/components/profile/micuenta_Pac.php";
-                        }elseif($tipo==2){
-                          echo "/SocialHealth/components/profile/micuenta_Pro.php";
-                        }
-                        ?>">Mi Cuenta</a>
-                    <a class="dropdown-item" href="#">Ajustes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  href="/SocialHealth/components/chat/"> 
+                        <button class="iconbtn"><i class="fas fa-comments"></i></button>
+                        <p>Chat</p> 
+                    </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link"  href="/SocialHealth/components/appointment/">    
+                      <button class="iconbtn"><i class="fas fa-calendar-check"></i></button>
+                      <p>Citas</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link"  href="/SocialHealth/components/people/"> 
+                      <button class="iconbtn"><i class="fas fa-user"></i></i></button>
+                      <p>Pacientes</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link"  href="/SocialHealth/components/record/">
+                      <button class="iconbtn"><i class="fas fa-list-ul"></i></button>
+                      <p>Historial</p>
+                  </a>
+                </li>
+                <?php if($tipo==2){?>
+                <li class="nav-item">
+                  <a class="nav-link"  href="/SocialHealth/template/noprogramado.php">
+                      <button class="iconbtn"><i class="fas fa-id-card"></i></button>
+                      <p>Seguros</p>
+                  </a>
+                </li>
+                <?php };?>
+                <li class="nav-item">
+                  <a class="nav-link"  href="/SocialHealth/components/settings/">
+                      <button class="iconbtn"><i class="fas fa-cog"></i></button>
+                      <p>Ajustes</p>
+                  </a>
+                </li>
+              </div>
+            </ul>
+            <form class="form-inline my-2 my-lg-0 d-none d-md-block d-lg-block  d-xl-block">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                  <div class="nav-link dropdown-toggle profile-span" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <h6><b><?php echo utf8_decode($row['nombre'])," ",utf8_decode($row['apellido']); ?></h6></b>    <img src="<?php echo $ruta ?>" class="profile-pic"  alt="">
+                  </div>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/SocialHealth/components/settings/">Mi Perfil</a>
+                    <a class="dropdown-item" href="/SocialHealth/components/settings/">Ajustes</a>
+                    <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/SocialHealth/components/login/logout.php">Cerrar Sesion</a>
                   </div>
                 </li>
               </ul>
-            </div>
-            <div class="row">
-
-              <div class="collapse c-menu" id="collapseExample">
-                <div class="card card-body">
-                  <nav class="">
-                    
-                    <?php
-                    if($tipo==1){
-                      include 'menupac.html';
-                    }elseif($tipo==2){
-                      include 'menupro.html';
-                    }
-                    ?>
-                  </nav>
-                </div>
-              </div>
-            </div>
-            </nav>
-        </header>
-        <!--input type="checkbox" id="check">
-        <label for="check" class=""></label--> 
+            </form>
+          </div>
+        </nav>
+      </div>
+      <div class="container-fluid">
         <div class="row">
           <div class="col-1 col-xl-1 col-lg-1 col-md-1 col-sm-1 col-xs d-none d-md-block d-lg-block  d-xl-block">
           </div>
@@ -107,3 +128,4 @@
           <div id="contenedor" class="col-11 col-xl-11 col-lg-11 col-md-11 col-sm-12 col-xs-12" style="  margin-left: auto;
           margin-right: auto;">
           <br><br><br>
+          
