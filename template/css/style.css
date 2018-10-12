@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
 .loader {
     position: fixed;
     left: 0px;
@@ -13,10 +14,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: sans-serif;
+    /* font-family: sans-serif; */
 }
 body {
     background: url('../../assets/images/3-min.jpg');
+    font-family: montserrat, arial, verdana;
     /* color: #00a89e; */
     background-attachment: fixed;
     background-repeat: repeat;
@@ -110,12 +112,12 @@ a:hover
     color: #2C3E50;
     text-decoration:none; 
 } 
-p{
+.lista-menu p{
     display: inline-block;
     color: white;
     margin-bottom: 0;
     position: relative;
-    bottom: 7px;
+    /* bottom: 7px; */
 }
 .lista-menu{
     background-color: #2d3e50;
@@ -123,6 +125,7 @@ p{
     padding: 10px;
     overflow: auto;
     max-height:70%;
+    font-family: montserrat;
 }
 main{
     width: 100%;
@@ -181,6 +184,7 @@ img{
 }
 
 .menu{
+    font-family: montserrat;
     z-index: 20;
     position: fixed;
     /* top: 80px; */

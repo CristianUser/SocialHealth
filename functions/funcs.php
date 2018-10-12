@@ -93,14 +93,23 @@
 	function resultBlock($errors){
 		if(count($errors) > 0)
 		{
-			echo '<div class="alert alert-danger" role="alert">';
-			echo '<h4 class="alert-heading">Errores!</h4><ul>';
+			echo '
+			<br>
+			<div id="alert" class="alert alert-danger alert-dismissible fade show" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			<h4 class="alert-heading">Errores!</h4><ul>';
+
 				
 				foreach($errors as $error)
 				{
-					echo "<li>".$error."</li>";
+					echo "<li>$error</li>";
 				}
-			echo'</ul></div>';
+			echo'
+				</ul>
+			</div>
+			';
 
 		}
 	}

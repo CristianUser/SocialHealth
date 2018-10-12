@@ -1,7 +1,6 @@
 <?php
 $id=$_POST['id'];
 //$archivo=$_FILES['upload'];
-$url=$_POST['url'];
 $id_insert=$id;
 $errors = array();
 if($_FILES["upload"]["error"]>0){
@@ -27,6 +26,4 @@ if($_FILES["upload"]["error"]>0){
         $errors[]= "Archivo no permitido";
     }
 }
-
-header("Location: $url");
 ?>

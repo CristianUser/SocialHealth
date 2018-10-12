@@ -144,7 +144,7 @@
 							<br>
 							<div class="form-group">
 								<label for="email">Email</label>
-								<input type="email" name="email" id="email" placeholder="Email" required>
+								<input class="form-control" type="email" name="email" id="email" placeholder="Email" required>
 							</div>
 							<div>
 								<a class="a" href="/SocialHealth/components/register/">Registrate aquí</a>
