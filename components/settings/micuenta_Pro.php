@@ -101,11 +101,24 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
     
       <div class="w3-container w3-card w3-white w3-margin-bottom">
         <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Especialidades</h2>
-        <?php while($row = $esp->fetch_assoc()) {?>
+        <?php $cont=0;
+         while($row = $esp->fetch_assoc()) {
+          $cont+=1;
+          ?>
         <div class="w3-container">
           <h5 class="w3-opacity"><b><?php echo utf8_encode($row['Nombre_Esp']); ?></b></h5>
           <!--h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jan 2015 - <span class="w3-tag w3-teal w3-round">Current</span></h6-->
-          <p><?php echo utf8_encode($row['Descripcion']); ?></p>
+          <p>
+          <a class="" data-toggle="collapse" href="#viewmore<?php echo $cont; ?>" role="button" aria-expanded="false" aria-controls="viewmore<?php echo $cont; ?>">
+            Descripcion
+          </a>
+        </p>
+        <div class="collapse" id="viewmore<?php echo $cont; ?>">
+          <div class="card card-body">
+        
+            <p><?php echo utf8_encode($row['Descripcion']); ?></p>
+          </div>
+        </div>
           <hr>
         </div>
         <?php };?>
@@ -135,8 +148,9 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
                         <div id="demo-basic">
                         </div>
                     </div>
-                    <!-- <div style="display:none;" id="view"></div> -->
-                    <div id="view"></div>
+                    <div style="width:300px; max-width:100%;" id="example">
+                      <img src="<?php echo $perfil;?>" alt="">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <label for="upload" class="btn btn-outline-cmj"><span><i class="fas fa-upload"></i></span>  Seleccionar

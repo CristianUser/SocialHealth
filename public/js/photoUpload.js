@@ -1,6 +1,7 @@
 
         $('#alertSuccess').hide();
         $('#alertDanger').hide();
+        $('#page').hide();
         let basic = $('#demo-basic').croppie({
             enableExif: true,
             viewport: {width: 200, height: 200, type: 'square'}
@@ -26,7 +27,8 @@
           reader.onload = (function(theFile) {
               return function(e) {
                 // Insertamos la imagen
-              
+                $('#example').hide();
+                $('#page').show();
                 basic.croppie('bind', {
                 url: e.target.result,
                 zoom:0
