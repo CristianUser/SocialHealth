@@ -23,8 +23,8 @@
 			if(!file_exists(UPLOAD_DIR)){
 				mkdir(UPLOAD_DIR);
 			}
-			//$resultData = \Tinify\fromBuffer($data)->toBuffer();
-			$success = file_put_contents($file, $data);
+			$resultData = \Tinify\fromBuffer($data)->toBuffer();
+			$success = file_put_contents($file, $resultData);
 			//print $success ? $file : 'Unable to save the file.';
 		}
 	}

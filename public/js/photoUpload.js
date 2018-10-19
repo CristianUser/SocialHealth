@@ -53,6 +53,11 @@
                 onprogress: function (e) {
                     if (e.lengthComputable) {
                         let percent=e.loaded / e.total * 100;
+                        $('#progreso .Barra').attr('style','width:'+percent+'%');
+                        $('#progreso .Barra').html('Subiendo...');
+                        if(percent==100){
+                            $('#progreso .Barra').html('Comprimiendo...');
+                        }
                         console.log(percent+ '%');
                         }
                     }

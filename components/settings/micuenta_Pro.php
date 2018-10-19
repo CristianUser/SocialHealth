@@ -159,8 +159,8 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
                   </div>
                   <div class="row">
                     <div class="col">
-                    <div class="progress">
-                      <div class="progress-bar bg-success" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div id="progreso" class="progress">
+                      <div class="progress-bar bg-success Barra" role="progressbar" style="width: 0%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <br>
 
