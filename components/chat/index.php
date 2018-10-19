@@ -99,9 +99,8 @@ include '../../template/header.php';
       <!-- <script src="./js/jquery-3.3.1.js"></script> -->
       <script src="https://www.gstatic.com/firebasejs/5.5.1/firebase.js"></script>
       <script>
-        var user=<?php echo $idUsuario;?>;
+        var user=id;
         var userType=<?php echo $tipo;?>;
-        var token = "<?php echo $token;?>";
       </script>
       <script src="./js/chat.js"></script>
       <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> -->

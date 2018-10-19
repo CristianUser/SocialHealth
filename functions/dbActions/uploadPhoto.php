@@ -1,5 +1,11 @@
 <?php
-	// requires php5
+	require_once("../lib/Tinify/Exception.php");
+	require_once("../lib/Tinify/ResultMeta.php");
+	require_once("../lib/Tinify/Result.php");
+	require_once("../lib/Tinify/Source.php");
+	require_once("../lib/Tinify/Client.php");
+	require_once("../lib/Tinify.php");
+	\Tinify\setKey("oDjQb07lztuEpfTOajRaBXpUJkfqMiaL");
 	session_start();
 	$idReq=$_POST['id'];
 	$id=$_SESSION['id_usuario'];
@@ -17,6 +23,7 @@
 			if(!file_exists(UPLOAD_DIR)){
 				mkdir(UPLOAD_DIR);
 			}
+			//$resultData = \Tinify\fromBuffer($data)->toBuffer();
 			$success = file_put_contents($file, $data);
 			//print $success ? $file : 'Unable to save the file.';
 		}

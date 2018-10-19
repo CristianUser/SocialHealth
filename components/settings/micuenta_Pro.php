@@ -60,10 +60,9 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
   
     <!-- Left Column -->
     <div class="w3-third">
-    
       <div class="w3-white w3-text-grey w3-card-4">
-        <div class="w3-display-container">
-          <img src="<?php echo $perfil;?>" style="width:100%" alt="Avatar">
+        <div id="profile-info" class="w3-display-container">
+          <img class="Foto" src="" style="width:100%" alt="">
           <div class="w3-display-bottomleft w3-container w3-text-black">
             <h2 style="background-color:rgba(255, 255, 255, 0.207);border-radius: 3px;"><?php echo utf8_encode($rows['nombre'])," ",utf8_encode($rows['apellido']);?>
             </h2>
@@ -149,7 +148,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
                         </div>
                     </div>
                     <div style="width:300px; max-width:100%;" id="example">
-                      <img src="<?php echo $perfil;?>" alt="">
+                      <img class="Foto" src="" alt="">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -160,6 +159,10 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
                   </div>
                   <div class="row">
                     <div class="col">
+                    <div class="progress">
+                      <div class="progress-bar bg-success" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <br>
 
                       <div id="alertDanger" class="alert alert-danger alert-dismissible fade show" role="alert">
                         Error al subir imagen!
@@ -181,17 +184,25 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
-<script>
-  let id=<?php echo $id;?>;
-  let token="<?php echo $token;?>";
-</script>
 <script src="/SocialHealth/public/js/photoUpload.js"></script>
   <script>
+    let repeat = setInterval(()=>{
+    check();
+    },100);
+    var check = ()=>{
+      if(loaded) {
+        $('#profile-info .Foto').attr('src',$('#nvdd .profile-pic').attr('src'));
+        $('#example .Foto').attr('src',$('#nvdd .profile-pic').attr('src'));
+        clearInterval(repeat);
+      };
+    };
+
+
     document.getElementById('buttonConfig').addEventListener('click',()=>{
       window.location.href="/SocialHealth/components/config-horario/";
     });
-    cargarAjustes = ()=>{
-      var parametros = {
+    let cargarAjustes = ()=>{
+      let parametros = {
       };
       $.ajax({
           url : '../config-horario/index.php',

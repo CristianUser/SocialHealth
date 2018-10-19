@@ -49,6 +49,14 @@
         };
         $.ajax({
             url : '/SocialHealth/functions/dbActions/uploadPhoto.php',
+            xhrFields: {
+                onprogress: function (e) {
+                    if (e.lengthComputable) {
+                        let percent=e.loaded / e.total * 100;
+                        console.log(percent+ '%');
+                        }
+                    }
+                },
             data : parametros,
             type : 'POST',
             success : function(res) {

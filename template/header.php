@@ -12,10 +12,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <script type="text/javascript">
+      let id=<?php echo $idUsuario;?>;
+      let token="<?php echo $token;?>";
       $(window).ready(function() {
-        $(".loader").fadeOut("slow");});
-    </script>
-
+        $(".loader").fadeOut("slow");
+        getUserTemplate();
+      });
+</script>
   </head>
   <body>
   <div class="loader"></div>
@@ -27,7 +30,7 @@
           </button>
           <div class="navbar-toggler dropdown" style="border: 0px;" data-toggle="collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <a class="nav-link dropdown-toggle profile-span" href="#" id="nvdd" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                 <h6><?php echo utf8_decode($row['nombre'])," ",utf8_decode($row['apellido']); ?></h6>    <img src="<?php echo $ruta; ?>" class="profile-pic"  alt=""> 
+                 <h6><?php echo utf8_decode($row['nombre'])," ",utf8_decode($row['apellido']); ?></h6>    <img src="" class="profile-pic"  alt=""> 
                 </a>
                 <div class="dropdown-menu" aria-labelledby="nvdd">
                   <a class="dropdown-item" href="/SocialHealth/components/settings/">Mi Perfil</a>
@@ -94,7 +97,7 @@
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
                   <div class="nav-link dropdown-toggle profile-span" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <h6><b><?php echo utf8_decode($row['nombre'])," ",utf8_decode($row['apellido']); ?></h6></b>    <img src="<?php echo $ruta ?>" class="profile-pic"  alt="">
+                      <h6><b><?php echo utf8_decode($row['nombre'])," ",utf8_decode($row['apellido']); ?></h6></b>    <img src="" class="profile-pic"  alt="">
                   </div>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="/SocialHealth/components/settings/">Mi Perfil</a>

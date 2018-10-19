@@ -6,7 +6,7 @@
     width: 100%;
     height: 100%;
     z-index: 10;
-    background: url('/SocialHealth/loading1.gif') 50% 50% no-repeat rgb(255, 255, 255);
+    background: url('/SocialHealth/loading.gif') 50% 50% no-repeat rgb(255, 255, 255);
     opacity: .8;}
 
 /* ------------------------------------------------------------Otro Css-------------------------------------------------------------------- */
