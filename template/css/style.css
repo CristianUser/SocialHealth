@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat);
+@import url('https://fonts.googleapis.com/css?family=Armata|Economica|Montserrat|Oswald');
 .loader {
     position: fixed;
     left: 0px;
@@ -18,7 +18,7 @@
 }
 body {
     background: url('../../assets/images/3-min.jpg');
-    font-family: montserrat, arial, verdana;
+    font-family: 'Armata', sans-serif;
     /* color: #00a89e; */
     background-attachment: fixed;
     background-repeat: repeat;
@@ -155,7 +155,7 @@ main{
     display: inline-block;
 }
 img{
-    width: 100%;
+    /* width: 100%; */
 }
 #check{
     display: none;
@@ -274,7 +274,11 @@ img{
     top: 11px;
     width: 36.8px;
   }
-
+.component-title{
+    color: #2C3E50;
+    font-family: 'Armata', sans-serif;
+    text-align: center;
+}
 
 /* ------------------------------------------------Tablas------------------------------------------------------------------------------ */
 .container{
@@ -306,32 +310,13 @@ h4{
 	font-weight: bold;
 	border: 0 none;
 	border-radius: 1px;*/
-}/*
-.form-control{
-	border: 0 none;
-	border-radius: 3px;
-	/*box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
-	box-sizing: border-box;
 }
-
-.cuadro{
-	
-	box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
-	border: 1px solid #ccc;
-	border-radius: 3px;
-	/*margin-bottom: 10px;
-	box-sizing: border-box;
-	font-family: montserrat;
-	color: #2C3E50;
-	font-size: 13px;
-	margin: 0px auto;
-	text-align: center;
-	position: relative;
+.btn-secondary {
+    color: #fff;
+    background-color: #2d3e50;
+    /* border-color: #00a89e; */
+    /* border: 2px solid #00a89e; */
 }
-.modal1 select{
-height: 51px;
-}*/
-
 .modal1 input, .modal1 textarea ,.modal1 select,.mitabla_filter input{
 	padding: 15px;
 	border: 1px solid #ccc;
@@ -376,13 +361,18 @@ button.dt-button:active:not(.disabled), button.dt-button.active:not(.disabled), 
     position: inherit;
     
 }
-.buttons-html5{
-    /* background-color: #00A89E; */
-    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.233);
+table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child:before, table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child:before {
+    background-color: #00A89E !important;
 }
-.tabla thead{
-    background-color:white;
-    color: #00A89E;
+table.dataTable.dtr-inline.collapsed > tbody > tr.parent > td:first-child:before, table.dataTable.dtr-inline.collapsed > tbody > tr.parent > th:first-child:before {
+    content: '-';
+    background-color: #F44336 !important;
+}
+.tabla thead {
+    background-color: 
+    #ffffff;
+    color:
+    #2d3e50;
 }
 .tabla a{
     text-decoration: none;

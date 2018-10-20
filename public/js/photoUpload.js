@@ -1,4 +1,4 @@
-
+        $('#progreso').hide();
         $('#alertSuccess').hide();
         $('#alertDanger').hide();
         $('#page').hide();
@@ -29,6 +29,7 @@
                 // Insertamos la imagen
                 $('#example').hide();
                 $('#page').show();
+                $('#btn').show();
                 basic.croppie('bind', {
                 url: e.target.result,
                 zoom:0
@@ -40,7 +41,7 @@
           reader.readAsDataURL(f);
         }
     }
-    document.getElementById('upload').addEventListener('change', archivo, false);
+    document.getElementById('upload').addEventListener('change',archivo, false);
     let enviarFoto = (req)=>{
         let parametros = {
             id:id,
@@ -49,19 +50,20 @@
         };
         $.ajax({
             url : '/SocialHealth/functions/dbActions/uploadPhoto.php',
-            xhrFields: {
-                onprogress: function (e) {
-                    if (e.lengthComputable) {
-                        let percent=e.loaded / e.total * 100;
-                        $('#progreso .Barra').attr('style','width:'+percent+'%');
-                        $('#progreso .Barra').html('Subiendo...');
-                        if(percent==100){
-                            $('#progreso .Barra').html('Comprimiendo...');
-                        }
-                        console.log(percent+ '%');
-                        }
+            xhr: function() {
+                var xhr = $.ajaxSettings.xhr();
+                xhr.upload.onprogress = function(e) {
+                    console.log(Math.floor(e.loaded / e.total *100) + '%');
+                    let percent=e.loaded / e.total * 100;
+                    $('#progreso').show();
+                    $('#progreso .Barra').attr('style','width:'+percent+'%');
+                    $('#progreso .Barra').html('Subiendo...');
+                    if(percent==100){
+                        $('#progreso .Barra').html('Comprimiendo...');
                     }
-                },
+                };
+                return xhr;
+            },
             data : parametros,
             type : 'POST',
             success : function(res) {

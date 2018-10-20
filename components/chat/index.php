@@ -31,7 +31,7 @@ include '../../template/header.php';
         </ul>
     </div> 
     <div class="container">
-    <h3 class=" text-center">Mensajes</h3>
+    <h3 class="component-title text-center">Mensajes</h3>
     <div class="messaging">
           <div class="inbox_msg">
             <div class="inbox_people">

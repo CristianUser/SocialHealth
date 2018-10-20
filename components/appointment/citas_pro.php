@@ -61,7 +61,7 @@ function seguro($id){
 
         <div class="row">
             <div class="col">
-                <h2 style="text-align: center;">Citas</h2>
+                <h2 class="component-title">Citas</h2>
             </div>
         </div>
        <div class="row">

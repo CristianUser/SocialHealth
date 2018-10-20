@@ -147,14 +147,16 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
                         <div id="demo-basic">
                         </div>
                     </div>
-                    <div style="width:300px; max-width:100%;" id="example">
-                      <img class="Foto" src="" alt="">
+                    <div style="max-width:100%; text-align:center;" id="example">
+                        <h4>Toma una foto o Sube una</h4>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <label for="upload" class="btn btn-outline-cmj"><span><i class="fas fa-upload"></i></span>  Seleccionar
+                    <button id="btnCamera" class="btn btn-outline-cmj"><span><i class="fas fa-camera"></i></span>  Tomar una Foto</button>
+                    <label id="btnSelect" for="upload" class="btn btn-cmj"><span><i class="fas fa-upload"></i></span>  Seleccionar
                         Foto</label>
-                    <input style="display:none;" type="file" name="upload" id="upload" class="inputfile" />
+                    <input style="display:none;" type="file" name="upload" id="upload" class="inputfile" /> 
+                    <button id="btnTake" class="btn btn-cmj"><span><i class="fas fa-camera"></i></span> Tomar</button>
                     <button id="btn" class="btn btn-cmj">Guardar Cambios</button>
                   </div>
                   <div class="row">
@@ -185,7 +187,10 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
 <script src="/SocialHealth/public/js/photoUpload.js"></script>
+<script src="/SocialHealth/public/js/scriptCamera.js"></script>
   <script>
+    $('#btn').hide();
+    $('#btnTake').hide();
     let repeat = setInterval(()=>{
     check();
     },100);
@@ -196,8 +201,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
         clearInterval(repeat);
       };
     };
-
-
+    
     document.getElementById('buttonConfig').addEventListener('click',()=>{
       window.location.href="/SocialHealth/components/config-horario/";
     });
@@ -221,6 +225,23 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
           }
       });
     };
+    $('#btnCamera').click(()=>{
+      $('#example').show();
+      $('#btnTake').show();
+      $('#btnSelect').hide();
+      $('#btnCamera').hide();
+      $('#page').hide();
+      $('#btn').hide();
+      cameraHTML=`
+      <div id="camera">
+        <img style="width:100%;" src="" id="img">
+        <video style="width:100%;" id="stream"></video>
+        <canvas style="display:none;" id="canvas"></canvas>
+      </div>
+      `;
+      $('#example').html(cameraHTML);
+      startCamera();
+    });
     
   </script>
 </body>
