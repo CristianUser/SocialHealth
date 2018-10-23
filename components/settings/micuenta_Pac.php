@@ -34,11 +34,33 @@ include '../../template/header.php' ?>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="/SocialHealth/components/profile/css/perfil-pro-w3.css">
 <link rel='stylesheet' href="/SocialHealth/components/profile/css/perfil-pro-css-font.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.css" />
+<script defer src="https://use.fontawesome.com/releases/v5.4.1/js/all.js"></script>
 <style>
 
-html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
-</style>
+/* html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif} */
+        #page {
+            background: #FFF;
+            padding: 20px;
+            margin: 20px;
+            }
+
+        #demo-basic {
+        /* width: 400px; */
+        height: 300px;
+        max-width: 100%;
+        max-height: 100%;
+        }
+        label{
+            margin-bottom: 0;
+        }
+        .btn-outline-cmj {
+            color: #00a89e;
+            background-color: transparent;
+            background-image: none;
+            border-color: #00a89e;
+        }
+    </style>
 <body class="w3-light-grey">
 
 <!-- Page Container -->
@@ -106,61 +128,96 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
   <!-- End Page Container -->
 </div>
 <!-- Modal Cambiar Foto -->
-<div class="modal fade" id="cambiarfoto" tabindex="-1" role="dialog" aria-labelledby="cambiarfotoTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Subir Foto</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="/SocialHealth/functions/dbActions/SubirFoto.php" role="form" method="post" enctype="multipart/form-data">
-          <div class="form-group">
-            <input type="hidden" name="url" id="url" value="<?php $h= $_SERVER["HTTP_HOST"]; $u= $_SERVER["REQUEST_URI"]; echo "http://" . $h . $u;?>">
-            <input type="hidden" name="id" id="id" value="<?php echo $id;?>">
-            <label for="upload">
-                <img id="image" style="max-width:100%;" src="/SocialHealth/assets/images/perfil.jpg" alt="Selecciona una foto">
-            </label>
-            <input hidden class="upload" id="upload" type="file" name="upload" required>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Atras</button>
-            <button type="submit" class="btn btn-cmj">Guardar Cambios</button>
-          </div>
-        </form>
-      </div>
+<div class="modal fade" id="cambiarfoto" tabindex="-1" role="dialog" aria-labelledby="cambiarfotoTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cambiarfotoTitle">Subir Foto</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="page">
+                        <div id="demo-basic">
+                        </div>
+                    </div>
+                    <div style="max-width:100%; text-align:center;" id="example">
+                        <h4>Toma una foto o Sube una</h4>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnCamera" class="btn btn-outline-cmj"><span><i class="fas fa-camera"></i></span>  Tomar una Foto</button>
+                    <label id="btnSelect" for="upload" class="btn btn-cmj"><span><i class="fas fa-upload"></i></span>  Seleccionar
+                        Foto</label>
+                    <input style="display:none;" type="file" name="upload" id="upload" class="inputfile" /> 
+                    <button id="btnTake" class="btn btn-cmj"><span><i class="fas fa-camera"></i></span> Tomar</button>
+                    <button id="btn" class="btn btn-cmj">Guardar Cambios</button>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                    <div id="progreso" class="progress">
+                      <div class="progress-bar bg-success Barra" role="progressbar" style="width: 0%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <br>
+
+                      <div id="alertDanger" class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Error al subir imagen!
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div id="alertSuccess" class="alert alert-success alert-dismissible fade show" role="alert">
+                        Se ha actualizado tu foto!
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.2/croppie.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
+<script src="/SocialHealth/public/js/photoUpload.js"></script>
+<script src="/SocialHealth/public/js/scriptCamera.js"></script>
   <script>
-    function archivo(evt) {
-        var files = evt.target.files; // FileList object
+    $('#btn').hide();
+    $('#btnTake').hide();
+    let repeat = setInterval(()=>{
+    check();
+    },100);
+    var check = ()=>{
+      if(loaded) {
+        $('#profile-info .Foto').attr('src',$('#nvdd .profile-pic').attr('src'));
+        $('#example .Foto').attr('src',$('#nvdd .profile-pic').attr('src'));
+        clearInterval(repeat);
+      };
+    };
+    $('#btnCamera').click(()=>{
+      $('#example').show();
+      $('#btnTake').show();
+      $('#btnSelect').hide();
+      $('#btnCamera').hide();
+      $('#page').hide();
+      $('#btn').hide();
+      cameraHTML=`
+      <div id="camera">
+        <img style="width:100%;" src="" id="img">
+        <video style="width:100%;" id="stream"></video>
+        <canvas style="display:none;" id="canvas"></canvas>
+      </div>
+      `;
+      $('#example').html(cameraHTML);
+      startCamera();
+    });
     
-        // Obtenemos la imagen del campo "file".
-        for (var i = 0, f; f = files[i]; i++) {
-          //Solo admitimos imágenes.
-          if (!f.type.match('image.*')) {
-              continue;
-          }
-    
-          var reader = new FileReader();
-    
-          reader.onload = (function(theFile) {
-              return function(e) {
-                // Insertamos la imagen
-              
-              document.getElementById("image").src = e.target.result;
-              };
-          })(f);
-    
-          reader.readAsDataURL(f);
-        }
-    }
-    
-    document.getElementById('upload').addEventListener('change', archivo, false);
   </script>
+
+
 </body>
 </html>
 <?php include '../../template/footer.php' ?>

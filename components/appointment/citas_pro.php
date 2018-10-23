@@ -2,7 +2,7 @@
 include '../../functions/sesionPro.php';
 include '../../functions/dbActions/DB_Usuario.php';
 $where="WHERE rp.ID_Profesional = $idUsuario";
-$sql = "SELECT ci.ID_Cita, ci.Fecha, ci.Estado, ci.Hora, ci.Descripcion, usr.id_usuario, usr.nombre, usr.apellido 
+$sql = "SELECT ci.ID_Cita, ci.Fecha, ci.Estado, ci.horaInicio, ci.Descripcion, usr.id_usuario, usr.nombre, usr.apellido 
 FROM citas ci , r_paciente rp ,usuario usr where ci.ID_Pac = rp.ID_Pac 
 and usr.id_usuario =  rp.ID_Cliente and rp.ID_Profesional = $idUsuario and ci.Estado='Pendiente'";
 $resultado = $mysqli->query($sql);
@@ -87,7 +87,7 @@ function seguro($id){
                                         </a>
                                     </td>
                                     <td><?php echo $row['Fecha']; ?></td>
-                                    <td><?php echo $row['Hora']; ?></td>                                  
+                                    <td><?php echo $row['horaInicio']; ?></td>                                  
                                     <td><?php echo $row['Descripcion']; ?></td>
                                     <td><?php echo $row['Estado']; ?></td>
                                     <td>
