@@ -131,74 +131,7 @@ function seguro($id){
                                     <td><?php echo $row['Telefono']; ?></td>                                  
                                     <td><?php echo $row['correo']; ?></td>
                                     <td>
-                                        <!-- Button to trigger modal -->
-                                        <button class="btn btn-cmj" data-toggle="modal" data-target="#modalForm">
-                                            Citar
-                                        </button>  
-                                            <!-- Modal -->
-                                        <div class="modal1">
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="modalForm" role="dialog">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <!-- Modal Header -->
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title" id="myModalLabel">Programar Cita</h4>
-                                                            <button type="button" class="close" data-dismiss="modal">
-                                                                <span aria-hidden="true">×</span>
-                                                                <span class="sr-only">Close</span>
-                                                            </button>
-                                                        </div>
-                                                        
-                                                        <!-- Modal Body -->
-                                                        <div class="modal-body">
-                                                            <p class="statusMsg"></p>
-                                                            <form role="form" method="POST" action="../DBConnect/GuardarCita.php">
-                                                                <input type="hidden" name="ID_Pac" id="ID_Pac" value="<?php echo $row['ID_Pac']; ?>">
-                                                                <input type="hidden" name="url" id="url" value="<?php $h= $_SERVER["HTTP_HOST"]; $u= $_SERVER["REQUEST_URI"]; echo "http://" . $h . $u;?>">
-                                                                <div class="form-group">
-                                                                    <label for="fecha">Fecha</label>
-                                                                    <input type="date" class="form-control" name="fecha" id="fecha" required/>
-                                                                </div>
-                                                                <!--div class="form-group">
-                                                                    <div class="input-group date" id="fecha" data-target-input="nearest">
-                                                                    <input name="fecha" type="text" class="form-control datetimepicker-input" id="fecha"
-                                                                        data-toggle="datetimepicker" data-target="#fecha"/>
-                                                                    </div>
-                                                                </div-->
-                                                                <div class="form-group">
-                                                                    <label for="hora">Hora</label><br>
-                                                                    <select name="hora" id="hora">
-                                                                        <option value="0">Selecciona</option>
-                                                                        <option value="8:00">8:00 AM</option>
-                                                                        <option value="9:00">9:00 AM</option>
-                                                                        <option value="10:00">10:00 AM</option>
-                                                                    </select>
-                                                                    
-                                                                </div>
-                                                                <!--div class="form-group">
-                                                                    <div class="input-group date" id="hora" data-target-input="nearest">
-                                                                    <input name="hora" type="text" class="form-control datetimepicker-input" id="hora"
-                                                                        data-toggle="datetimepicker" data-target="#hora"/>
-                                                                        
-                                                                    </div-->
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="descripcion">Descripcion</label>
-                                                                    <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Enter your message"></textarea>
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Atras</button>
-                                                                    <button type="submit" class="btn btn-primary submitBtn btn-cmj" >Enviar</button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                        
-                                                        <!-- Modal Footer -->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>                             
+                                        <a href="http://localhost/socialhealth/components/event-reg/index.php?id=<?php echo $row['id_usuario']; ?>&name=<?php echo $row['nombre']," ",$row['apellido']; ?>">Crear Cita</a>                   
                                     </td>
                                 </tr>
                                 <?php } if($contador <10){for($x=1;$x<=(10-$contador);$x++){ ?>
