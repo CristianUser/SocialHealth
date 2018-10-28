@@ -1,6 +1,6 @@
 <?php
 require_once './connection.php';
-require '../../SocialHealth/functions/dbActions/DB_Usuario.php';
+require '../../../functions/dbActions/DB_Usuario.php';
 if(!empty($_POST))
 {
 $fecha = $mysqli->real_escape_string($_POST['fecha']);	

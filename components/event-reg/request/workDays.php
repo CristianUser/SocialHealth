@@ -6,7 +6,21 @@ $sql = "SELECT h.ajustes FROM horario h WHERE h.id_horario=$doctorId";
 $persona = $mysqli->query($sql);
 $result=$persona->fetch_assoc();
 $array= json_decode($result["ajustes"],true)['array'];
-//print_r($array[0]['ajustes'][0]['horaInicio']);
+$dias=['Lunes','Martes','Miercoles','Jueves','Viernes','Sabado','Domingo'];
+if($array==null){//creando default si no ha configurado su horario
+    unset($array);
+    for($i=0;$i<7;$i++){
+        $array[$i]['dia']=$dias[$i];
+        $array[$i]['ajustes'][]=[];
+        $array[$i]['ajustes'][0]['horaFin']='20:00';
+        $array[$i]['ajustes'][0]['horaInicio']='06:00';
+        if($i==6){
+            $array[$i]['ajustes']=[];
+        }
+    }
+}
+// print_r($array);
+// exit('');
 //Creando lista de horas
 $interval = new DateInterval('PT01H');
 $dayStart=date_create_from_format('H:i','00:00');

@@ -1,7 +1,7 @@
 <?php
 include '../../functions/sesionPac.php';
 $where="WHERE rp.ID_Cliente = $idUsuario";
-$sql = "SELECT ci.Fecha, ci.Estado, ci.Hora, ci.Descripcion, usr.id_usuario, usr.nombre, usr.apellido 
+$sql = "SELECT ci.Fecha, ci.Estado, ci.horaInicio as start, ci.horaFin as end, ci.Descripcion, usr.id_usuario, usr.nombre, usr.apellido 
 FROM citas ci , r_paciente rp ,usuario usr where ci.ID_Pac = rp.ID_Pac 
 and usr.id_usuario =  rp.ID_Profesional and rp.ID_Cliente = $idUsuario and ci.Estado = 'Pendiente'";
 $resultado = $mysqli->query($sql);
@@ -85,7 +85,7 @@ function seguro($id){
                                         </a>
                                     </td>
                                     <td><?php echo $row['Fecha']; ?></td>
-                                    <td><?php echo $row['Hora']; ?></td>                                  
+                                    <td><?php echo $row['start'].'-'.$row['end']; ?></td>                                  
                                     <td><?php echo $row['Descripcion']; ?></td>
                                     <td><?php echo $row['Estado']; ?></td>
                                 </tr>
