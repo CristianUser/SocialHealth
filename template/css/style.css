@@ -342,6 +342,12 @@ h4{
 }
 #mitabla{
     border: #00A89E;
+    text-align: center;
+}
+div.dataTables_wrapper div.dataTables_info {
+    text-align: center;
+    padding-top: 0.85em;
+    white-space: nowrap;
 }
 .dt-buttons .dt-button{
     background: #00A89E;

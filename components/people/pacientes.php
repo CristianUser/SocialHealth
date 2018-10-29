@@ -29,6 +29,7 @@ function seguro($id){
            $(document).ready(function(){
 		$('#mitabla').DataTable({
             "dom": 'Bfrtip',
+            
             "buttons": ['copy', 'csv', 'excel', 'pdf', 'print','colvis' ],
 			"order": [[0, "dsc"]],
 			"language":{
@@ -103,14 +104,14 @@ function seguro($id){
                                     <td><?php echo $row['Cedula']; ?></td>
                                 </tr>
                                 <?php } if($contador <10){for($x=1;$x<=(10-$contador);$x++){ ?>
-                                    <tr>
+                                    <!-- <tr>
                                         <td>0</td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                    </tr>
+                                    </tr> -->
                                 <?php }} ?>
                             </tbody>
                         </table>

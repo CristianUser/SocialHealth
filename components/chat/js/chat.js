@@ -74,7 +74,7 @@ var getUserList = (id,uType)=>{
       document.getElementById("user-list").innerHTML=req;
     },
     error : function(xhr, status) {
-        alert('Disculpe, existió un problema');
+      console.log('Disculpe, existió un problema');
     },
     complete : function(xhr, status) {
         //console.log('Petición realizada');
@@ -157,7 +157,7 @@ var getUserName = (id)=>{
       $('#'+id+' .Foto').attr('src',userAvData.foto);
     },
     error : function(xhr, status) {
-        alert('Disculpe, existió un problema');
+      console.log('Disculpe, existió un problema');
     },
     complete : function(xhr, status) {
         //console.log('Petición realizada');

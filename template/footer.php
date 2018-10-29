@@ -29,7 +29,7 @@
             $('#navbarDropdown .profile-pic').attr('src',userAvData.foto);
           },
           error : function(xhr, status) {
-              alert('Disculpe, existió un problema');
+              console.log('Disculpe, existió un problema');
           },
           complete : function(xhr, status) {
             loaded=true;

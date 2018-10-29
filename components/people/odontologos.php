@@ -131,18 +131,18 @@ function seguro($id){
                                     <td><?php echo $row['Telefono']; ?></td>                                  
                                     <td><?php echo $row['correo']; ?></td>
                                     <td>
-                                        <a href="http://localhost/socialhealth/components/event-reg/index.php?id=<?php echo $row['id_usuario']; ?>&name=<?php echo $row['nombre']," ",$row['apellido']; ?>">Crear Cita</a>                   
+                                        <a href="/SocialHealth/components/event-reg/index.php?id=<?php echo $row['id_usuario']; ?>&name=<?php echo $row['nombre']," ",$row['apellido']; ?>">Crear Cita</a>                   
                                     </td>
                                 </tr>
                                 <?php } if($contador <10){for($x=1;$x<=(10-$contador);$x++){ ?>
-                                    <tr>
+                                    <!-- <tr>
                                         <td>0</td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                    </tr>
+                                    </tr> -->
                                 <?php }} ?>
                             </tbody>
                         </table>

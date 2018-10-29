@@ -1,6 +1,11 @@
 <?php
 include 'connection.php';
 require 'utils.php';
+session_start();
+$token = $_SESSION['token'];
+if($_GET['token']!=$token){
+    exit('Error en la peticion');
+}
 $doctorId=$_GET['id'];
 $sql = "SELECT h.ajustes FROM horario h WHERE h.id_horario=$doctorId";
 $persona = $mysqli->query($sql);

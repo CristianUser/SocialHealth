@@ -56,6 +56,7 @@ $('#my-draggable').draggable({
 
 cal=$('#calendar').fullCalendar({
     themeSystem: 'bootstrap4',
+    height: 430,
     defaultView: 'agendaWeek',
     //selectable: true,
     header: {

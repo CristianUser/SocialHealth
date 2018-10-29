@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="/SocialHealth/template/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.4.2/js/all.js"></script>
     <script type="text/javascript">
       let id=<?php echo $idUsuario;?>;
       let token="<?php echo $token;?>";
@@ -19,6 +19,32 @@
         getUserTemplate();
       });
 </script>
+<style>
+  @media only screen and (max-width: 365px) {
+    .ocultar-xs {
+        display:none;
+    }
+    .mostrar-xs {
+        display:block;
+    }
+}
+ @media only screen and (min-width: 365px) {
+    .ocultar-md {
+        display:none;
+    }
+    .mostrar-md {
+        display:block;
+    }
+} 
+@media only screen and (min-width: 768px) {
+    .ocultar-lg {
+        display:none;
+    }
+    .mostrar-lg {
+        display:block;
+    }
+}
+</style>
   </head>
   <body>
   <div class="loader"></div>
@@ -28,9 +54,12 @@
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
+          <div class="navbar-toggler ocultar-xs" style="border: 0px;" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <a class="nav-link" href="#"><img style="width: 100px;" src="/SocialHealth/assets/images/logo-100px.png" alt=""><span class="sr-only">(current)</span></a>
+          </div>
           <div class="navbar-toggler dropdown" style="border: 0px;" data-toggle="collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <a class="nav-link dropdown-toggle profile-span" href="#" id="nvdd" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                 <h6><?php echo utf8_decode($row['nombre'])," ",utf8_decode($row['apellido']); ?></h6>    <img src="" class="profile-pic"  alt=""> 
+                 <h6  class="d-none d-sm-inline d-md-inline d-lg-inline  d-xl-inline"><?php echo utf8_decode($row['nombre'])," ",utf8_decode($row['apellido']); ?></h6>    <img src="" class="profile-pic"  alt=""> 
                 </a>
                 <div class="dropdown-menu" aria-labelledby="nvdd">
                   <a class="dropdown-item" href="/SocialHealth/components/settings/">Mi Perfil</a>
@@ -43,7 +72,7 @@
         
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
+              <li style="" class="nav-item active ocultar-md mostrar-lg">
                 <a class="nav-link" href="#"><img style="width: 100px;" src="/SocialHealth/assets/images/logo-100px.png" alt=""><span class="sr-only">(current)</span></a>
               </li>
               <div class="lista-menu d-block d-xl-none d-lg-none d-md-none">
@@ -68,7 +97,13 @@
                 <li class="nav-item">
                   <a class="nav-link"  href="/SocialHealth/components/people/"> 
                       <button class="iconbtn"><i class="fas fa-user"></i></i></button>
-                      <p>Pacientes</p>
+                      <p>              <?php
+              if($tipo==1){
+                echo 'Mis Doctores';
+              }elseif($tipo==2){
+                echo 'Mis Pacientes';
+              }
+              ?></p>
                   </a>
                 </li>
                 <li class="nav-item">
@@ -97,7 +132,7 @@
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown">
                   <div class="nav-link dropdown-toggle profile-span" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <h6><b><?php echo utf8_decode($row['nombre'])," ",utf8_decode($row['apellido']); ?></h6></b>    <img src="" class="profile-pic"  alt="">
+                      <h6><b><?php echo utf8_decode($row['nombre'])," ",utf8_decode($row['apellido']); ?></b></h6>   <img src="" class="profile-pic"  alt="">
                   </div>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="/SocialHealth/components/settings/">Mi Perfil</a>
