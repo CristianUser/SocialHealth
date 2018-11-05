@@ -9,6 +9,49 @@
     background: url('/SocialHealth/loading.gif') 50% 50% no-repeat rgb(255, 255, 255);
     opacity: .8;}
 
+.bg-primary {
+    background-color: #00a89e!important;
+}
+.text-primary{
+    color: #00a89e!important;
+}
+.badge-primary {
+    color: #fff;
+    background-color: #00a89e !important;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+.button-none{
+    background: none;
+    border: 0;
+    color: inherit;
+    /* cursor: default; */
+    font: inherit;
+    line-height: normal;
+    overflow: visible;
+    padding: 0;
+    -webkit-user-select: none; /* for button */
+    -webkit-appearance: button; /* for input */
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
 /* ------------------------------------------------------------Otro Css-------------------------------------------------------------------- */
 *{
     margin: 0;
@@ -349,10 +392,10 @@ div.dataTables_wrapper div.dataTables_info {
     padding-top: 0.85em;
     white-space: nowrap;
 }
-.dt-buttons .dt-button{
+/* .dt-buttons .dt-button{
     background: #00A89E;
     color: white;
-}
+} */
 button.dt-button:hover:not(.disabled), div.dt-button:hover:not(.disabled), a.dt-button:hover:not(.disabled){
     background: rgb(0, 114, 107);
 }

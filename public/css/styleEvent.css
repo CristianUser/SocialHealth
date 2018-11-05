@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');
+.btn.focus, .btn:focus{
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0) !important;
+}
+.btn-primary{
+    background:white !important;
+    border-color:#00A89E !important;
+    color: #00A89E;
+}
+.btn-primary:active{
+    background:white !important;
+    border-color:#00A89E !important;
+    color: #00A89E;
+}
+.btn-primary:hover {
+    color: #00A89E;
+    background-color: white;
+    border-color: #0062cc;
+}
+.btn-primary.focus, .btn-primary:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0) !important;
+}
+.btn-primary:not(:disabled):not(.disabled).active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .show>.btn-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0) !important;
+}
+.active{
+    background:#00A89E !important;
+}
+.fc-save1-button{
+    color: white;
+    background:#00A89E !important;
+}.fc-save1-button:hover{
+    color: white;
+    background:#00A89E !important;
+}
+.alert-info {
+    color: #0c5460;
+    background-color: #00a89e3d;
+    border-color: #bee5eb;
+}
+.fc-bootstrap3 .fc-today.alert, .fc-bootstrap4 .fc-today.alert {
+    opacity: 0.2;
+    border-radius: 0;
+}
+/* -----------------------------------------------------header-------------------------------------------- */
+.table-bordered th {
+    font-family: 'Roboto', sans-serif;
+    background: #00A89E !important;
+    color: #FFF;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+}
+.table-bordered thead th {
+    border-bottom-width: 0;
+    border: 0;
+}
+.fc-toolbar.fc-header-toolbar h2{
+    margin-top: 0;
+    white-space: nowrap;
+    font-size: 32px;
+    font-weight: 100;
+    margin-bottom: 10px;
+    font-family: 'Roboto', sans-serif;
+}
+.fc .fc-axis {
+    vertical-align: middle;
+    padding: 0 4px;
+    white-space: nowrap;
+    border: 0px solid #080808;
+    background: #00A89E;
+}
+.work-hours{
+    opacity: 0.5;
+}

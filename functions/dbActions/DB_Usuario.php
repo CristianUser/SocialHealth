@@ -57,7 +57,7 @@ function registraDatosPac($id, $seguro, $nss, $nacimiento, $sexo, $telefono, $ce
 function registraCita($id,$fecha,$descripcion,$horaInicio,$horaFin){
 		
     global $mysqli;
-    $estado="Pendiente";
+    $estado=10;
     $stmt = $mysqli->prepare("INSERT INTO `citas`( `ID_Pac`, `Estado`, `Fecha`, `horaInicio`, `horaFin`, `Descripcion`) VALUES (?,?,?,?,?,?)");
     $stmt->bind_param('ssssss',$id,$estado,$fecha,$horaInicio,$horaFin,$descripcion);
     

@@ -3,18 +3,11 @@ include '../../functions/sesionPac.php';
 $where="WHERE rp.ID_Cliente = $idUsuario";
 $sql = "SELECT ci.Fecha, ci.Estado, ci.horaInicio as start, ci.horaFin as end, ci.Descripcion, usr.id_usuario, usr.nombre, usr.apellido 
 FROM citas ci , r_paciente rp ,usuario usr where ci.ID_Pac = rp.ID_Pac 
-and usr.id_usuario =  rp.ID_Profesional and rp.ID_Cliente = $idUsuario and (ci.Estado='Pendiente' or ci.Estado='Expirado') ORDER by ci.Fecha DESC";
+and usr.id_usuario =  rp.ID_Profesional and rp.ID_Cliente = $idUsuario and (ci.Estado=10 or ci.Estado=6) ORDER by ci.Fecha DESC";
 $resultado = $mysqli->query($sql);
 $sql1="SELECT ID_Pac FROM r_paciente  $where";
 
-$contador=0;/*
-function seguro($id){
-    global $mysqli;
-    $s = "SELECT * FROM seguro WHERE ID_Seguro = $id";
-    $r = $mysqli->query($s);
-    $rr=$r->fetch_assoc();
-    echo $rr['Nombre'];
-}*/
+$contador=0;
 ?>
 <?php include  '../../template/header.php'; ?>
 <!DOCTYPE html>
@@ -102,7 +95,7 @@ function seguro($id){
                                 <tr>
                                     <td>
                                         <a href="/SocialHealth/components/profile/infoOdontologo.php?id=<?php echo $row['id_usuario']; ?>">
-                                            <?php echo $row['nombre']," ",$row['apellido']; ?>
+                                            <? echo $row['nombre']," ",$row['apellido']; ?>
                                         </a>
                                     </td>
                                     <td><?php echo $row['Fecha']; ?></td>
