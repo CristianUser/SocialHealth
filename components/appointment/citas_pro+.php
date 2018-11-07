@@ -23,7 +23,7 @@ include '../../template/header.php';
     userName="",
     userId=id;
 </script>
-<script src="./js/scriptEvents.js"></script>
+<script src="./js/scriptViewDoc.js"></script>
 <style>
 
         body {
@@ -77,8 +77,8 @@ include '../../template/header.php';
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <h6 class="dropdown-header">Vistas</h6>
-                        <a class="dropdown-item" href="?viewmode=1">Clasica</a>
-                        <a class="dropdown-item" href="?viewmode=2">Interactiva</a>
+                        <a class="dropdown-item" href="?viewmode=1"><i class="fas fa-table"></i> Clasica</a>
+                        <a class="dropdown-item" href="?viewmode=2"><i class="fas fa-calendar"></i> Interactiva</a>
                     </div>
                 </div>
     </div>
@@ -97,7 +97,7 @@ include '../../template/header.php';
             <form>
               <h6>Descripcion</h6>
               <div class="Resumen"></div>
-              <select class="form-control" name="" id="">
+              <select class="form-control Paciente" name="" id="">
                   <option value="">Seleciona un Paciente </option>
                   <?php
                   $sql = "SELECT usr.id_usuario as userId, usr.nombre as name, usr.apellido as lastname FROM usuario usr INNER JOIN datos_cliente dp 

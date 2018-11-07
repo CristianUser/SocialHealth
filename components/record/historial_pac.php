@@ -1,7 +1,7 @@
 <?php
 include '../../functions/sesionPac.php';
 $where="WHERE rp.ID_Cliente = $idUsuario";
-$sql = "SELECT ci.Fecha, ci.Estado, ci.Hora, ci.Descripcion, usr.id_usuario, usr.nombre, usr.apellido 
+$sql = "SELECT ci.Fecha, ci.Estado, ci.horaInicio Hora, ci.Descripcion, usr.id_usuario, usr.nombre, usr.apellido 
 FROM citas ci , r_paciente rp ,usuario usr where ci.ID_Pac = rp.ID_Pac 
 and usr.id_usuario =  rp.ID_Profesional and rp.ID_Cliente = $idUsuario and ci.Estado != 'Pendiente'";
 $resultado = $mysqli->query($sql);
@@ -27,33 +27,6 @@ function seguro($id){
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.18/af-2.3.0/b-1.5.2/b-colvis-1.5.2/b-flash-1.5.2/b-html5-1.5.2/b-print-1.5.2/cr-1.5.0/fc-3.2.5/fh-3.1.4/kt-2.4.0/r-2.2.2/rg-1.0.3/rr-1.2.4/sc-1.5.0/sl-1.2.6/datatables.js"></script>
-    <script type="text/Javascript">
-           $(document).ready(function(){
-		$('#mitabla').DataTable({
-            "dom": 'Bfrtip',
-            "buttons": ['excel','pdf','copy','print'],
-			"order": [[0, "dsc"]],
-			"language":{
-				"lengthMenu": "Mostrar _MENU_ por pagina",
-				"info": "Mostrando pagina _PAGE_ de _PAGES_",
-				"infoEmpty": "No hay registros disponibles",
-				"infoFiltered": "(filtrada de _MAX_ registros)",
-				"loadingRecords": "Cargando...",
-				"processing":     "Procesando...",
-				"search": "Buscar:",
-				"zeroRecords":    "No se encontraron registros coincidentes",
-				"paginate": {
-					"next":       "Siguiente",
-					"previous":   "Anterior"
-				},					
-			},
-            "Processing": true,
-			//"ServerSide": true,
-			//"ajax": "procesar.php"
-		});	
-	});	
-    </script>
-
 </head>
 <body>
     <div class="row">
@@ -67,7 +40,7 @@ function seguro($id){
         </div>
        <div class="row">
            <div class="col">
-               <div class="row table-responsive">
+               <div class="row table-responsive text-right">
                    <table class="tabla table table-striped dt-responsive nowrsap display" id="mitabla" style="width: 100%;">
                        <thead>
                            <tr>
@@ -92,14 +65,14 @@ function seguro($id){
                                     <td><?php echo $row['Estado']; ?></td>
                                 </tr>
                                 <?php } if($contador <10){for($x=1;$x<=(10-$contador);$x++){ ?>
-                                    <tr>
+                                    <!-- <tr>
                                         <td>0</td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                    </tr>
+                                    </tr> -->
                                 <?php }} ?>
                             </tbody>
                         </table>
@@ -139,9 +112,61 @@ function seguro($id){
 				$('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href') + '</strong>');
 			});
         </script>
-    <!--script src="js/jquery-3.3.1.slim.min.js"></script->
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script-->
+    <script type="text/Javascript">
+           $(document).ready(function(){
+            tabla = $('#mitabla').DataTable({
+         dom: 'Bfrtip',
+         pageLength: 5,
+         buttons: [
+             {
+                 extend: 'collection',
+                 className: 'inline text-right button-none',
+                 text: '<span class="text-primary"><i class="fas fa-ellipsis-v"></i></span> Opciones   ',
+                 buttons: [
+                    {
+                        extend: 'colvis',
+                        text:'<i class="far fa-eye"></i> Visibilidad'
+                    },
+                    {
+                        extend: 'collection',
+                        className: 'inline',
+                        text: '<i class="fas fa-file-export"></i> Exportar',
+                        buttons: [{
+                            extend: 'excel',
+                            text: '<i class="fas fa-file-excel"></i> Excel'
+                        },{
+                            extend: 'pdf',
+                            text: '<i class="fas fa-file-pdf"></i> PDF'
+                        },{
+                            extend: 'copy',
+                            text: '<i class="fas fa-file"></i> Copiar'
+                        },{
+                            extend: 'print',
+                            text: '<i class="fas fa-print"></i> Imprimir'
+                        }]
+                    }
+                ],
+             }
+         ],
+         order: [[0, "dsc"]],
+         language:{
+             lengthMenu: "Mostrar _MENU_ por pagina",
+             info: "Mostrando pagina _PAGE_ de _PAGES_",
+             infoEmpty: "No hay registros disponibles",
+             infoFiltered: "(filtrada de _MAX_ registros)",
+             loadingRecords: "Cargando...",
+             processing:     "Procesando...",
+             search: "Buscar:",
+             zeroRecords:    "No se encontraron registros coincidentes",
+             paginate: {
+                 next:       "Siguiente",
+                 previous:   "Anterior"
+             },					
+         },
+         Processing: true,
+     });
+	});	
+    </script>
 </body>
 </html>
 <?php include '../../template/footer.php'; ?>

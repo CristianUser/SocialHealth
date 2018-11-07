@@ -27,45 +27,6 @@ $contador=0;
             display:inline;
         }
     </style>
-    <script type="text/Javascript">
-           $(document).ready(function(){
-		$('#mitabla').DataTable({
-            "dom": 'Bfrtip',
-            pageLength: 5,
-            buttons: [
-                {
-                    extend: 'collection',
-                    className: 'inline',
-                    text: '<i class="fas fa-file-export"></i> Exportar',
-                    buttons: [ 'excel','pdf','copy','print','colvis' ]
-                }
-            ],
-			//"order": [[0, "dsc"]],
-			language:{
-				"lengthMenu": "Mostrar _MENU_ por pagina",
-				"info": "Mostrando pagina _PAGE_ de _PAGES_",
-				"infoEmpty": "No hay registros disponibles",
-				"infoFiltered": "(filtrada de _MAX_ registros)",
-				"loadingRecords": "Cargando...",
-				"processing":     "Procesando...",
-				"search": "Buscar:",
-				"zeroRecords":    "No se encontraron registros coincidentes",
-				"paginate": {
-					"next":       "Siguiente",
-					"previous":   "Anterior"
-				},					
-			},
-            "Processing": true,
-            "search": {
-                className:'inline',
-                "smart": true
-            }
-			//"ServerSide": true,
-			//"ajax": "procesar.php"
-		});	
-	});	
-    </script>
-
 </head>
 <body>
     <div class="row">
@@ -95,13 +56,13 @@ $contador=0;
                                 <tr>
                                     <td>
                                         <a href="/SocialHealth/components/profile/infoOdontologo.php?id=<?php echo $row['id_usuario']; ?>">
-                                            <? echo $row['nombre']," ",$row['apellido']; ?>
+                                            <?=$row['nombre']," ",$row['apellido']; ?>
                                         </a>
                                     </td>
-                                    <td><?php echo $row['Fecha']; ?></td>
-                                    <td><?php echo $row['start'].'-'.$row['end']; ?></td>                                  
-                                    <td><?php echo $row['Descripcion']; ?></td>
-                                    <td><?php echo $row['Estado']; ?></td>
+                                    <td><?=$row['Fecha']; ?></td>
+                                    <td><?=$row['start'].'-'.$row['end']; ?></td>                                  
+                                    <td><?=$row['Descripcion']; ?></td>
+                                    <td><?=$row['Estado']; ?></td>
                                 </tr>
                                 <?php } if($contador <10){for($x=1;$x<=(10-$contador);$x++){ ?>
                                     <!-- <tr>
@@ -151,9 +112,81 @@ $contador=0;
 				$('.debug-url').html('Delete URL: <strong>' + $(this).find('.btn-ok').attr('href') + '</strong>');
 			});
         </script>
-    <!--script src="js/jquery-3.3.1.slim.min.js"></script->
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script-->
+        <script>
+                    $(document).ready(function(){
+      tabla = $('#mitabla').DataTable({
+         dom: 'Bfrtip',
+         pageLength: 5,
+         buttons: [
+             {
+                 extend: 'collection',
+                 className: 'inline text-right button-none',
+                 text: '<span class="text-primary"><i class="fas fa-ellipsis-v"></i></span> Opciones   ',
+                 buttons: [
+                    {
+                        extend: 'collection',
+                        className: 'inline',
+                        text: '<i class="fas fa-stream"></i> Vistas',
+                        buttons: [{
+                            text:'<h6 class="dropdown-header">Vistas</h6>'
+                        },{
+                            text: '<i class="fas fa-table"></i> Clasico',
+                            action:()=>{
+                                window.location.href ='?viewmode=1';
+                            }
+                        },{
+                            text: '<i class="fas fa-calendar"></i> Interactivo',
+                            action:()=>{
+                                window.location.href ='?viewmode=2';
+                            }
+                        }]
+                    },
+                    {
+                        extend: 'colvis',
+                        text:'<i class="far fa-eye"></i> Visibilidad'
+                    },
+                    {
+                        extend: 'collection',
+                        className: 'inline',
+                        text: '<i class="fas fa-file-export"></i> Exportar',
+                        buttons: [{
+                            extend: 'excel',
+                            text: '<i class="fas fa-file-excel"></i> Excel'
+                        },{
+                            extend: 'pdf',
+                            text: '<i class="fas fa-file-pdf"></i> PDF'
+                        },{
+                            extend: 'copy',
+                            text: '<i class="fas fa-file"></i> Copiar'
+                        },{
+                            extend: 'print',
+                            text: '<i class="fas fa-print"></i> Imprimir'
+                        }]
+                    }
+                ],
+             }
+         ],
+         order: [[0, "dsc"]],
+         language:{
+             lengthMenu: "Mostrar _MENU_ por pagina",
+             info: "Mostrando pagina _PAGE_ de _PAGES_",
+             infoEmpty: "No hay registros disponibles",
+             infoFiltered: "(filtrada de _MAX_ registros)",
+             loadingRecords: "Cargando...",
+             processing:     "Procesando...",
+             search: "Buscar:",
+             zeroRecords:    "No se encontraron registros coincidentes",
+             paginate: {
+                 next:       "Siguiente",
+                 previous:   "Anterior"
+             },					
+         },
+         Processing: true,
+         //"ServerSide": true,
+         //"ajax": "procesar.php"
+     });
+ });
+        </script>
 </body>
 </html>
 <?php include '../../template/footer.php'; ?>

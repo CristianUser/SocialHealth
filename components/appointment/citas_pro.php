@@ -12,12 +12,10 @@ while($row = $resultado->fetch_assoc()){
 $where="WHERE rp.ID_Profesional = $idUsuario";
 $sql = "SELECT ci.ID_Cita, ci.Fecha, ci.Estado, ci.horaInicio, ci.Descripcion, usr.id_usuario, usr.nombre, usr.apellido 
 FROM citas ci , r_paciente rp ,usuario usr where ci.ID_Pac = rp.ID_Pac 
-and usr.id_usuario =  rp.ID_Cliente and rp.ID_Profesional = $idUsuario and (ci.Estado=10 or ci.Estado=6) ORDER by ci.Fecha DESC";
+and usr.id_usuario =  rp.ID_Cliente and rp.ID_Profesional = $idUsuario and (ci.Estado=10 or ci.Estado=6 or ci.Estado=7) ORDER by ci.Fecha DESC";
 $resultado = $mysqli->query($sql);
 $sql1="SELECT ID_Pac FROM r_paciente  $where";
-
 $contador=0;
-
 ?>
 <?php include '../../template/header.php'; ?>
 <!DOCTYPE html>
@@ -44,21 +42,11 @@ $contador=0;
         <div class="row">
             <div class="col">
                 <h2 class="component-title">Citas</h2>
-                <div class="dropdown text-right">
-                    <button class="button-none" style="padding-left: 10px;padding-right: 10px;" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="text-primary"><i class="fas fa-ellipsis-v"></i></span>
-                    </button>
-                    <div id="opciones" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <h6 class="dropdown-header">Vistas</h6>
-                        <a class="dropdown-item" href="?viewmode=1">Clasica</a>
-                        <a class="dropdown-item" href="?viewmode=2">Interactiva</a>
-                    </div>
-                </div>
             </div>
         </div>
        <div class="row">
            <div class="col">
-               <div class="row table-responsive">
+               <div class="row table-responsive" style="text-align: end;">
                    <table class="tabla table table-striped dt-responsive nowrsap display" id="mitabla" style="width: 100%;">
                        <thead>
                            <tr>
@@ -102,7 +90,6 @@ $contador=0;
                     </div>
                 </div>
             </div>
-
     </div>
     <!-- Modal -->
     <div class="modal fade" id="appModal" tabindex="-1" role="dialog" aria-labelledby="appModalLabel" aria-hidden="true">
@@ -128,54 +115,82 @@ $contador=0;
                         </div>
                     </form>
                 </div>
-                <!-- <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-cmj">Save changes</button>
-                </div> -->
             </div>
         </div>
     </div>
     <script type="text/Javascript">
         $(document).ready(function(){
-     $('#mitabla').DataTable({
-         "dom": 'Bfrtip',
+      tabla = $('#mitabla').DataTable({
+         dom: 'Bfrtip',
          pageLength: 5,
          buttons: [
              {
                  extend: 'collection',
-                 className: 'inline',
-                 text: '<i class="fas fa-file-export"></i> Exportar',
-                 buttons: [ 'excel','pdf',{
-                     extend: 'copy',
-                     text: 'Copiar'
-                 },{
-                     extend: 'print',
-                     text: 'Imprimir'
-                 },{
-                     extend: 'colvis',
-                     text:'Visibilidad'
-                 }]
+                 className: 'inline text-right button-none',
+                 text: '<span class="text-primary"><i class="fas fa-ellipsis-v"></i></span> Opciones   ',
+                 buttons: [
+                    {
+                        extend: 'collection',
+                        className: 'inline',
+                        text: '<i class="fas fa-stream"></i> Vistas',
+                        buttons: [{
+                            text:'<h6 class="dropdown-header">Vistas</h6>'
+                        },{
+                            text: '<i class="fas fa-table"></i> Clasico',
+                            action:()=>{
+                                window.location.href ='?viewmode=1';
+                            }
+                        },{
+                            text: '<i class="fas fa-calendar"></i> Interactivo',
+                            action:()=>{
+                                window.location.href ='?viewmode=2';
+                            }
+                        }]
+                    },
+                    {
+                        extend: 'colvis',
+                        text:'<i class="far fa-eye"></i> Visibilidad'
+                    },
+                    {
+                        extend: 'collection',
+                        className: 'inline',
+                        text: '<i class="fas fa-file-export"></i> Exportar',
+                        buttons: [{
+                            extend: 'excel',
+                            text: '<i class="fas fa-file-excel"></i> Excel'
+                        },{
+                            extend: 'pdf',
+                            text: '<i class="fas fa-file-pdf"></i> PDF'
+                        },{
+                            extend: 'copy',
+                            text: '<i class="fas fa-file"></i> Copiar'
+                        },{
+                            extend: 'print',
+                            text: '<i class="fas fa-print"></i> Imprimir'
+                        }]
+                    }
+                ],
              }
          ],
-         "order": [[0, "dsc"]],
-         "language":{
-             "lengthMenu": "Mostrar _MENU_ por pagina",
-             "info": "Mostrando pagina _PAGE_ de _PAGES_",
-             "infoEmpty": "No hay registros disponibles",
-             "infoFiltered": "(filtrada de _MAX_ registros)",
-             "loadingRecords": "Cargando...",
-             "processing":     "Procesando...",
-             "search": "Buscar:",
-             "zeroRecords":    "No se encontraron registros coincidentes",
-             "paginate": {
-                 "next":       "Siguiente",
-                 "previous":   "Anterior"
+         order: [[0, "dsc"]],
+         language:{
+             lengthMenu: "Mostrar _MENU_ por pagina",
+             info: "Mostrando pagina _PAGE_ de _PAGES_",
+             infoEmpty: "No hay registros disponibles",
+             infoFiltered: "(filtrada de _MAX_ registros)",
+             loadingRecords: "Cargando...",
+             processing:     "Procesando...",
+             search: "Buscar:",
+             zeroRecords:    "No se encontraron registros coincidentes",
+             paginate: {
+                 next:       "Siguiente",
+                 previous:   "Anterior"
              },					
          },
-         "Processing": true,
+         Processing: true,
          //"ServerSide": true,
          //"ajax": "procesar.php"
-     });	
+     });
      $('#launchModal').click(()=>{
          console.log();
         //  $('#appModal').modal('toggle')

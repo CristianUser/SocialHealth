@@ -1,8 +1,9 @@
 <?php
 include 'connection.php';
 require 'utils.php';
+$userId=$_GET['id'];
 $sql = "SELECT ci.ID_Cita id, ci.Fecha date, ci.horaInicio startf, ci.horaFin endf,ci.Descripcion description, usr.nombre username, usr.apellido userlastname 
-FROM citas ci , r_paciente rp ,usuario usr where ci.ID_Pac = rp.ID_Pac and usr.id_usuario =  rp.ID_Cliente and rp.ID_Profesional = 4  and ci.Estado=10";
+, ci.Estado status FROM citas ci , r_paciente rp ,usuario usr where ci.ID_Pac = rp.ID_Pac and usr.id_usuario =  rp.ID_Cliente and rp.ID_Profesional = $userId ";
 $resultado = $mysqli->query($sql);
 $json='[';
 while($row = $resultado->fetch_assoc()) {
@@ -12,7 +13,14 @@ while($row = $resultado->fetch_assoc()) {
     $row['start']="$date"."T$start";
     $row['end']=$row['date'].'T'.$row['endf'];
     $row['title']=$row['username'].' '.$row['userlastname'];
-    $row['color']='green';
+    if ($row['status']==10){
+      $row['color']='green';
+    }elseif($row['status']==6){
+      $row['color']='red';
+    }elseif($row['status']==7){
+      $row['color']='primary';
+
+    }
     $row['editable']=true;
     unset($row['startf']);
     unset($row['endf']);

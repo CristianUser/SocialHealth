@@ -17,8 +17,8 @@ let saveAppointment = ()=>{
             "horaInicio":events[0].start.format().substr(11,8),
             "horaFin":events[0].end.format().substr(11,8),
             "descripcion":events[0].description,
-            "userId":userId,
-            "doctorId":doctorId
+            "pacId":$('#modalCitar .Paciente').val(),
+            "doctorId":userId
         };
         $.ajax({
             url : './request/saveAppoinment.php',
@@ -81,6 +81,7 @@ cal=$('#calendar').fullCalendar({
         },
     },
     slotLabelFormat: 'h:mm a',
+    listDayAltFormat: 'D [de] MMMM [del] YYYY',
     views: {
         week: { 
             columnFormat:'ddd D'
@@ -110,8 +111,8 @@ cal=$('#calendar').fullCalendar({
             alert('No puedes seleccionar fechas anteriores a las actual');
         }
         $('#modalCitar .Titulo').html();
-        $('#modalCitar .Resumen').html('<p>La cita sera programada para el <b>'+date.format('dddd DD')+' de '+date.format('MMMM, YYYY')+'</b> a las <b>'+date.format('h:mm a')+'</b>'+
-             'Si deseas dejar algun mensaje puedes hacerlo en el recuadro de abajo</p>');
+        $('#modalCitar .Resumen').html('<p>La cita sera programada para el <b>'+date.format('dddd DD [de] MMMM, YYYY')+'</b> a las <b>'+date.format('h:mm a')+'</b>'+
+             '. Si deseas dejar algun mensaje puedes hacerlo en el recuadro de abajo</p>');
        event={
             title: 'Patient Name',
             start:date.format(),
@@ -128,7 +129,7 @@ cal=$('#calendar').fullCalendar({
         url: './request/getEvents.php',
         data:{
             token:token,
-            id:doctorId,
+            id:id,
             userId:userId
         },
         error: function() {

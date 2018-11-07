@@ -39,18 +39,25 @@
     background: #555; 
 }
 .button-none{
-    background: none;
-    border: 0;
-    color: inherit;
+    background: none !important;
+    border: 0 !important;
+    color: inherit !important;
     /* cursor: default; */
-    font: inherit;
-    line-height: normal;
-    overflow: visible;
-    padding: 0;
-    -webkit-user-select: none; /* for button */
-    -webkit-appearance: button; /* for input */
-    -moz-user-select: none;
-    -ms-user-select: none;
+    font: inherit !important;
+    line-height: normal !important;
+    overflow: visible !important;
+    /* padding: 0 !important; */
+    -webkit-user-select: none !important; /* for button */
+    -webkit-appearance: button !important; /* for input */
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+}
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #07dacd;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 168, 158, 0.36);
 }
 /* ------------------------------------------------------------Otro Css-------------------------------------------------------------------- */
 *{
