@@ -1,5 +1,5 @@
 <?php
-require_once './connection.php';
+require_once '../../../functions/connection.php';
 require '../../../functions/dbActions/DB_Usuario.php';
 if(!empty($_POST))
 {

@@ -1,5 +1,5 @@
 <?php
-include 'connection.php';
+include '../../../functions/connection.php';
 require 'utils.php';
 $userId=$_GET['id'];
 $sql = "SELECT ci.ID_Cita id, ci.Fecha date, ci.horaInicio startf, ci.horaFin endf,ci.Descripcion description, usr.nombre username, usr.apellido userlastname 

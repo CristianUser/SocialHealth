@@ -1,5 +1,5 @@
 <?php
-include 'connection.php';
+include '../../../functions/connection.php';
 require 'utils.php';
 session_start();
 $token = $_SESSION['token'];
@@ -131,7 +131,7 @@ foreach($lista as $element){
 // eventos reales
 $userId=$_GET['userId'];
 $sql = "SELECT ci.ID_Cita id,rp.ID_Cliente idPac, ci.Fecha date, ci.horaInicio startf, ci.horaFin endf,ci.Descripcion description, usr.nombre username, usr.apellido userlastname 
-FROM citas ci , r_paciente rp ,usuario usr where ci.ID_Pac = rp.ID_Pac and usr.id_usuario =  rp.ID_Cliente and rp.ID_Profesional = $doctorId and ci.Estado='Pendiente'";
+FROM citas ci , r_paciente rp ,usuario usr where ci.ID_Pac = rp.ID_Pac and usr.id_usuario =  rp.ID_Cliente and rp.ID_Profesional = $doctorId and ci.Estado=10";
 $resultado = $mysqli->query($sql);
 while($row = $resultado->fetch_assoc()) {
     //print_r($row);

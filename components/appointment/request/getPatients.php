@@ -1,5 +1,5 @@
 <?php
-require 'connection.php';
+require '../../../functions/connection.php';
 $userId=$_GET['id'];
 $sql = "SELECT usr.nombre as name, usr.apellido as lastname FROM usuario usr INNER JOIN datos_cliente dp 
 ON usr.id_usuario = dp.ID_Usuario and usr.id_usuario in 
