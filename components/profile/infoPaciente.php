@@ -30,9 +30,9 @@ include '../../template/header.php' ?>
 <title>SocialHealth</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/Socialhealth/components/profile/css/perfil-pro-w3.css">
-<link rel='stylesheet' href="/Socialhealth/components/profile/css/perfil-pro-css-font.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/SocialHealth/components/profile/css/perfil-pro-w3.css">
+<link rel='stylesheet' href="/SocialHealth/components/profile/css/perfil-pro-css-font.css">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 <style>
 
 html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
@@ -83,10 +83,8 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
     <div class="w3-container w3-card w3-white w3-margin-bottom">
         <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Historia Clinica</h2>
         <div class="w3-container">
-          <h5 class="w3-opacity">Titulo</b></h5>
-          <!--h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jan 2015 - <span class="w3-tag w3-teal w3-round">Current</span></h6-->
-          <p>Contenido</p>
-          <hr>
+        <ul class='list-group list-group-flush' id="record-list" style="overflow:auto;max-height: 425px;">
+        </ul>
         </div>
       </div>
 
@@ -98,7 +96,12 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
   
   <!-- End Page Container -->
 </div>
-
+<div style="display:none">
+  <li id='template' class='list-group-item'>
+    <h5 class="w3-opacity Descripcion">Extraccion Dental</b></h5>
+    <p class="Hora"><i class="fa fa-calendar w3-text-teal"></i>  20/10/2018 - 11:00 am</p>
+  </li>  
+</div>
 <!--footer class="w3-container w3-teal w3-center w3-margin-top">
   <p>Find me on social media.</p>
   <i class="fa fa-facebook-official w3-hover-opacity"></i>
@@ -109,7 +112,43 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
   <i class="fa fa-linkedin w3-hover-opacity"></i>
   <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
 </footer-->
+<script>
+  var idPac = <?=$id?>;
+  var getRecord = ()=>{
+    var parameters={
+      idpac:idPac,
+      iddoc:id
+    };
+    $.ajax({
+      url : './request/historic.php',
+      data : parameters,
+      type : 'GET',
+      success : function(res) {
+        console.log(res);
+        // valores=req;
+        renderRecord(res);
+      },
+      error : function(xhr, status) {
+        console.log('Disculpe, existió un problema');
+      },
+      complete : function(xhr, status) {
+        //console.log('Petición realizada');
+      }
+    });
+  }
+  var renderRecord = (res)=>{
+    res.forEach(element => {
+      $("#template").clone().appendTo("#record-list");
+      $("#template .Descripcion").html(element.description);
+      $("#template .Hora").html('<i class="fa fa-calendar w3-text-teal"></i>  '+element.date);
+      $("#template").attr("id",'record'+element.id);
+    });
+  }
+  $(document).ready(()=>{
+    getRecord();
+  });
 
+    </script>
 </body>
 </html>
 <?php include '../../template/footer.php' ?>

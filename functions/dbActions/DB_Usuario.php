@@ -28,11 +28,11 @@ function agregarRPaciente($idpac,$idpro){
         return false;	
     }
 }
-function estadoCita($id,$estado){
+function editAppointment($id,$status,$description){
     global $mysqli;
     
-    $stmt = $mysqli->prepare("UPDATE `citas` SET `Estado`= ? WHERE ID_Cita= ?");
-    $stmt->bind_param('ss', $estado, $id);
+    $stmt = $mysqli->prepare("UPDATE `citas` SET `Estado`= ? ,`Descripcion`= ? WHERE ID_Cita= ?");
+    $stmt->bind_param('sss', $status,$description, $id);
     
     if ($stmt->execute()){
         return true;

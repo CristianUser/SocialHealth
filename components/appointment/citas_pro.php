@@ -12,7 +12,7 @@ while($row = $resultado->fetch_assoc()){
 $where="WHERE rp.ID_Profesional = $idUsuario";
 $sql = "SELECT ci.ID_Cita, ci.Fecha, ci.Estado, ci.horaInicio, ci.Descripcion, usr.id_usuario, usr.nombre, usr.apellido 
 FROM citas ci , r_paciente rp ,usuario usr where ci.ID_Pac = rp.ID_Pac 
-and usr.id_usuario =  rp.ID_Cliente and rp.ID_Profesional = $idUsuario and (ci.Estado=10 or ci.Estado=6 or ci.Estado=7) ORDER by ci.Fecha DESC";
+and usr.id_usuario =  rp.ID_Cliente and rp.ID_Profesional = $idUsuario and (ci.Estado!=7) ORDER by ci.Fecha DESC";
 $resultado = $mysqli->query($sql);
 $sql1="SELECT ID_Pac FROM r_paciente  $where";
 $contador=0;
@@ -103,14 +103,43 @@ $contador=0;
                 </div>
                 <div class="modal-body">
                     
-                    <form>
+                    <form name='form'>
                         <input type="hidden" id="idCita" value="">
+                        <div class="row">
+                            <div class="col">
+                                <h6>Proceso Realizado</h6>
+                                <select class="form-control" name="select" id="">
+                                    <option value="">Selecciona</option>
+                                    <option value="Extraccion Dental">Extraccion Dental</option>
+                                    <option value="Revision Bucal">Revision</option>
+                                    <option value="Revision Bucal">Limpieza Bucal</option>
+                                </select>
+                            </div>
+                        </div>
+                        <hr>
                         <div class="row text-center">
                             <div class="col">
-                                <button class="btn btn-cmj" value="7">Completar</button>
+                                <button class="btn btn-cmj" value="11">Posponer</button>
                             </div>
                             <div class="col">
-                                <button class="btn btn-cmj" value="11">Posponer</button>
+                                <button id="btnComplete" class="btn btn-cmj" value="7">Completar</button>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col">
+                                <div id="alertS" class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <p>Cambio Realizado!</p>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div id="alertD" class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <p>Se ha producido un error!</p>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </form>
@@ -196,23 +225,32 @@ $contador=0;
         //  $('#appModal').modal('toggle')
      });
  });	
+ var idpac;
     selectElement=(element)=>{
         $('#appModal').modal('toggle')
         $('#idCita').val(element.parentNode.parentNode.id);
         console.log(element.parentNode.parentNode.id);
+        idpac=element.parentNode.parentNode.id;
     };
-    editAppointment = ()=>{
+    editAppointment = (status)=>{
         let parametros = {
-            id:id,
+            id:idpac,
             token:token,
-            status:status
-
+            status:status,
+            description:form.select.value
         };
         $.ajax({
-            url : 'request/getPersona.php',
+            url : 'request/editAppointment.php',
             data : parametros,
             type : 'POST',
-            success : function(req) {
+            success : function(res) {
+                console.log(res);
+                if(res=='Confirmado'){
+                    $('#alertS').show();
+                    setTimeout(function(){ window.location.reload(false); },1000);
+                }else{
+                    $('#alertD').show();
+                }
             },
             error : function(xhr, status) {
                 console.log('Disculpe, existió un problema');
@@ -222,6 +260,14 @@ $contador=0;
             }
         });
     };
+    $("#btnComplete").click(function (e) { 
+        e.preventDefault();
+        editAppointment(7);
+    });
+    $(document).ready(function () {
+        $('#alertD').hide();
+        $('#alertS').hide();
+    });
     </script>
 </body>
 </html>

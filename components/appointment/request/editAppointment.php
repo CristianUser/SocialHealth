@@ -1,13 +1,20 @@
 <?php
 require '../../../functions/connection.php';
+require '../../../functions/dbActions/DB_Usuario.php';
+session_start();
 
-$sql = "SELECT * FROM estados";
-$resultado = $mysqli->query($sql);
-$array;
-while($row = $resultado->fetch_assoc()){
- //print_r($row);
- $array[$row['id_estado']]=$row['nombre'];
-};
-print_r(array_keys($array)[1]);
+$id=$_POST['id'];
+$status=$_POST['status'];
+$description=$_POST['description'];
+if($_SESSION['token']==$_POST['token']){
+
+    if(editAppointment($id, $status, $description)){
+        echo "Confirmado";
+    }else{
+        echo "Error";
+    }
+}else{
+    echo 'Error de seguridad';
+}
 
 ?>
