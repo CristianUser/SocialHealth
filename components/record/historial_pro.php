@@ -4,7 +4,7 @@ include '../../functions/dbActions/DB_Usuario.php';
 $where="WHERE rp.ID_Profesional = $idUsuario";
 $sql = "SELECT ci.ID_Cita, ci.Fecha, ci.Estado, ci.horaInicio Hora, ci.Descripcion, usr.id_usuario, usr.nombre, usr.apellido 
 FROM citas ci , r_paciente rp ,usuario usr where ci.ID_Pac = rp.ID_Pac 
-and usr.id_usuario =  rp.ID_Cliente and rp.ID_Profesional = $idUsuario and ci.Estado!=5";
+and usr.id_usuario =  rp.ID_Cliente and rp.ID_Profesional = $idUsuario and ci.Estado=10";
 $resultado = $mysqli->query($sql);
 $sql1="SELECT ID_Pac FROM r_paciente  $where";
 

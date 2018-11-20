@@ -60,16 +60,16 @@ $contador=0;
                         </thead>
                         <tbody>
                             <?php while($row = $resultado->fetch_assoc()) { $contador+=1; ?>
-                                <tr id="<?php echo $row['ID_Cita']; ?>">
+                                <tr id="<?=$row['ID_Cita']; ?>">
                                     <td>
-                                        <a href="/SocialHealth/components/profile/infoPaciente.php?id=<?php echo $row['id_usuario']; ?>">
-                                            <?php echo $row['nombre']," ",$row['apellido']; ?>
+                                        <a href="/SocialHealth/components/profile/infoPaciente.php?id=<?=$row['id_usuario']; ?>">
+                                            <?=$row['nombre']," ",$row['apellido']; ?>
                                         </a>
                                     </td>
-                                    <td><?php echo $row['Fecha']; ?></td>
-                                    <td><?php echo $row['horaInicio']; ?></td>                                  
-                                    <td><?php echo $row['Descripcion']; ?></td>
-                                    <td><?php echo $estados[$row['Estado']]; ?></td>
+                                    <td><?=$row['Fecha']; ?></td>
+                                    <td><?=$row['horaInicio']; ?></td>                                  
+                                    <td><?=$row['Descripcion']; ?></td>
+                                    <td><?=$estados[$row['Estado']]; ?></td>
                                     <td>
                                         <div id="launchModal" onclick="selectElement(this)">
                                             <span class="text-primary"><i class="fas fa-check"></i></span>

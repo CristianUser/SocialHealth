@@ -3,7 +3,7 @@ include '../../functions/sesionPac.php';
 $where="WHERE rp.ID_Cliente = $idUsuario";
 $sql = "SELECT ci.Fecha, ci.Estado, ci.horaInicio Hora, ci.Descripcion, usr.id_usuario, usr.nombre, usr.apellido 
 FROM citas ci , r_paciente rp ,usuario usr where ci.ID_Pac = rp.ID_Pac 
-and usr.id_usuario =  rp.ID_Profesional and rp.ID_Cliente = $idUsuario and ci.Estado != 'Pendiente'";
+and usr.id_usuario =  rp.ID_Profesional and rp.ID_Cliente = $idUsuario and ci.Estado != 10";
 $resultado = $mysqli->query($sql);
 $sql1="SELECT ID_Pac FROM r_paciente  $where";
 
@@ -55,14 +55,14 @@ function seguro($id){
                             <?php while($row = $resultado->fetch_assoc()) { $contador+=1; ?>
                                 <tr>
                                     <td>
-                                        <a href="/SocialHealth/components/profile/infoOdontologo.php?id=<?php echo $row['id_usuario']; ?>">
-                                            <?php echo $row['nombre']," ",$row['apellido']; ?>
+                                        <a href="/SocialHealth/components/profile/infoOdontologo.php?id=<?=$row['id_usuario']; ?>">
+                                            <?=$row['nombre']," ",$row['apellido']; ?>
                                         </a>
                                     </td>
-                                    <td><?php echo $row['Fecha']; ?></td>
-                                    <td><?php echo $row['Hora']; ?></td>                                  
-                                    <td><?php echo $row['Descripcion']; ?></td>
-                                    <td><?php echo $row['Estado']; ?></td>
+                                    <td><?=$row['Fecha']; ?></td>
+                                    <td><?=$row['Hora']; ?></td>                                  
+                                    <td><?=$row['Descripcion']; ?></td>
+                                    <td><?=$row['Estado']; ?></td>
                                 </tr>
                                 <?php } if($contador <10){for($x=1;$x<=(10-$contador);$x++){ ?>
                                     <!-- <tr>

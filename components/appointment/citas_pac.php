@@ -1,9 +1,17 @@
 <?php
 include '../../functions/sesionPac.php';
+
+$sql1 = "SELECT * FROM estados";
+$resultado1 = $mysqli->query($sql1);
+$estados;
+while($row = $resultado1->fetch_assoc()){
+ $estados[$row['id_estado']]=$row['nombre'];
+};
+
 $where="WHERE rp.ID_Cliente = $idUsuario";
 $sql = "SELECT ci.Fecha, ci.Estado, ci.horaInicio as start, ci.horaFin as end, ci.Descripcion, usr.id_usuario, usr.nombre, usr.apellido 
 FROM citas ci , r_paciente rp ,usuario usr where ci.ID_Pac = rp.ID_Pac 
-and usr.id_usuario =  rp.ID_Profesional and rp.ID_Cliente = $idUsuario and (ci.Estado=10 or ci.Estado=6) ORDER by ci.Fecha DESC";
+and usr.id_usuario =  rp.ID_Profesional and rp.ID_Cliente = $idUsuario and ci.Estado!=10 ORDER by ci.Fecha DESC";
 $resultado = $mysqli->query($sql);
 $sql1="SELECT ID_Pac FROM r_paciente  $where";
 
@@ -55,14 +63,14 @@ $contador=0;
                             <?php while($row = $resultado->fetch_assoc()) { $contador+=1; ?>
                                 <tr>
                                     <td>
-                                        <a href="/SocialHealth/components/profile/infoOdontologo.php?id=<?php echo $row['id_usuario']; ?>">
+                                        <a href="/SocialHealth/components/profile/infoOdontologo.php?id=<?=$row['id_usuario']; ?>">
                                             <?=$row['nombre']," ",$row['apellido']; ?>
                                         </a>
                                     </td>
                                     <td><?=$row['Fecha']; ?></td>
                                     <td><?=$row['start'].'-'.$row['end']; ?></td>                                  
                                     <td><?=$row['Descripcion']; ?></td>
-                                    <td><?=$row['Estado']; ?></td>
+                                    <td><?=$estados[$row['Estado']];?></td>
                                 </tr>
                                 <?php } if($contador <10){for($x=1;$x<=(10-$contador);$x++){ ?>
                                     <!-- <tr>

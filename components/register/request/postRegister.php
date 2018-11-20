@@ -61,7 +61,7 @@
                 $pass_hash = hashPassword($password);
 				$token = generateToken();
 				
-                $registro = registraUsuario($usuario, $pass_hash, $nombre, $apellido, $email, $activo, $token, $tipo_usuario);
+                $registro = registerUser($usuario, $pass_hash, $nombre, $apellido, $email, $activo, $token, $tipo_usuario);
 				if($registro > 0 )
 				{
 					
@@ -217,8 +217,9 @@
                             <div class="col"></div>
                             <div class="col">
                                 <div class="cuadro" style="background-color: #fff;">
-                                    <h5>Para terminar el proceso de registro siga las instrucciones que le hemos enviado la direccion de
-                                        correo electronico: '.$email.'</h5>
+                                <h5>Registro Exitoso</h5>
+                                    <p>Para terminar el proceso de registro siga las instrucciones que le hemos enviado la direccion de
+                                        correo electronico: '.$email.'</p>
                                     <a href="/SocialHealth/components/login/"><button style="margin-bottom: 10px;" class="btn btn-cmj">Iniciar Sesion</button></a>
                                     <br>
                                 </div>

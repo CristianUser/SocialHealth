@@ -114,7 +114,7 @@
 		}
 	}
 	
-	function registraUsuario($usuario, $pass_hash, $nombre, $apellido,$email, $activo, $token, $tipo_usuario){
+	function registerUser($usuario, $pass_hash, $nombre, $apellido,$email, $activo, $token, $tipo_usuario){
 		
 		global $mysqli;
 		$time="0000-00-00 00:00:00";
@@ -172,7 +172,7 @@
 			if($activacion == 1){
 				$msg = "La cuenta ya se activo anteriormente.";
 				} else {
-				if(activarUsuario($id)){
+				if(activateUser($id)){
 					$msg = 'Cuenta activada.';
 					} else {
 					$msg = 'Error al Activar Cuenta';
@@ -184,11 +184,17 @@
 		return $msg;
 	}
 	
-	function activarUsuario($id)
+	function activateUser($id)
 	{
 		global $mysqli;
-		
-		$stmt = $mysqli->prepare("UPDATE usuario SET activacion=1 WHERE id_usuario = ?");
+		$type = getValue('id_tipo','id_usuario','4');
+		$status = getValue('activacion','id_usuario','4');
+		if($type == 2){
+			$value = 3;
+		}else{
+			$value = 1;
+		}
+		$stmt = $mysqli->prepare("UPDATE usuario SET activacion=$value WHERE id_usuario = ?");
 		$stmt->bind_param('s', $id);
 		$result = $stmt->execute();
 		$stmt->close();
@@ -237,7 +243,7 @@
 		
 		if($rows > 0) {
 			
-			if(isActivo($usuario)){
+			if(isActive($usuario)){
 				
 				$stmt->bind_result($id, $id_tipo, $passwd);
 				$stmt->fetch();
@@ -246,12 +252,12 @@
 				
 				if($validaPassw){
 					
-					if(isFirstTime($id)){
+					if(isSetup($id)){
 						lastSession($id);
 						if($id_tipo==1){
-							header("location: ../register/reg_datos_pac.php");
+							header("location: ../components/register/reg_datos_pac.php");
 						} elseif($id_tipo==2){
-							header("location: ../register/reg_datos_pro.php");
+							header("location: ../components/register/reg_datos_pro.php");
 						}
 					}else
 					{
@@ -264,7 +270,6 @@
 					$_SESSION['token'] = $token;
 					$_SESSION['id_usuario'] = $id;
 					$_SESSION['tipo_usuario'] = $id_tipo;
-					$_SESSION['notificacion'];
 					
 					} 
 					else {
@@ -290,7 +295,7 @@
 		$stmt->close();
 	}
 	
-	function isActivo($usuario)
+	function isActive($usuario)
 	{
 		global $mysqli;
 		
@@ -302,6 +307,8 @@
 		
 		if ($activacion == 1)
 		{
+			return true;
+		}elseif ($activacion == 3){
 			return true;
 		}
 		else
@@ -324,7 +331,7 @@
 		return $token;
 	}
 	
-	function getValor($campo, $campoWhere, $valor)
+	function getValue($campo, $campoWhere, $valor)
 	{
 		global $mysqli;
 		
@@ -343,6 +350,32 @@
 		else
 		{
 			return null;	
+		}
+	}
+	function isSetup($userId)
+	{
+		global $mysqli;
+		$userType= getValue("id_tipo","id_usuario",$userId);
+		if($userType==1){
+			$stmt = $mysqli->prepare("SELECT ID_Usuario FROM datos_cliente WHERE ID_Usuario = ? LIMIT 1");
+		}elseif($userType==2){
+			$stmt = $mysqli->prepare("SELECT ID_Usuario FROM datos_profesional WHERE ID_Usuario = ? LIMIT 1");
+		}
+		$stmt->bind_param('s', $userId);
+		$stmt->execute();
+		$stmt->store_result();
+		$num = $stmt->num_rows;
+		
+		if ($num > 0)
+		{
+			//$stmt->bind_result($_campo);
+			//$stmt->fetch();
+			//return $_campo;
+			return true;
+		}
+		else
+		{
+			return false;	
 		}
 	}
 	
@@ -381,6 +414,9 @@
 			$stmt->bind_result($activacion);
 			$stmt->fetch();
 			if($activacion == 1)
+			{
+				return true;
+			}elseif($activacion == 3)
 			{
 				return true;
 			}
