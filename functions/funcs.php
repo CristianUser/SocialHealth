@@ -255,9 +255,9 @@
 					if(isSetup($id)){
 						lastSession($id);
 						if($id_tipo==1){
-							header("location: ../components/register/reg_datos_pac.php");
+							header("location: ../../components/register/reg_datos_pac.php");
 						} elseif($id_tipo==2){
-							header("location: ../components/register/reg_datos_pro.php");
+							header("location: ../../components/register/reg_datos_pro.php");
 						}
 					}else
 					{

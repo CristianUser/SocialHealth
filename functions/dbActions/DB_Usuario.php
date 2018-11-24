@@ -10,7 +10,23 @@ function isEmail($email)
         return false;
     }
 }*/
-function agregarRPaciente($idpac,$idpro){
+function RPacienteExists($idpac,$idpro){
+    global $mysqli;
+		
+    $stmt = $mysqli->prepare("SELECT * FROM r_paciente rp WHERE rp.ID_Cliente=? and rp.ID_Profesional=? LIMIT 1");
+    $stmt->bind_param("ss", $idpac,$idpro);
+    $stmt->execute();
+    $stmt->store_result();
+    $num = $stmt->num_rows;
+    $stmt->close();
+    
+    if ($num > 0){
+        return true;
+        } else {
+        return false;	
+    }
+}
+function addRPaciente($idpac,$idpro){
     global $mysqli;
     
     $sql = "SELECT MAX(ID_Pac) FROM `r_paciente`";

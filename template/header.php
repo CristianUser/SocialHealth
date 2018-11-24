@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/SocialHealth/template/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.4.2/js/all.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.29.1/dist/sweetalert2.all.min.js"></script>
     <script type="text/javascript">
       let id=<?=$idUsuario;?>;
       let token="<?=$token;?>";

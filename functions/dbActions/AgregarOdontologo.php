@@ -13,7 +13,7 @@ if(!empty($_POST))
         $resultado = $mysqli->query($sql);
         $s=$resultado->fetch_assoc();
         $idpro=$s['id_usuario'];
-        if(agregarRPaciente($id,$idpro)){
+        if(addRPaciente($id,$idpro)){
             $mensaje="Guardado con exito";
         }else{
             $mensaje="Error al guardar $idpro";

@@ -353,7 +353,8 @@ h4{
 }
 
 .btn-cmj {
-	background: #00a89e;
+    background: #00a89e !important;
+    background-color: #00a89e !important;
     color: white;
     box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.233);
     /*

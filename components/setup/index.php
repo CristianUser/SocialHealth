@@ -47,9 +47,7 @@
         <br>
         <div class="row text-right">
             <div class="col">
-                <button id="btnSend" class="btn btn-cmj">
-                    Enviar
-                </button>
+                <button id="btnSend" class="btn btn-cmj">Enviar</button>
             </div>
         </div>
     </div>
@@ -63,13 +61,34 @@
             autoProcessQueue:false,
             addRemoveLinks:true,
             init:()=>{
+                myDropzone = myDropzone;
                 $('#btnSend').click(()=>{
                     myDropzone.processQueue();
                 });
+
+                $.get('./request/getFiles.php', function (data) {
+                    if (data == null) {
+                        return;
+                    }
+                    // 7
+                    console.log(data);
+                    $.each(data, function (key, value) {
+                        var mockFile = { name: value.name, size: value.size };
+                        myDropzone.emit("addedfile", mockFile);
+                        //myDropzone.options.thumbnail.call(myDropzone, mockFile, '/SocialHealth/private/files/4/documents/' + value.name);
+                        myDropzone.createThumbnailFromUrl(mockFile, '../../private/files'+id+'/documents/' + value.name);
+                        // Make sure that there is no progress bar, etc...
+                        myDropzone.emit("complete", mockFile);
+                    });
+                });
+
             },
             dictDefaultMessage:"Arrastre los archivos aqui!",
             dictRemoveFile:"Remover Archivo"
         });
+        myDropzone.on("removedFile",()=>{
+                    console.log("removed");
+                })
     </script>
 </body>
 </html>
