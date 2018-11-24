@@ -56,7 +56,7 @@ $imgData2 = base64_encode(file_get_contents($img_file2));
 // Format the image SRC:  data:{mime};base64,{data};
 $perfil = 'data: '.mime_content_type($img_file2).';base64,'.$imgData2;
  $output .= '
- <div class="col-3">
+ <div class="col">
  <div class="card" style="">
  <input type="hidden" id="rowcount" name="rowcount" value="' . $_GET["rowcount"] . '" />
  <img class="card-img-top" src="'.$perfil.'" alt="Card image cap">

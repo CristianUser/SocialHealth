@@ -20,10 +20,14 @@ include '../../template/header.php';?>
         .answer{padding-top: 10px;}
         #pagination{margin-top: 20px;padding-top: 30px;border-top: #F0F0F0 1px solid;}
         .dot {padding: 10px 15px;background: transparent;border-right: #bccfd8 1px solid;}
-        #overlay {background-color: rgba(0, 0, 0, 0.6);z-index: 999;position: absolute;left: 0;top: 0;width: 100%;height: 100%;display: none;}
+        #overlay {background-color: rgba(255, 255, 255, 0.6);z-index: 999;position: absolute;left: 0;top: 0;width: 90%;height: 90%;display: none;}
         #overlay div {position:absolute;left:50%;top:50%;margin-top:-32px;margin-left:-32px;}
         .page-content {padding: 20px;margin: 0 auto;}
         .pagination-setting {padding:10px; margin:5px 0px 10px;border:#bccfd8  1px solid;color:#607d8b;}
+        .col{
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -46,16 +50,38 @@ include '../../template/header.php';?>
                 </form>
             </div>
         </div>
-        <div class="row">
+        <div class="row text-right">
             <div class="col">
-                <p>Area para Filtros</p>
+                    <a class="" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <span><i class="fas fa-filter"></i></span>Filtro
+                    </a>
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                            <form action="">
+                                <div class="row">
+                                    <div class="col">
+                                            <p>Region</p>
+                                            <select class="form-control" name="" id="">
+                                                <option value="">Seleccion</option>
+                                            </select>
+                                    </div>
+                                    <div class="col">
+                                        <p>Provincia</p>
+                                        <select class="form-control" name="" id="">
+                                            <option value="">Seleccion</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
             </div>
         </div>
         <div class="row">
             <div class="col">
 
             
-            <div id="overlay"><div><img src="loading.gif" width="64px" height="64px"/></div></div>
+            <div id="overlay"><div><img src="/SocialHealth/loading.gif" width="64px" height="64px"/></div></div>
                 <div class="page-content">
                     
                         <div id="pagination-result">
